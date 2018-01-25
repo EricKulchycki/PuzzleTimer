@@ -7,12 +7,11 @@ import java.util.*;
 class ScrambleGenerator {
 
     //Generates a random number between 0 and 17 (18 possible numbers)
-    public static int genRanNum() {
+    private static int genRanNum() {
 
         double ranNum = Math.random() * 17 + 1;
-        int ranNum2 = (int) ranNum;
+        return (int) ranNum;
 
-        return ranNum2;
     }
 
 
@@ -24,7 +23,7 @@ class ScrambleGenerator {
 
             int num = genRanNum();
             Moves move = Moves.valueOf(num);
-
+            scramble += " ";
             scramble += move;
         }
 
