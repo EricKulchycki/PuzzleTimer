@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Displays the scramble on the screen
     public void scrambleToDisplay() {
         ScrambleGenerator scrambleGen = new ScrambleGenerator();
         String scramble = scrambleGen.genScramble();
