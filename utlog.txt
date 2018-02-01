@@ -68,15 +68,13 @@ STORAGE
 	*Used to hold both split and full run times
 	*(needs another name, Time is already a [depreciated] Java class)
 - Create Split Class
-	-Linked list of nodes with �Time� objects
+	-Linked list of nodes with Time objects
 	-Create nodes as split button inputs are made
 - Create form of storage for Time and Split classes
 	for prototype, create linked lists
  		Linked list updated with Save Button input
 	for finished version, transfer from linked lists to persistent storage
 		Savefile? Database?
-
-***If this appears on GitHub, then AS works on Mark's comp
 
 
 
