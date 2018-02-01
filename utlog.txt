@@ -28,12 +28,12 @@ Allow to select delay length and usage
 
 Data Storage
 
-Create a “Time” class as main unit of measurement
-	Used to hold both split and “full” run times 
+Create a ï¿½Timeï¿½ class as main unit of measurement
+	Used to hold both split and ï¿½fullï¿½ run times 
 	(needs another name, Time is already a [depreciated] Java class)
 	difference between times is stored as a long (counts milliseconds)
 Create Split Class
-	Linked list of nodes with “Time” objects
+	Linked list of nodes with ï¿½Timeï¿½ objects
 	Create nodes as split button inputs are made
 Create a new Split class on startup and Reset Button input
 Create form of storage for Time and Split classes
@@ -42,6 +42,7 @@ Create form of storage for Time and Split classes
 	for finished version, transfer from linked lists to persistent storage
 		Savefile? Database?
 
+***If this appears on GitHub, then AS works on Mark's comp
 
 
 
