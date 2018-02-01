@@ -1,0 +1,49 @@
+Basic Timer Implementation
+
+Basic Timer code
+Start/stop button(s)
+Timer start/stop on screen touch
+Reset Button (to set current time to 0:00)
+Save Button
+
+
+Lap/Split Implementation
+
+Split button (records elapsed time between Split Button presses)
+Show list of previous splits
+Implement dynamic data storage of splits (Linked List of times)
+Split reset button
+Split comparisons
+	show time difference between ith split of current run vs ith split of past run(s)
+
+
+Delays
+
+Pre-timer delay
+Post-timer delay
+Between-split delay
+Menu for user input to (de)select delays
+Allow to select delay length and usage
+
+
+Data Storage
+
+Create a “Time” class as main unit of measurement
+	Used to hold both split and “full” run times 
+	(needs another name, Time is already a [depreciated] Java class)
+	difference between times is stored as a long (counts milliseconds)
+Create Split Class
+	Linked list of nodes with “Time” objects
+	Create nodes as split button inputs are made
+Create a new Split class on startup and Reset Button input
+Create form of storage for Time and Split classes
+	for prototype, create linked lists
+ 		Linked list updated with Save Button input
+	for finished version, transfer from linked lists to persistent storage
+		Savefile? Database?
+
+
+
+
+
+
