@@ -62,6 +62,7 @@ class ScrambleGenerator {
             retScramble += scramble[x];
         }
 
+        retScramble = translateScramble(retScramble);
 
         return retScramble;
     }
@@ -72,6 +73,32 @@ class ScrambleGenerator {
         Moves move = Moves.valueOf(num);
 
         return move;
+    }
+
+    private static String translateScramble(String oldScramble) {
+
+        String retScramble = "";
+
+        for(int i = 0; i < oldScramble.length(); i++) {
+            if(oldScramble.charAt(i) == 'p') {
+                retScramble += "' ";
+            }
+            else if( oldScramble.charAt(i) == '2') {
+                retScramble += oldScramble.charAt(i);
+                retScramble += " ";
+            }
+            else {
+                if(i < oldScramble.length() && (oldScramble.charAt(i+1) == '2') || (oldScramble.charAt(i+1) == 'p')) {
+                    retScramble += oldScramble.charAt(i);
+                }
+                else {
+                    retScramble += oldScramble.charAt(i) + " ";
+                }
+
+            }
+        }
+
+        return retScramble;
     }
 
 

@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context="sep.myapplication.MainActivity">
 
     <TextView
         android:id="@+id/scramble"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="941dp"
+        android:layout_height="60dp"
+        android:gravity="center"
         android:text="@string/scramble_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,6 +20,33 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.039"
         tools:maxWidth="@android:dimen/dialog_min_width_major" />
+
+    <TextView
+        android:id="@+id/TimerDisplay"
+        android:layout_width="356dp"
+        android:layout_height="118dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Ready"
+        android:textColor="#000000"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="@+id/startTimer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/startTimer" />
+
+    <Button
+        android:id="@+id/startTimer"
+        android:layout_width="955dp"
+        android:layout_height="457dp"
+        android:layout_marginBottom="8dp"
+        android:text=""
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="4dp" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -53,7 +53,7 @@ TIMER INTERFACE
 - Add Start Button to interface with functionality
 - Add Stop Button to interface with functionality
     *or combine Start and Stop Button functionality into a single button
-    *or add functionality upon user screen touch
+    *or add functionality upon user screen touch (THIS IS WHAT WE WILL DO)
 - Add Reset Button to interface with functionality
     - Disable/Hide button when clock is running
 - Add Split Button to interface with functionality
@@ -75,6 +75,12 @@ STORAGE
  		Linked list updated with Save Button input
 	for finished version, transfer from linked lists to persistent storage
 		Savefile? Database?
+
+NOTES:
+(Eric)
+- Spliting times isn't something we need to be worried about.
+- Linked List implementation is just ArrayList, so use that.
+- Storage should just be an ArrayList for now, then next iter we'll move to an SQL Database.
 
 
 
