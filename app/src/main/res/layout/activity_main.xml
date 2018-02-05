@@ -43,10 +43,27 @@
         android:layout_width="955dp"
         android:layout_height="457dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="startClick"
         android:text=""
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="4dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/stopTimer"
+        android:layout_width="955dp"
+        android:layout_height="457dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="stopClick"
+        android:text=""
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </android.support.constraint.ConstraintLayout>

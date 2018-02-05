@@ -16,7 +16,7 @@ class ScrambleGenerator {
 
 
     //Generates 25 random moves
-    public static String genScramble() {
+    public String genScramble() {
 
         Moves[] scrambleA = new Moves[25];
         String scramble = "";
