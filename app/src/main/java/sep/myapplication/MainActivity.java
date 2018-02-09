@@ -8,19 +8,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.os.SystemClock;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tempTextView; //Temporary TextView
-    private Button tempBtn; //Temporary Button
-    private Handler mHandler = new Handler();
-    private long startTime;
-    private long elapsedTime;
-    private final int REFRESH_RATE = 10;
-    private String minutes,seconds,milliseconds;
-    private long secs,mins,msecs;
-    private boolean stopped = false;
+    TextView textview;
+    Button start, stop, reset, lap ;
+    long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
+    Handler handler;
+    int Seconds, Minutes, MilliSeconds ;
+    ListView listView ;
+    String[] ListElements = new String[] {  };
+    List<String> ListElementsArrayList ;
+    ArrayAdapter<String> adapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         scrambleToDisplay();
-
-//        Button startstop;
-//        Handler touchScreen = new Handler();
-//
-//        startstop = (Button) findViewById(R.id.startTimer);
-//        startstop.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                time = SystemClock.uptimeMillis();
-//            }
-//        });
+        timer();
 
     }
 
@@ -55,88 +50,91 @@ public class MainActivity extends AppCompatActivity {
         scrambleElement.setText(scramble);
     }
 
-    public void startClick(View view) {
-        showStopButton();
+    private void timer() {
 
-        if(stopped){
-            startTime = System.currentTimeMillis() - elapsedTime;
-        }
-        else{
-            startTime = System.currentTimeMillis();
-        }
-        mHandler.removeCallbacks(startTimer);
-        mHandler.postDelayed(startTimer, 0);
+        start = (Button)findViewById(R.id.startTimer);
+        stop = (Button)findViewById(R.id.stopTimer);
+        textview = (TextView) findViewById(R.id.TimerDisplay);
+        //reset = (Button)findViewById(R.id.button3);
+        //lap = (Button)findViewById(R.id.button4) ;
+        //listView = (ListView)findViewById(R.id.listview1);
+
+        handler = new Handler() ;
+
+//        ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
+//
+//        adapter = new ArrayAdapter<String>(MainActivity.this,
+//                android.R.layout.simple_list_item_1,
+//                ListElementsArrayList
+//        );
+
+        //listView.setAdapter(adapter);
+
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                MillisecondTime = 0L ;
+                StartTime = 0L ;
+                TimeBuff = 0L ;
+                UpdateTime = 0L ;
+                Seconds = 0 ;
+                Minutes = 0 ;
+                MilliSeconds = 0 ;
+
+
+                start.setVisibility(View.INVISIBLE);
+                stop.setVisibility(View.VISIBLE);
+
+                StartTime = SystemClock.uptimeMillis();
+                handler.postDelayed(runnable, 0);
+
+                //reset.setEnabled(false);
+
+            }
+        });
+
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TimeBuff += MillisecondTime;
+
+                start.setVisibility(View.VISIBLE);
+                stop.setVisibility(View.INVISIBLE);
+
+                handler.removeCallbacks(runnable);
+
+                //reset.setEnabled(true);
+
+            }
+        });
+
+
+
     }
 
-    public void stopClick(View view) {
-        showStartButton();
+    public Runnable runnable = new Runnable() {
 
-        mHandler.removeCallbacks(startTimer);
-        stopped = true;
-    }
-
-    private void showStartButton() {
-        ((Button)findViewById(R.id.startTimer)).setVisibility(View.VISIBLE);
-        ((Button)findViewById(R.id.stopTimer)).setVisibility(View.GONE);
-    }
-
-    private void showStopButton() {
-        ((Button)findViewById(R.id.startTimer)).setVisibility(View.GONE);
-        ((Button)findViewById(R.id.stopTimer)).setVisibility(View.VISIBLE);
-    }
-
-    private void updateTimer (float time){
-        secs = (long)(time/1000);
-        mins = (long)((time/1000)/60);
-
-		/* Convert the seconds to String
-		 * and format to ensure it has
-		 * a leading zero when required
-		 */
-        secs = secs % 60;
-        seconds=String.valueOf(secs);
-        if(secs == 0){
-            seconds = "00";
-        }
-        if(secs <10 && secs > 0){
-            seconds = "0"+seconds;
-        }
-
-		/* Convert the minutes to String and format the String */
-
-        mins = mins % 60;
-        minutes=String.valueOf(mins);
-        if(mins == 0){
-            minutes = "00";
-        }
-        if(mins <10 && mins > 0){
-            minutes = "0"+minutes;
-        }
-
-    	/* Although we are not using milliseconds on the timer in this example
-    	 * I included the code in the event that you wanted to include it on your own
-    	 */
-        milliseconds = String.valueOf((long)time);
-        if(milliseconds.length()==2){
-            milliseconds = "0"+milliseconds;
-        }
-        if(milliseconds.length()<=1){
-            milliseconds = "00";
-        }
-        milliseconds = milliseconds.substring(milliseconds.length()-3, milliseconds.length()-2);
-
-		/* Setting the timer text to the elapsed time */
-        ((TextView)findViewById(R.id.TimerDisplay)).setText(minutes + ":" + seconds + "." + milliseconds);
-        //((TextView)findViewById(R.id.timerMs)).setText("." + milliseconds);
-    }
-
-    private Runnable startTimer = new Runnable() {
         public void run() {
-            elapsedTime = System.currentTimeMillis() - startTime;
-            updateTimer(elapsedTime);
-            mHandler.postDelayed(this,REFRESH_RATE);
+
+            MillisecondTime = SystemClock.uptimeMillis() - StartTime;
+            UpdateTime = TimeBuff + MillisecondTime;
+            Seconds = (int) (UpdateTime / 1000);
+            Minutes = Seconds / 60;
+            Seconds = Seconds % 60;
+            MilliSeconds = (int) (UpdateTime % 100);
+
+            String displayString = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%02d", MilliSeconds);
+
+            textview.setText(displayString);
+
+            handler.postDelayed(this, 0);
         }
+
     };
+
+
 
 
 }

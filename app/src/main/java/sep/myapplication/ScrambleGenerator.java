@@ -88,7 +88,7 @@ class ScrambleGenerator {
                 retScramble += " ";
             }
             else {
-                if(i < oldScramble.length() && (oldScramble.charAt(i+1) == '2') || (oldScramble.charAt(i+1) == 'p')) {
+                if((i < oldScramble.length() - 1) && ((oldScramble.charAt(i+1) == '2') || (oldScramble.charAt(i+1) == 'p'))) {
                     retScramble += oldScramble.charAt(i);
                 }
                 else {
