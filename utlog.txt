@@ -11,11 +11,12 @@ CATEGORY
         * user comment(s)
 
 NOTE: All  tasks that are unmarked for time are assumed to take 1 hours
+NOTE: Name next to task denotes who completed said task
 
 ==========================================
 
 
-BASIC TIMER IMPLEMENTATION
+BASIC TIMER IMPLEMENTATION (ERIC)
 - Implement Basic Timer backend code (1 day)
     - Store elapsed time as a long (as stated in the docs for Time variables)
     - Start Method: Record start time
@@ -31,7 +32,7 @@ BASIC TIMER IMPLEMENTATION
     - Create function to retrieve past times from file (3 hours)
     - Create function to compare current time to previous saved times
 
-LAP IMPLEMENTATION
+LAP IMPLEMENTATION (SHOULDN'T NEED TO BE DONE)
 - Implement Lap backend code (1 day)
     - Create function that records time segments
         *Java calculates elapsed time as a difference between two "Date" objects (result is a Long)
@@ -47,7 +48,7 @@ INTERFACE
 MAIN MENU INTERFACE
 - Add buttons that allow the user to access other user interfaces (1 hrs)
 
-TIMER INTERFACE
+TIMER INTERFACE (ERIC)
 - Add Main Timer functionality
     - Call Current time function multiple times/second
 - Add Start Button to interface with functionality
@@ -62,6 +63,12 @@ TIMER INTERFACE
     - Allow users to modify variables in delay function (see BASIC TIMER IMPLEMENTATION)
     - Disable menu when clock is running
 - Add Menu to view past times/splits
+
+RANDOM SCRAMBLE GENERATOR (ERIC)
+- Create enum type to add a numeric value to each turn type
+- Generate random moves and string them together
+- Make sure that the scramble has zero redundancies
+- Find way to display scramble to the screen and have it change after every time the timer stops
 
 STORAGE
 - Create a Time class as main unit of measurement

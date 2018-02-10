@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         scrambleElement = (TextView) findViewById(R.id.scramble);
         scrambleElement.setText(R.string.scramble_text);
         scrambleElement.setText(scramble);
+        scrambleElement.setTextSize(28);
     }
 
     private void timer() {
@@ -105,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
                 handler.removeCallbacks(runnable);
 
+                scrambleToDisplay();
+
                 //reset.setEnabled(true);
 
             }
@@ -112,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
+    } //end timer
 
     public Runnable runnable = new Runnable() {
 
