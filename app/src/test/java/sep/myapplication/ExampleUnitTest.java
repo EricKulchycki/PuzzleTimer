@@ -11,7 +11,10 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    public void initialValuesTest() throws Exception {
+        Timer tTest = new Timer();
+        assertEquals(0, tTest.getCurrentTime());
+        assertEquals(0, tTest.getStartTime());
+        assertEquals("0:00:00", tTest.toString());
     }
 }
