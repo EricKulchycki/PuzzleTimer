@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> ListElementsArrayList ;
     ArrayAdapter<String> adapter ;
     FauxDB timeList = new FauxDB();
+    Timer stopWatch = new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
 
                 //reset.setEnabled(false);
 
+                //??start.setVisibility(View.INVISIBLE);
+                //??stop.setVisibility(View.VISIBLE);
+                //??stopWatch.start();
+                //??handler.postDelayed(runnable, 0);
             }
         });
 
@@ -115,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
                 scrambleToDisplay();
 
                 //reset.setEnabled(true);
+
+                //??start.setVisibility(View.VISIBLE);
+                //??stop.setVisibility(View.INVISIBLE);
+                //??timeList.addTime(stopWatch.toString());
+                //??scrambleToDisplay();
 
             }
         });
@@ -139,6 +149,9 @@ public class MainActivity extends AppCompatActivity {
             textview.setText(displayString);
 
             handler.postDelayed(this, 0);
+
+            //?? textview.setText(stopWatch.toString());
+            //?? handler.postDelayed(this, 0);
         }
 
     };
