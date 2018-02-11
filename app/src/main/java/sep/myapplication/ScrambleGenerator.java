@@ -7,7 +7,7 @@ import java.util.*;
 class ScrambleGenerator {
 
     //Generates a random number between 0 and 17 (18 possible numbers)
-    private static int genRanNum() {
+    public static int genRanNum() {
 
         double ranNum = Math.random() * 17 + 1;
         return (int) ranNum;
@@ -35,7 +35,7 @@ class ScrambleGenerator {
 
 
     //Goes through each move in the scramble and check for two moves being of the same layer.
-    private static String checkForRedundancy(Moves[] scramble) {
+    public static String checkForRedundancy(Moves[] scramble) {
 
         String retScramble = "";
 
@@ -67,7 +67,7 @@ class ScrambleGenerator {
         return retScramble;
     }
 
-    private static Moves genNewMove() {
+    public static Moves genNewMove() {
 
         int num = genRanNum();
         Moves move = Moves.valueOf(num);
@@ -75,26 +75,28 @@ class ScrambleGenerator {
         return move;
     }
 
-    private static String translateScramble(String oldScramble) {
+    public static String translateScramble(String oldScramble) {
 
-        String retScramble = "";
+        String retScramble = null;
 
-        for(int i = 0; i < oldScramble.length(); i++) {
-            if(oldScramble.charAt(i) == 'p') {
-                retScramble += "' ";
-            }
-            else if( oldScramble.charAt(i) == '2') {
-                retScramble += oldScramble.charAt(i);
-                retScramble += " ";
-            }
-            else {
-                if((i < oldScramble.length() - 1) && ((oldScramble.charAt(i+1) == '2') || (oldScramble.charAt(i+1) == 'p'))) {
+        if(oldScramble != null) {
+
+            retScramble = "";
+
+            for (int i = 0; i < oldScramble.length(); i++) {
+                if (oldScramble.charAt(i) == 'p') {
+                    retScramble += "' ";
+                } else if (oldScramble.charAt(i) == '2') {
                     retScramble += oldScramble.charAt(i);
-                }
-                else {
-                    retScramble += oldScramble.charAt(i) + " ";
-                }
+                    retScramble += " ";
+                } else {
+                    if ((i < oldScramble.length() - 1) && ((oldScramble.charAt(i + 1) == '2') || (oldScramble.charAt(i + 1) == 'p'))) {
+                        retScramble += oldScramble.charAt(i);
+                    } else {
+                        retScramble += oldScramble.charAt(i) + " ";
+                    }
 
+                }
             }
         }
 

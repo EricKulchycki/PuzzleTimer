@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     String[] ListElements = new String[] {  };
     List<String> ListElementsArrayList ;
     ArrayAdapter<String> adapter ;
+    FauxDB timeList = new FauxDB();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void timer() {
+
+
 
         start = (Button)findViewById(R.id.startTimer);
         stop = (Button)findViewById(R.id.stopTimer);
@@ -105,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
                 stop.setVisibility(View.INVISIBLE);
 
                 handler.removeCallbacks(runnable);
+
+                String finalTime = textview.getText().toString();
+                timeList.addTime(finalTime);
+
 
                 scrambleToDisplay();
 
