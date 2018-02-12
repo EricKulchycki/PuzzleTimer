@@ -47,6 +47,8 @@ public class DataAccessStub {
         return list.size();
     }
 
+    //NOTE:
+
     public long average() {
 
         long totalTime, avg;
@@ -105,5 +107,22 @@ public class DataAccessStub {
             }
         }
         return worstTime; // return -1 if the ArrayList is empty
+    }
+
+    public String toString(){
+        int MilliSeconds, Seconds, Minutes = 0;
+
+        long avg = average();
+
+        if (avg <= 0){
+            return("test");
+        } else {
+            Seconds = (int)avg / 1000;
+            Minutes = Seconds / 60;
+            Seconds = Seconds % 60;
+            avg = avg % 1000;
+
+            return ("" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", avg));
+        }
     }
 }

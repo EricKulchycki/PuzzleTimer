@@ -14,7 +14,7 @@ public class Timer {
 
     public long getStartTime(){return startTime;}
     public long getCurrentTime(){return currentTime;}
-    public long getElapsedTime(){return elapsedTime;};
+    public long getElapsedTime(){return elapsedTime;}
 
     public long start(long time) {
         startTime = time;
@@ -22,14 +22,8 @@ public class Timer {
     }
 
     public long run(long time) {
-        long returnTime = -1;
-
-        if (startTime != 0) {
-            returnTime = time - startTime;
-        }
-
         currentTime = time;
-        return returnTime;
+        return currentTime - startTime;
     }
 
     public long stop(){

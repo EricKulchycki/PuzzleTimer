@@ -18,7 +18,7 @@ import sep.myapplication.business.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textview;
+    TextView textview, timeview;
     Button start, stop, reset, lap ;
     long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
     Handler handler;
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         start = (Button)findViewById(R.id.startTimer);
         stop = (Button)findViewById(R.id.stopTimer);
         textview = (TextView) findViewById(R.id.TimerDisplay);
+        timeview = (TextView) findViewById(R.id.avg);
         //reset = (Button)findViewById(R.id.button3);
         //lap = (Button)findViewById(R.id.button4) ;
         //listView = (ListView)findViewById(R.id.listview1);
@@ -120,13 +121,11 @@ public class MainActivity extends AppCompatActivity {
                 scrambleToDisplay();
 
                 */
-
-                stopWatch.run(SystemClock.currentThreadTimeMillis());
-                stopWatch.stop();
+                timeList.add(stopWatch.run(SystemClock.uptimeMillis()));
+                timeview.setText(timeList.toString());
                 start.setVisibility(View.VISIBLE);
                 stop.setVisibility(View.INVISIBLE);
                 handler.removeCallbacks(runnable);
-                //timeList.addTime(stopWatch.toString());
                 scrambleToDisplay();
 
             }
