@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
 
         scrambleToDisplay();
         timer();
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         scrambleElement.setText(R.string.scramble_text);
         scrambleElement.setText(scramble);
         scrambleElement.setTextSize(28);
+=======
+>>>>>>> database
     }
 
     private void timer() {
