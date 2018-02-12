@@ -10,10 +10,10 @@ import android.widget.TextView;
 import android.os.SystemClock;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import java.util.Arrays;
+
 import java.util.List;
 
-import sep.myapplication.sep.myapplication.persistence.DataAccessStub;
+import sep.myapplication.persistence.DataAccessStub;
 
 
 public class MainActivity extends AppCompatActivity {
