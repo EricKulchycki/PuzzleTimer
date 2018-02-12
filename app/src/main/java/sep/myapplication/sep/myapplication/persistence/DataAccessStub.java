@@ -1,12 +1,12 @@
-package sep.myapplication;
+package sep.myapplication.sep.myapplication.persistence;
 
 // imports
 import java.util.ArrayList;
 
-public class Database {
+public class DataAccessStub {
     private ArrayList list;
 
-    public Database() {
+    public DataAccessStub() {
         list = new ArrayList();
     }
     public void add(float time) {
