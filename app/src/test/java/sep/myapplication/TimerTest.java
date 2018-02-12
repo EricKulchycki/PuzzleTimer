@@ -1,6 +1,7 @@
 package sep.myapplication;
 
 import org.junit.Test;
+import sep.myapplication.business.Timer;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +17,7 @@ public class TimerTest {
        Timer tTest = new Timer();
         assertEquals(0, tTest.getCurrentTime());
         assertEquals(0, tTest.getStartTime());
-        assertEquals("0:00:00", tTest.toString());
+        assertEquals("0:00:00", tTest.toString(tTest.run(System.currentTimeMillis())));
     }
 
     @Test
@@ -25,18 +26,17 @@ public class TimerTest {
         Timer tTest = new Timer();
 
         //due to different hardware speeds, it is impossible to accurately check for a specific elapsed time using sleep(;
-        tTest.start();
+        tTest.start(System.currentTimeMillis());
         Thread.sleep(1000);
+        time = tTest.run(System.currentTimeMillis());
 
-        time = tTest.run();
-        assertTrue(time > 1000L);
-        assertTrue(time < 1100L); //test for 0.1sec accuracy
+        assertTrue(time >= 1000L);
+        assertTrue(time < 1010L); //test for 0.01sec accuracy
 
         time = tTest.getCurrentTime() - tTest.getStartTime();
-        assertTrue(time > 1000L);
-        assertTrue(time < 1100L); //test for 0.1sec accuracy
+        assertTrue(time >= 1000L);
+        assertTrue(time < 1010L); //test for 0.01sec accuracy
 
         tTest.reset();
     }
-
 }

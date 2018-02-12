@@ -1,19 +1,19 @@
-package sep.myapplication;
+package sep.myapplication.view;
 
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.os.Handler;
 import android.os.SystemClock;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import java.util.Arrays;
+import android.widget.TextView;
 import java.util.List;
 
-import sep.myapplication.sep.myapplication.persistence.DataAccessStub;
+import sep.myapplication.R;
+import sep.myapplication.persisitence.DataAccessStub;
+import sep.myapplication.business.*;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 */
                 start.setVisibility(View.INVISIBLE);
                 stop.setVisibility(View.VISIBLE);
-                stopWatch.start();
+                stopWatch.start(SystemClock.uptimeMillis());
                 handler.postDelayed(runnable, 0);
             }
         });
@@ -121,11 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
                 */
 
+                stopWatch.run(SystemClock.currentThreadTimeMillis());
                 stopWatch.stop();
                 start.setVisibility(View.VISIBLE);
                 stop.setVisibility(View.INVISIBLE);
                 handler.removeCallbacks(runnable);
-                timeList.addTime(stopWatch.toString());
+                //timeList.addTime(stopWatch.toString());
                 scrambleToDisplay();
 
             }
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             handler.postDelayed(this, 0);
             */
 
-            textview.setText(stopWatch.toString(stopWatch.run()));
+            textview.setText(stopWatch.toString(stopWatch.run(SystemClock.uptimeMillis())));
             handler.postDelayed(this, 0);
         }
 

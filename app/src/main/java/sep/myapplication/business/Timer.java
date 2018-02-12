@@ -1,12 +1,12 @@
-package sep.myapplication;
+package sep.myapplication.business;
 
-class Timer {
+public class Timer {
 
     private long startTime;
     private long currentTime;
     private long elapsedTime;
 
-    Timer(){
+    public Timer(){
         startTime = 0;
         currentTime = 0;
         elapsedTime = 0;
@@ -16,20 +16,24 @@ class Timer {
     public long getCurrentTime(){return currentTime;}
     public long getElapsedTime(){return elapsedTime;};
 
-    public long start() {
-        startTime = System.currentTimeMillis();
+    public long start(long time) {
+        startTime = time;
         return startTime;
     }
 
-    public long run() {
-        currentTime = System.currentTimeMillis();
-        return (currentTime - startTime);
-    }
-    ]
-    public long stop(){
-        int finalTime = run();
+    public long run(long time) {
+        long returnTime = -1;
 
-        elapsedTime += (finalTime - startTime);
+        if (startTime != 0) {
+            returnTime = time - startTime;
+        }
+
+        currentTime = time;
+        return returnTime;
+    }
+
+    public long stop(){
+        elapsedTime += (currentTime - startTime);
         return elapsedTime;
     }
 
@@ -41,7 +45,6 @@ class Timer {
     public String toString(long time){
         int MilliSeconds, Seconds, Minutes = 0;
 
-
         MilliSeconds = (int)time;
 
         if (MilliSeconds <= 0){
@@ -52,7 +55,7 @@ class Timer {
             Seconds = Seconds % 60;
             MilliSeconds = MilliSeconds % 1000;
 
-            return ("" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%02d", MilliSeconds));
+            return ("" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", MilliSeconds));
         }
     }
 

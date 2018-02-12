@@ -1,4 +1,4 @@
-package sep.myapplication.sep.myapplication.persistence;
+package sep.myapplication.persisitence;
 
 // imports
 import java.util.ArrayList;

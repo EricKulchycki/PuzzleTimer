@@ -1,4 +1,4 @@
-package sep.myapplication;
+package sep.myapplication.business;
 
 
 //Assigns numeric values from 0-17 to each move that you can do on a Rubiks cube

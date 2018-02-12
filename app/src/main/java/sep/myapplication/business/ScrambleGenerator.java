@@ -1,10 +1,7 @@
-package sep.myapplication;
-
-import java.util.*;
+package sep.myapplication.business;
 
 
-
-class ScrambleGenerator {
+public class ScrambleGenerator {
 
     //Generates a random number between 0 and 17 (18 possible numbers)
     public static int genRanNum() {
