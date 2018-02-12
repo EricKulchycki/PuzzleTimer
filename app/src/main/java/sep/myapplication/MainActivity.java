@@ -13,6 +13,8 @@ import android.widget.ListView;
 import java.util.Arrays;
 import java.util.List;
 
+import sep.myapplication.sep.myapplication.persistence.DataAccessStub;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,15 +27,18 @@ public class MainActivity extends AppCompatActivity {
     String[] ListElements = new String[] {  };
     List<String> ListElementsArrayList ;
     ArrayAdapter<String> adapter ;
-    FauxDB timeList = new FauxDB();
     Timer stopWatch = new Timer();
+
+    //Database where times are stored
+    DataAccessStub timeList = new DataAccessStub("timeList");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-<<<<<<< HEAD
+        timeList.open();
 
         scrambleToDisplay();
         timer();
@@ -51,13 +56,9 @@ public class MainActivity extends AppCompatActivity {
         scrambleElement.setText(R.string.scramble_text);
         scrambleElement.setText(scramble);
         scrambleElement.setTextSize(28);
-=======
->>>>>>> database
     }
 
     private void timer() {
-
-
 
         start = (Button)findViewById(R.id.startTimer);
         stop = (Button)findViewById(R.id.stopTimer);
@@ -96,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 StartTime = SystemClock.uptimeMillis();
                 handler.postDelayed(runnable, 0);
 
-                //reset.setEnabled(false);
-
                 //??start.setVisibility(View.INVISIBLE);
                 //??stop.setVisibility(View.VISIBLE);
                 //??stopWatch.start();
@@ -117,12 +116,11 @@ public class MainActivity extends AppCompatActivity {
                 handler.removeCallbacks(runnable);
 
                 String finalTime = textview.getText().toString();
-                timeList.addTime(finalTime);
 
+                //Once timer is stopped, add time to timeList
+                timeList.add(UpdateTime);
 
                 scrambleToDisplay();
-
-                //reset.setEnabled(true);
 
                 //??start.setVisibility(View.VISIBLE);
                 //??stop.setVisibility(View.INVISIBLE);
@@ -145,9 +143,9 @@ public class MainActivity extends AppCompatActivity {
             Seconds = (int) (UpdateTime / 1000);
             Minutes = Seconds / 60;
             Seconds = Seconds % 60;
-            MilliSeconds = (int) (UpdateTime % 100);
+            MilliSeconds = (int) (UpdateTime % 1000);
 
-            String displayString = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%02d", MilliSeconds);
+            String displayString = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", MilliSeconds);
 
             textview.setText(displayString);
 

@@ -16,10 +16,10 @@ public class DataAccessStub {
 
     public void open() {
         list = new ArrayList<Long>();
-        list.add((long)640000);
-        list.add((long)320000);
-        list.add((long)180000);
-        list.add((long)90000);
+//        list.add((long)640000);
+//        list.add((long)320000);
+//        list.add((long)180000);
+//        list.add((long)90000);
     }
 
     public String close()
@@ -48,27 +48,37 @@ public class DataAccessStub {
     }
 
     public long average() {
+
         long totalTime, avg;
         int size;
 
         totalTime = 0;
         size = list.size();
+
         for (int i =0; i < size; i++) {
+
             totalTime += (long) list.get(i);
         }
+
         avg = totalTime / size;
+
         return avg;
     }
 
     public long bestTime() {
+
         long bestTime, time;
 
         bestTime = -1;
-        for (int i =0; i < list.size(); i++) {
+
+        for (int i = 0; i < list.size(); i++) {
+
             time = (long) list.get(i);
+
             if (i == 0) {
                 bestTime = time;
             } else {
+
                 if(time > bestTime) {
                     bestTime = time;
                 }
@@ -80,11 +90,15 @@ public class DataAccessStub {
         long worstTime, time;
 
         worstTime = -1;
+
         for (int i =0; i < list.size(); i++) {
+
             time = (long) list.get(i);
+
             if (i == 0) {
                 worstTime = time;
             } else {
+
                 if(time < worstTime) {
                     worstTime = time;
                 }

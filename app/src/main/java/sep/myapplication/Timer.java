@@ -28,7 +28,7 @@ class Timer {
     }
 
     public String toString(){
-        int Seconds, Minutes, MilliSeconds;
+        long Seconds, Minutes, MilliSeconds;
 
         MilliSeconds = (int)run();
 
