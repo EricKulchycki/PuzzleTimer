@@ -4,22 +4,26 @@ package sep.myapplication.sep.myapplication.persistence;
 import java.util.ArrayList;
 
 public class DataAccessStub {
-    private ArrayList list;
+    private ArrayList<Long> list;
 
     public DataAccessStub() {
-        list = new ArrayList();
     }
-    public void add(float time) {
+
+    public void open() {
+        list = new ArrayList<Long>();
+    }
+
+    public void add(long time) {
         list.add(time);
     }
-    public void delete(float time) {
+    public void delete(long time) {
         list.remove(time);
     }
     public void reset() {
         list.clear();
     }
 
-    public int trialNum(float time) {
+    public int trialNum(long time) {
         return list.indexOf(time);
     }
     public float getTime(int index) {
@@ -29,8 +33,8 @@ public class DataAccessStub {
         return list.size();
     }
 
-    public float average() {
-        float totalTime, avg;
+    public long average() {
+        long totalTime, avg;
         int size;
 
         totalTime = 0;
@@ -42,12 +46,12 @@ public class DataAccessStub {
         return avg;
     }
 
-    public float bestTime() {
-        float bestTime, time;
+    public long bestTime() {
+        long bestTime, time;
 
         bestTime = -1;
         for (int i =0; i < list.size(); i++) {
-            time = (float) list.get(i);
+            time = (long) list.get(i);
             if (i == 0) {
                 bestTime = time;
             } else {
@@ -58,12 +62,12 @@ public class DataAccessStub {
         }
         return bestTime; // return -1 if the ArrayList is empty
     }
-    public float worstTime() {
-        float worstTime, time;
+    public long worstTime() {
+        long worstTime, time;
 
         worstTime = -1;
         for (int i =0; i < list.size(); i++) {
-            time = (float) list.get(i);
+            time = (long) list.get(i);
             if (i == 0) {
                 worstTime = time;
             } else {
