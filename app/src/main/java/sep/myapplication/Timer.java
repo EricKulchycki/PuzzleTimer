@@ -2,32 +2,22 @@ package sep.myapplication;
 
 class Timer {
 
-    private long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
-    private int Seconds, Minutes, MilliSeconds;
-
     private long startTime;
     private long currentTime;
+    private long elapsedTime;
 
     Timer(){
         startTime = 0;
         currentTime = 0;
+        elapsedTime = 0;
     }
 
     public long getStartTime(){return startTime;}
     public long getCurrentTime(){return currentTime;}
+    public long getElapsedTime(){return elapsedTime;};
 
     public long start() {
-
-        MillisecondTime = 0L ;
-        StartTime = 0L ;
-        TimeBuff = 0L ;
-        UpdateTime = 0L ;
-        Seconds = 0 ;
-        Minutes = 0 ;
-        MilliSeconds = 0 ;
-
         startTime = System.currentTimeMillis();
-
         return startTime;
     }
 
@@ -35,16 +25,24 @@ class Timer {
         currentTime = System.currentTimeMillis();
         return (currentTime - startTime);
     }
+    ]
+    public long stop(){
+        int finalTime = run();
+
+        elapsedTime += (finalTime - startTime);
+        return elapsedTime;
+    }
 
     public void reset(){
         startTime = 0;
         currentTime = 0;
     }
 
-    public String toString(){
+    public String toString(long time){
+        int MilliSeconds, Seconds, Minutes = 0;
 
 
-        MilliSeconds = (int)run();
+        MilliSeconds = (int)time;
 
         if (MilliSeconds <= 0){
             return("0:00:00");

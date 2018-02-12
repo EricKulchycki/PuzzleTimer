@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                /*
                 MillisecondTime = 0L ;
                 StartTime = 0L ;
                 TimeBuff = 0L ;
@@ -90,18 +91,12 @@ public class MainActivity extends AppCompatActivity {
                 Minutes = 0 ;
                 MilliSeconds = 0 ;
 
-
+                StartTime = SystemClock.uptimeMillis();
+                */
                 start.setVisibility(View.INVISIBLE);
                 stop.setVisibility(View.VISIBLE);
-
-                StartTime = SystemClock.uptimeMillis();
-
+                stopWatch.start();
                 handler.postDelayed(runnable, 0);
-
-                //??start.setVisibility(View.INVISIBLE);
-                //??stop.setVisibility(View.VISIBLE);
-                //??stopWatch.start();
-                //??handler.postDelayed(runnable, 0);
             }
         });
 
@@ -109,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                /*
                 TimeBuff += MillisecondTime;
 
                 start.setVisibility(View.VISIBLE);
@@ -123,10 +119,14 @@ public class MainActivity extends AppCompatActivity {
 
                 scrambleToDisplay();
 
-                //??start.setVisibility(View.VISIBLE);
-                //??stop.setVisibility(View.INVISIBLE);
-                //??timeList.addTime(stopWatch.toString());
-                //??scrambleToDisplay();
+                */
+
+                stopWatch.stop();
+                start.setVisibility(View.VISIBLE);
+                stop.setVisibility(View.INVISIBLE);
+                handler.removeCallbacks(runnable);
+                timeList.addTime(stopWatch.toString());
+                scrambleToDisplay();
 
             }
         });
@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         public void run() {
 
+            /*
             MillisecondTime = SystemClock.uptimeMillis() - StartTime;
             UpdateTime = TimeBuff + MillisecondTime;
             Seconds = (int) (UpdateTime / 1000);
@@ -151,9 +152,10 @@ public class MainActivity extends AppCompatActivity {
             textview.setText(displayString);
 
             handler.postDelayed(this, 0);
+            */
 
-            //?? textview.setText(stopWatch.toString());
-            //?? handler.postDelayed(this, 0);
+            textview.setText(stopWatch.toString(stopWatch.run()));
+            handler.postDelayed(this, 0);
         }
 
     };
