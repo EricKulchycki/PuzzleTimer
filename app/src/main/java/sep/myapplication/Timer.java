@@ -2,6 +2,9 @@ package sep.myapplication;
 
 class Timer {
 
+    private long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
+    private int Seconds, Minutes, MilliSeconds;
+
     private long startTime;
     private long currentTime;
 
@@ -10,25 +13,36 @@ class Timer {
         currentTime = 0;
     }
 
-    long getStartTime(){return startTime;}
-    long getCurrentTime(){return currentTime;}
+    public long getStartTime(){return startTime;}
+    public long getCurrentTime(){return currentTime;}
 
-    void start() {
+    public long start() {
+
+        MillisecondTime = 0L ;
+        StartTime = 0L ;
+        TimeBuff = 0L ;
+        UpdateTime = 0L ;
+        Seconds = 0 ;
+        Minutes = 0 ;
+        MilliSeconds = 0 ;
+
         startTime = System.currentTimeMillis();
+
+        return startTime;
     }
 
-    long run() {
+    public long run() {
         currentTime = System.currentTimeMillis();
         return (currentTime - startTime);
     }
 
-    void reset(){
+    public void reset(){
         startTime = 0;
         currentTime = 0;
     }
 
     public String toString(){
-        long Seconds, Minutes, MilliSeconds;
+
 
         MilliSeconds = (int)run();
 
@@ -43,4 +57,6 @@ class Timer {
             return ("" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%02d", MilliSeconds));
         }
     }
+
+
 }

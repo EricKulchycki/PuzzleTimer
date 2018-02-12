@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         //lap = (Button)findViewById(R.id.button4) ;
         //listView = (ListView)findViewById(R.id.listview1);
 
-        handler = new Handler() ;
+        handler = new Handler();
 
 //        ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
 //
@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 stop.setVisibility(View.VISIBLE);
 
                 StartTime = SystemClock.uptimeMillis();
+
                 handler.postDelayed(runnable, 0);
 
                 //??start.setVisibility(View.INVISIBLE);
