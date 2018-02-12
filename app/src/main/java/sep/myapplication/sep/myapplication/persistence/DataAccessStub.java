@@ -4,13 +4,27 @@ package sep.myapplication.sep.myapplication.persistence;
 import java.util.ArrayList;
 
 public class DataAccessStub {
+    private String dbName;
+    private String dbType = "stub";
+
     private ArrayList<Long> list;
 
-    public DataAccessStub() {
+    public DataAccessStub(String dbName)
+    {
+        this.dbName = dbName;
     }
 
     public void open() {
         list = new ArrayList<Long>();
+        list.add((long)640000);
+        list.add((long)320000);
+        list.add((long)180000);
+        list.add((long)90000);
+    }
+
+    public String close()
+    {
+        return("Closed " + dbType +" database " + dbName);
     }
 
     public void add(long time) {
@@ -26,8 +40,8 @@ public class DataAccessStub {
     public int trialNum(long time) {
         return list.indexOf(time);
     }
-    public float getTime(int index) {
-        return (float)list.get(index);
+    public long getTime(int index) {
+        return (long)list.get(index);
     }
     public int getSize() {
         return list.size();
@@ -40,7 +54,7 @@ public class DataAccessStub {
         totalTime = 0;
         size = list.size();
         for (int i =0; i < size; i++) {
-            totalTime += (float) list.get(i);
+            totalTime += (long) list.get(i);
         }
         avg = totalTime / size;
         return avg;
