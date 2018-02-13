@@ -5,8 +5,6 @@ package sep.myapplication;
  */
 import org.junit.Test;
 
-import sep.myapplication.business.ScrambleGenerator;
-
 public class AllTests {
    @Test
    public void testSuite() throws Exception{
