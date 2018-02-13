@@ -4,17 +4,17 @@ package sep.myapplication.persistence;
 import java.util.ArrayList;
 
 public class DataAccessStub {
-    private String dbName;
-    private String dbType = "stub";
+    private static String dbName;
+    private static String dbType = "stub";
 
-    private ArrayList<Long> list;
+    private static ArrayList<Long> list;
 
     public DataAccessStub(String dbName)
     {
         this.dbName = dbName;
     }
 
-    public void open() {
+    public static void open() {
         list = new ArrayList<Long>();
 //        list.add((long)640000);
 //        list.add((long)320000);
@@ -22,32 +22,40 @@ public class DataAccessStub {
 //        list.add((long)90000);
     }
 
-    public String close()
+    public static String close()
     {
         return("Closed " + dbType +" database " + dbName);
     }
 
-    public void add(long time) {
+    public static void add(long time) {
         list.add(time);
     }
-    public void delete(long time) {
+
+    public static void delete(long time) {
         list.remove(time);
     }
-    public void reset() {
+
+    public static void reset() {
         list.clear();
     }
 
-    public int trialNum(long time) {
+    public static int trialNum(long time) {
         return list.indexOf(time);
     }
-    public long getTime(int index) {
+
+    public static long getTime(int index) {
         return (long)list.get(index);
     }
-    public int getSize() {
+
+    public static int getSize() {
         return list.size();
     }
 
-    public long average() {
+    public static ArrayList getList() {
+        return list;
+    }
+
+    public static long average() {
 
         long totalTime, avg;
         int size;
@@ -65,7 +73,7 @@ public class DataAccessStub {
         return avg;
     }
 
-    public long bestTime() {
+    public static long bestTime() {
 
         long bestTime, time;
 
@@ -86,7 +94,7 @@ public class DataAccessStub {
         }
         return bestTime; // return -1 if the ArrayList is empty
     }
-    public long worstTime() {
+    public static long worstTime() {
         long worstTime, time;
 
         worstTime = -1;

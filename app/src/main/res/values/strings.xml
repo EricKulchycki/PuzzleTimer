@@ -3,4 +3,8 @@
     <string name="scramble_text"></string>
     <string name="timer_display"></string>
     <string name="ready">Ready</string>
+    <string name="title_activity_main2">TimeListActivity</string>
+    <string name="timeView">Times</string>
+    <string name="timerView">Timer</string>
+    <string name="title_activity_time_list">TimeListActivity</string>
 </resources>

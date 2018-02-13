@@ -8,15 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.os.SystemClock;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import java.util.List;
 
 import sep.myapplication.R;
 import sep.myapplication.business.ScrambleGenerator;
 import sep.myapplication.business.Timer;
 import sep.myapplication.persistence.DataAccessStub;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.content.Intent;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
     long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
     Handler handler;
     int Seconds, Minutes, MilliSeconds ;
-    ListView listView ;
-    String[] ListElements = new String[] {  };
-    List<String> ListElementsArrayList ;
-    ArrayAdapter<String> adapter ;
     Timer stopWatch = new Timer();
 
     //Database where times are stored
@@ -46,6 +42,26 @@ public class MainActivity extends AppCompatActivity {
         scrambleToDisplay();
         timer();
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.action) {
+            Intent intent = new Intent(this, TimeListActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //Displays the scramble on the screen
