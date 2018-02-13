@@ -24,9 +24,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-    TextView textview;
+    TextView textview,averageText, average5Text, Average12Text, Average50Text;
     Button start, stop, reset, lap ;
-    long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
+    long MillisecondTime, StartTime, TimeBuff, avg, avg5, avg12, avg50, UpdateTime = 0L ;
     Handler handler;
     int Seconds, Minutes, MilliSeconds ;
     Timer stopWatch = new Timer();
@@ -128,6 +128,58 @@ public class MainActivity extends AppCompatActivity {
         scrambleElement.setTextSize(28);
     }
 
+    public void averageToDisplay() {
+
+
+        String averageTime;
+        int count = 0, size = timeList.getSize();
+
+        avg = 0;
+        avg5= 0;
+        avg12=0;
+        avg50 = 0;
+        long temp = 0;
+
+        for( int i=0;i<size;i++){
+            avg+=timeList.getTime(i);
+            if( i >= (size-5)){
+                avg5+= timeList.getTime(i);
+            }
+            if(i >= (size-12)){
+                avg12 += timeList.getTime(i);
+            }
+            if(i>=(size-50)){
+                avg50 += timeList.getTime(i);
+            }
+            count++;
+        }
+        avg = avg/timeList.getSize();
+        avg5 = avg5/5;
+        avg12 = avg12/12;
+        avg50 = avg50/50;
+
+        if (avg > 0) {
+            averageTime = String.valueOf(avg/1000);
+            averageText = (TextView) findViewById(R.id.AverageTime);
+            averageText.setText("Average:" + averageTime);
+        }
+        if(count >=5){
+            averageTime = String.valueOf((avg5/1000));
+            averageText = (TextView) findViewById(R.id.AverageTimeOf5);
+            averageText.setText("Average of 5:" + averageTime);
+        }
+        if(count >=12){
+            averageTime = String.valueOf(avg12/1000);
+            averageText = (TextView) findViewById(R.id.AverageTimeOf12);
+            averageText.setText("Average of 12:" + averageTime);
+        }
+        if(count >=50){
+            averageTime = String.valueOf(avg50/1000);
+            averageText = (TextView) findViewById(R.id.AverageTimeOf50);
+            averageText.setText("Average of 50:" + averageTime);
+        }
+    }
+
     private void timer() {
 
         start = (Button)findViewById(R.id.startTimer);
@@ -168,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
                 stop.setVisibility(View.INVISIBLE);
                 handler.removeCallbacks(runnable);
                 scrambleToDisplay();
+                averageToDisplay();
 
             }
         });
