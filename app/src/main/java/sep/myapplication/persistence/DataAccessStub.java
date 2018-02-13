@@ -41,32 +41,28 @@ public class DataAccessStub {
         return("Closed " + dbType +" database " + dbName);
     }
 
-    public static void add(long time) {
-        list.add(time);
-    }
-
-    public static void delete(long time) {
-        list.remove(time);
-    }
-
-    public static void reset() {
-        list.clear();
-    }
-
-    public static int trialNum(long time) {
-        return list.indexOf(time);
-    }
-
-    public static long getTime(int index) {
-        return (long)list.get(index);
-    }
-
     public static int getSize() {
         return list.size();
     }
-
     public static ArrayList getList() {
         return list;
+    }
+    public static String getDbName() {return dbName;}
+
+    public static void add(long time) {
+        list.add(time);
+    }
+    public static void delete(long time) {
+        list.remove(time);
+    }
+    public static void reset() {
+        list.clear();
+    }
+    public static int trialNum(long time) {
+        return list.indexOf(time);
+    }
+    public static long getTime(int index) {
+        return (long)list.get(index);
     }
 
     public static long average() {
