@@ -12,6 +12,8 @@ CATEGORY
 
 NOTE: All  tasks that are unmarked for time are assumed to take 1 hours
 NOTE: Name next to task denotes who completed said task
+NOTE: We are having problem with our storage staying across multiple activities, but that should be solved with
+      with the adding of an actual database
 
 ==========================================
 
@@ -40,29 +42,22 @@ LAP IMPLEMENTATION (SHOULDN'T NEED TO BE DONE)
         *probably linked list
     - Add functionality to stop method (from BASIC TIMER) to also stop the last split segment
 
-INTERFACE
+INTERFACE (ERIC)
 - Create Main Menu Interface on startup (1 day)
 - Add menu to allow user to switch between interfaces (clock, past times, scramble, etc) (1 day)
     - Viewable on every interface
 
-MAIN MENU INTERFACE
+MAIN MENU INTERFACE (ERIC)
 - Add buttons that allow the user to access other user interfaces (1 hrs)
 
-TIMER INTERFACE (ERIC)
+TIMER INTERFACE (ERIC & RANDY & MARK)
 - Add Main Timer functionality
     - Call Current time function multiple times/second
 - Add Start Button to interface with functionality
 - Add Stop Button to interface with functionality
     *or combine Start and Stop Button functionality into a single button
     *or add functionality upon user screen touch (THIS IS WHAT WE WILL DO)
-- Add Reset Button to interface with functionality
-    - Disable/Hide button when clock is running
-- Add Split Button to interface with functionality
-    - Disable button when clock is not running
-- Add Delay menu to interface with functionality
-    - Allow users to modify variables in delay function (see BASIC TIMER IMPLEMENTATION)
-    - Disable menu when clock is running
-- Add Menu to view past times/splits
+- Add Menu to view past times
 
 RANDOM SCRAMBLE GENERATOR (ERIC)
 - Create enum type to add a numeric value to each turn type
@@ -70,17 +65,13 @@ RANDOM SCRAMBLE GENERATOR (ERIC)
 - Make sure that the scramble has zero redundancies
 - Find way to display scramble to the screen and have it change after every time the timer stops
 
-STORAGE
+STORAGE (JETRO)
 - Create a Time class as main unit of measurement
 	*Used to hold both split and full run times
 	*(needs another name, Time is already a [depreciated] Java class)
-- Create Split Class
-	-Linked list of nodes with Time objects
-	-Create nodes as split button inputs are made
-- Create form of storage for Time and Split classes
-	for prototype, create linked lists
- 		Linked list updated with Save Button input
-	for finished version, transfer from linked lists to persistent storage
+- Create form of storage for Time storage
+	for prototype, create arraylist which is updated on timer stop
+	for finished version, transfer from arraylist to persistent storage
 		Savefile? Database?
 
 NOTES:
