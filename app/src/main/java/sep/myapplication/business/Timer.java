@@ -2,38 +2,33 @@ package sep.myapplication.business;
 
 public class Timer {
 
-    private long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
-    private int Seconds, Minutes, MilliSeconds;
-
     private long startTime;
     private long currentTime;
+    private long elapsedTime;
 
     public Timer(){
         startTime = 0;
         currentTime = 0;
+        elapsedTime = 0;
     }
 
     public long getStartTime(){return startTime;}
     public long getCurrentTime(){return currentTime;}
+    public long getElapsedTime(){return elapsedTime;}
 
-    public long start() {
-
-        MillisecondTime = 0L ;
-        StartTime = 0L ;
-        TimeBuff = 0L ;
-        UpdateTime = 0L ;
-        Seconds = 0 ;
-        Minutes = 0 ;
-        MilliSeconds = 0 ;
-
-        startTime = System.currentTimeMillis();
-
+    public long start(long time) {
+        startTime = time;
         return startTime;
     }
 
-    public long run() {
-        currentTime = System.currentTimeMillis();
-        return (currentTime - startTime);
+    public long run(long time) {
+        currentTime = time;
+        return currentTime - startTime;
+    }
+
+    public long stop(){
+        elapsedTime += (currentTime - startTime);
+        return elapsedTime;
     }
 
     public void reset(){
@@ -41,10 +36,10 @@ public class Timer {
         currentTime = 0;
     }
 
-    public String toString(){
+    public String toString(long time){
+        int MilliSeconds, Seconds, Minutes = 0;
 
-
-        MilliSeconds = (int)run();
+        MilliSeconds = (int)time;
 
         if (MilliSeconds <= 0){
             return("0:00:00");
@@ -54,9 +49,8 @@ public class Timer {
             Seconds = Seconds % 60;
             MilliSeconds = MilliSeconds % 1000;
 
-            return ("" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%02d", MilliSeconds));
+            return ("" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", MilliSeconds));
         }
     }
-
 
 }
