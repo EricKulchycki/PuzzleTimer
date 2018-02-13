@@ -34,6 +34,7 @@ public class Timer {
     public void reset(){
         startTime = 0;
         currentTime = 0;
+        elapsedTime = 0;
     }
 
     public String toString(long time){

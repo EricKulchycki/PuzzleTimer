@@ -13,32 +13,37 @@ import static org.junit.Assert.*;
  */
 
 public class TimerTest {
+    Timer timerTest = new Timer();
+
     @Test
     public void initialValuesTest() throws Exception{
-       Timer tTest = new Timer();
-        assertEquals(0, tTest.getCurrentTime());
-        assertEquals(0, tTest.getStartTime());
-        assertEquals("0:00:00", tTest.toString());
+        assertEquals(0, timerTest.getCurrentTime());
+        assertEquals(0, timerTest.getStartTime());
+        assertEquals(0, timerTest.getElapsedTime());
     }
 
     @Test
-    public void processingTest() throws InterruptedException{
+    public void processingTest() throws Exception{
         long time;
-        Timer tTest = new Timer();
 
-        //due to different hardware speeds, it is impossible to accurately check for a specific elapsed time using sleep(;
-        tTest.start();
+        //due to hardware speeds, it is impossible to perfectly check for a specific elapsed time between using sleep() and the next method calls;
+        timerTest.start(System.currentTimeMillis());
         Thread.sleep(1000);
 
-        time = tTest.run();
+        time = timerTest.run(System.currentTimeMillis());
         assertTrue(time > 1000L);
         assertTrue(time < 1100L); //test for 0.1sec accuracy
 
-        time = tTest.getCurrentTime() - tTest.getStartTime();
+        time = timerTest.getCurrentTime() - timerTest.getStartTime();
         assertTrue(time > 1000L);
         assertTrue(time < 1100L); //test for 0.1sec accuracy
 
-        tTest.reset();
+        time = timerTest.stop();
+        assertTrue(time > 1000L);
+        assertTrue(time < 1100L); //test for 0.1sec accuracy
+
+        timerTest.reset();
+        initialValuesTest();
     }
 
 }
