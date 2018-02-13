@@ -15,11 +15,13 @@ public class DataAccessStub {
     }
 
     public static void open() {
+
         list = new ArrayList<Long>();
-//        list.add((long)640000);
-//        list.add((long)320000);
-//        list.add((long)180000);
-//        list.add((long)90000);
+
+        list.add((long)64000);
+        list.add((long)32000);
+        list.add((long)18000);
+        list.add((long)90000);
     }
 
     public static String close()

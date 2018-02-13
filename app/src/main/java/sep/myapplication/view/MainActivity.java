@@ -37,16 +37,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        timeList.open();
+
+
+
+        if(savedInstanceState != null) {
+
+            long[] temp = savedInstanceState.getLongArray("tempA");
+            System.out.println(temp.length);
+
+            for(int i = 0; i < temp.length; i++) {
+                timeList.add(temp[i]);
+            }
+        }
+        else {
+            timeList.open();
+        }
 
         scrambleToDisplay();
         timer();
 
-    }
+        }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
 
         //Put times into a Long array
         long[] temp = new long[timeList.getSize()];
@@ -58,9 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
         outState.putLongArray("tempA", temp);
 
-        System.out.println("HERE");
-
     }
+
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -72,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < temp.length; i++) {
             timeList.add(temp[i]);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     @Override
