@@ -18,10 +18,22 @@ public class DataAccessStub {
 
         list = new ArrayList<Long>();
 
-        list.add((long)64000);
-        list.add((long)32000);
-        list.add((long)18000);
-        list.add((long)90000);
+        list.add((long)11543);
+        list.add((long)14256);
+        list.add((long)18514);
+        list.add((long)13524);
+        list.add((long)14253);
+        list.add((long)16284);
+        list.add((long)15246);
+        list.add((long)12504);
+        list.add((long)15246);
+        list.add((long)15643);
+        list.add((long)14246);
+        list.add((long)17564);
+        list.add((long)11036);
+        list.add((long)16536);
+        list.add((long)14524);
+        list.add((long)13563);
     }
 
     public static String close()
