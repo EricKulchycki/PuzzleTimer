@@ -2,6 +2,8 @@ package sep.myapplication;
 
 import org.junit.Test;
 
+import sep.myapplication.business.Timer;
+
 import static org.junit.Assert.*;
 
 /**

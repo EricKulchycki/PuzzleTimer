@@ -1,6 +1,6 @@
-package sep.myapplication;
+package sep.myapplication.business;
 
-class Timer {
+public class Timer {
 
     private long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
     private int Seconds, Minutes, MilliSeconds;
@@ -8,7 +8,7 @@ class Timer {
     private long startTime;
     private long currentTime;
 
-    Timer(){
+    public Timer(){
         startTime = 0;
         currentTime = 0;
     }

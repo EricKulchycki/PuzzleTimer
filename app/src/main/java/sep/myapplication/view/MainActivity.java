@@ -1,4 +1,4 @@
-package sep.myapplication;
+package sep.myapplication.view;
 
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +13,9 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import sep.myapplication.R;
+import sep.myapplication.business.ScrambleGenerator;
+import sep.myapplication.business.Timer;
 import sep.myapplication.persistence.DataAccessStub;
 
 
