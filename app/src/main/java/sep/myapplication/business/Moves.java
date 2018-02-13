@@ -1,7 +1,7 @@
 package sep.myapplication.business;
 
 
-//Assigns numeric values from 0-17 to each move that you can do on a Rubiks cube
+//Assigns numeric values from 0-17 to each move that you can do on a Rubik's cube
 public enum Moves {
     L(0),Lp(1),R(2),Rp(3),F(4),Fp(5),B(6),Bp(7),U(8),Up(9),D(10),Dp(11),L2(12),R2(13),F2(14),D2(15),U2(16),B2(17);
 

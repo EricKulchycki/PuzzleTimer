@@ -14,9 +14,9 @@ import sep.myapplication.business.ScrambleGenerator;
 import sep.myapplication.business.Timer;
 import sep.myapplication.persistence.DataAccessStub;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.content.Intent;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +44,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        //Put times into a Long array
+        long[] temp = new long[timeList.getSize()];
+        ArrayList<Long> tempAL = timeList.getList();
+
+        for(int i = 0; i < timeList.getSize(); i++) {
+            temp[i] = tempAL.get(i);
+        }
+
+        outState.putLongArray("tempA", temp);
+
+        System.out.println("HERE");
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        long[] temp = savedInstanceState.getLongArray("tempA");
+        System.out.println(temp.length);
+
+        for(int i = 0; i < temp.length; i++) {
+            timeList.add(temp[i]);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
