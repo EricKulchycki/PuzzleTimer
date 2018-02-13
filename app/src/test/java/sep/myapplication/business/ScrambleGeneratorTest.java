@@ -2,19 +2,15 @@ package sep.myapplication.business;
 
 
 import org.junit.Test;
-
-
-import static org.junit.Assert.*;
-
 import sep.myapplication.business.ScrambleGenerator;
-
+import static org.junit.Assert.*;
 
 public class ScrambleGeneratorTest {
 
     ScrambleGenerator testScramble = new ScrambleGenerator();
 
     @Test
-    public void genScrambleTest() {
+    public void genScrambleTest()    {
         assertTrue(testScramble.genScramble() != null);
     }
 

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-import sep.myapplication.business.ScrambleGenerator;
 import sep.myapplication.persistence.DataAccessStub;
 
 
@@ -37,6 +36,10 @@ public class DataAccessStubTest {
 
         DASTest.delete(11036);
         dummyValuesTest();
+
+        //delete non-value from list
+        DASTest.delete(42069);
+        dummyValuesTest();
     }
 
     @Test
@@ -44,6 +47,14 @@ public class DataAccessStubTest {
         DASTest.open();
         DASTest.reset();
         assertEquals(0, DASTest.getSize());
+
+        DASTest.delete(42069);
+        assertEquals(0, DASTest.getSize());
+
+        DASTest.add(42069);
+        assertEquals(1, DASTest.getSize());
+        assertEquals(0, DASTest.trialNum(42069));
+        assertEquals(42069, DASTest.getTime(0));
 
         assertEquals("Closed stub database testStub", DASTest.close());
     }
