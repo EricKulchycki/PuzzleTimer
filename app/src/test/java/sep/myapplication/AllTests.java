@@ -1,31 +1,29 @@
 package sep.myapplication;
 
-/**
- * Created by marky on 2018-02-13.
- */
-import org.junit.Test;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
-public class AllTests {
-   @Test
-   public void testSuite() throws Exception{
-       DataAccessStubTest dasTest = new DataAccessStubTest();
-       ScrambleGeneratorTest sgTest = new ScrambleGeneratorTest();
-       TimerTest tTest = new TimerTest();
+import sep.myapplication.business.CalculateAveragesTest;
+import sep.myapplication.business.ScrambleGeneratorTest;
+import sep.myapplication.business.TimerTest;
+import sep.myapplication.persistence.DataAccessStubTest;
 
-        //Data Access Stub Tests
-       dasTest.initialValuesTest();
-       dasTest.dummyValuesTest();
-       dasTest.modifyDummyValuesTest();
-       dasTest.clearListTest();
+public class AllTests
+{
+    public static TestSuite suite;
 
-        //Scramble Generator Tests
-       sgTest.genScrambleTest();
-       sgTest.genRanNumTest();
-       sgTest.scrambleTranslationTest();
+    public static Test suite()
+    {
+        suite = new TestSuite("All tests");
+        testAll();
+        return suite;
+    }
 
-        //Timer Tests
-       tTest.initialValuesTest();
-       tTest.oneSecondTest();
+    private static void testAll()
+    {
+        suite.addTestSuite(CalculateAveragesTest.class);
+        suite.addTestSuite(DataAccessStubTest.class);
+        suite.addTestSuite(TimerTest.class);
+        suite.addTestSuite(ScrambleGeneratorTest.class);
     }
 }
-
