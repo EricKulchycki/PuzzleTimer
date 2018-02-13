@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-    TextView textview, timeview;
+    TextView textview;
     Button start, stop, reset, lap ;
     long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
     Handler handler;
@@ -164,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 timeList.add(stopWatch.run(SystemClock.uptimeMillis()));
-                timeview.setText(timeList.toString());
                 start.setVisibility(View.VISIBLE);
                 stop.setVisibility(View.INVISIBLE);
                 handler.removeCallbacks(runnable);
