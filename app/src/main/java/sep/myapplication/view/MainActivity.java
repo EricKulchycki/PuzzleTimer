@@ -140,15 +140,15 @@ public class MainActivity extends AppCompatActivity {
         avg50 = 0;
         long temp = 0;
 
-        for( int i=0;i<size;i++){
-            avg+=timeList.getTime(i);
+        for(int i = 0; i < size; i++){
+            avg += timeList.getTime(i);
             if( i >= (size-5)){
-                avg5+= timeList.getTime(i);
+                avg5 += timeList.getTime(i);
             }
             if(i >= (size-12)){
                 avg12 += timeList.getTime(i);
             }
-            if(i>=(size-50)){
+            if(i >= (size-50)){
                 avg50 += timeList.getTime(i);
             }
             count++;

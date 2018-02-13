@@ -25,7 +25,7 @@ public class AllTests {
 
         //Timer Tests
        tTest.initialValuesTest();
-       tTest.processingTest();
+       tTest.oneSecondTest();
     }
 }
 

@@ -23,7 +23,7 @@ public class TimerTest {
     }
 
     @Test
-    public void processingTest() throws Exception{
+    public void oneSecondTest() throws Exception{
         long time;
 
         //due to hardware speeds, it is impossible to perfectly check for a specific elapsed time between using sleep() and the next method calls;
@@ -44,6 +44,14 @@ public class TimerTest {
 
         timerTest.reset();
         initialValuesTest();
+    }
+
+    @Test
+    public void fixedValuesTest() throws Exception {
+        timerTest.reset();
+        initialValuesTest();
+        assertEquals(1500, timerTest.start(1500));
+        assertEquals(2500, timerTest.run(4000));
     }
 
 }
