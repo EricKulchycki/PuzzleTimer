@@ -8,6 +8,8 @@ import sep.myapplication.business.ScrambleGeneratorTest;
 import sep.myapplication.business.TimerTest;
 import sep.myapplication.persistence.DataAccessStubTest;
 
+
+
 public class AllTests
 {
     public static TestSuite suite;

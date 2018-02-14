@@ -1,28 +1,34 @@
 package sep.myapplication.business;
 
 
-import org.junit.Test;
+//import org.junit.Test;
 import sep.myapplication.business.ScrambleGenerator;
 import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
-public class ScrambleGeneratorTest {
+public class ScrambleGeneratorTest extends TestCase {
+
+    public ScrambleGeneratorTest(String arg0)
+    {
+        super(arg0);
+    }
 
     ScrambleGenerator testScramble = new ScrambleGenerator();
 
-    @Test
-    public void genScrambleTest()    {
+    //@Test
+    public void testGenScramble()    {
         assertTrue(testScramble.genScramble() != null);
     }
 
-    @Test
-    public void genRanNumTest() {
+    //@Test
+    public void testGenRanNum() {
         int ranNum = testScramble.genRanNum();
         assertTrue(ranNum >= 0 && ranNum < 18);
     }
 
 
-    @Test
-    public void scrambleTranslationTest() {
+    //@Test
+    public void testScrambleTranslation() {
 
         assertEquals("R' U D2 B' ", testScramble.translateScramble("RpUD2Bp"));
         assertEquals(null, testScramble.translateScramble(null));

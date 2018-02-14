@@ -1,24 +1,31 @@
 package sep.myapplication.persistence;
 
 import org.junit.Test;
-import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
 import sep.myapplication.persistence.DataAccessStub;
 
 
-public class DataAccessStubTest {
+public class DataAccessStubTest extends TestCase {
+
+
+    public DataAccessStubTest(String arg0)
+    {
+        super(arg0);
+    }
+
+
     DataAccessStub DASTest = new DataAccessStub("testStub");
 
     @Test
-    public void initialValuesTest() throws Exception {
-        assertNull(DASTest.getList());
+    public void testInitialValues() throws Exception {
+        assertNotNull(DASTest.getList());
         assertEquals("testStub", DASTest.getDbName());
     }
 
     @Test
-    public void dummyValuesTest() throws Exception{
+    public void testDummyValues() throws Exception{
         DASTest.open();
         assertEquals(16, DASTest.getSize());
         assertEquals(5, DASTest.trialNum(16284));
@@ -26,7 +33,7 @@ public class DataAccessStubTest {
     }
 
     @Test
-    public void modifyDummyValuesTest() throws Exception{
+    public void testModifyDummyValues() throws Exception{
         DASTest.open();
 
         DASTest.add(12345);
@@ -35,15 +42,15 @@ public class DataAccessStubTest {
         assertEquals(12345, DASTest.getTime(16));
 
         DASTest.delete(11036);
-        dummyValuesTest();
+        testDummyValues();
 
         //delete non-value from list
         DASTest.delete(42069);
-        dummyValuesTest();
+        testDummyValues();
     }
 
     @Test
-    public void clearListTest() throws Exception {
+    public void testClearList() throws Exception {
         DASTest.open();
         DASTest.reset();
         assertEquals(0, DASTest.getSize());

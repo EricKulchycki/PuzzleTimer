@@ -1,19 +1,22 @@
 package sep.myapplication.business;
 
-import org.junit.Test;
 
-import sep.myapplication.business.CalculateAverages;
-import sep.myapplication.business.Timer;
 import sep.myapplication.persistence.DataAccessStub;
 
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
-public class CalculateAveragesTest {
+
+public class CalculateAveragesTest extends TestCase{
+
+    public CalculateAveragesTest(String arg0)
+    {
+        super(arg0);
+    }
 
     DataAccessStub testList = new DataAccessStub("testList");
 
-    @Test
-    public void calculatingAveragesTest() {
+    //@Test
+    public void testCalculatingAverages() {
 
         testList.open();
 
@@ -26,8 +29,8 @@ public class CalculateAveragesTest {
 
     }
 
-    @Test
-    public void emptyDBTest() {
+    //@Test
+    public void testEmptyDB() {
         testList.open();
         testList.reset();
 
