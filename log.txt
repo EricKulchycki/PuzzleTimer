@@ -71,6 +71,21 @@ STORAGE (JETRO)
 	for finished version, transfer from arraylist to persistent storage
 		Savefile? Database?
 
+FILE ORGANIZATION (MARK)
+- Set up classes/methods according to 3-layer model
+    - Move processing away from interface class to respective business classes
+
+TEST SUITES (ERIC & MARK)
+- Set up test files for each class
+    - Moves (30 mins)
+    - ScrambleGenerator (20 mins)
+    - Timer (30 mins)
+    - CalculateAverages
+    - DataAccess
+- Run tests to confirm validity (2 hours)
+- Create Test Suite to run all tests
+
+
 NOTES:
 (Eric)
 - Spliting times isn't something we need to be worried about.

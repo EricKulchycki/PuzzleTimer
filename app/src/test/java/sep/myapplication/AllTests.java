@@ -4,6 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import sep.myapplication.business.CalculateAveragesTest;
+import sep.myapplication.business.MovesTest;
 import sep.myapplication.business.ScrambleGeneratorTest;
 import sep.myapplication.business.TimerTest;
 import sep.myapplication.persistence.DataAccessStubTest;
@@ -27,5 +28,6 @@ public class AllTests
         suite.addTestSuite(DataAccessStubTest.class);
         suite.addTestSuite(TimerTest.class);
         suite.addTestSuite(ScrambleGeneratorTest.class);
+        suite.addTestSuite(MovesTest.class);
     }
 }
