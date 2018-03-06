@@ -43,7 +43,7 @@ public class Timer {
         MilliSeconds = (int)time;
 
         if (MilliSeconds <= 0){
-            return("0:00:00");
+            return("0:00.000");
         } else {
             Seconds = MilliSeconds / 1000;
             Minutes = Seconds / 60;

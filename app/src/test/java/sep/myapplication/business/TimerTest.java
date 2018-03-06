@@ -1,9 +1,5 @@
 package sep.myapplication.business;
 
-import sep.myapplication.business.Timer;
-
-import static org.junit.Assert.*;
-
 import junit.framework.TestCase;
 
 
@@ -13,8 +9,6 @@ public class TimerTest extends TestCase {
     {
         super(arg0);
     }
-
-
     Timer timerTest = new Timer();
 
     //@Test
@@ -25,7 +19,7 @@ public class TimerTest extends TestCase {
     }
 
     //@Test
-    public void TestOneSecond() throws Exception{
+    public void testOneSecond() throws Exception{
         long time;
 
         //due to hardware speeds, it is impossible to perfectly check for a specific elapsed time between using sleep() and the next method calls;
@@ -54,6 +48,15 @@ public class TimerTest extends TestCase {
         testInitialValues();
         assertEquals(1500, timerTest.start(1500));
         assertEquals(2500, timerTest.run(4000));
+    }
+
+    //@Test
+    public void testToString() throws Exception {
+        assertEquals("0:00.000", timerTest.toString(-1));
+        assertEquals("0:00.000", timerTest.toString(0));
+        assertEquals("0:00.001", timerTest.toString(1));
+        assertEquals("0:01.000", timerTest.toString(1000));
+
     }
 
 }

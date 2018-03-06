@@ -6,11 +6,11 @@ Tasks are sorted as follows:
 
 CATEGORY
     - Dev Task A) (length, if applicable)
-        - Subtask a:
+        - Subtask a)
     - Dev Task B)
         * user comment(s)
 
-NOTE: All  tasks that are unmarked for time are assumed to take 1 hours
+NOTE: All tasks that are unmarked for time are assumed to take 1 hours
 NOTE: Name next to task denotes who completed said task
 NOTE: We are having problem with our storage staying across multiple activities, but that should be solved with
       with the adding of an actual database
@@ -25,9 +25,11 @@ BASIC TIMER IMPLEMENTATION (ERIC)
     - Create Function to calculate current elapsed time (30min)
         * via difference between recorded time in start method and current time
     - Stop Method: Calculate final difference between start time and current time (10min)
+    - Reset Method: Resets start and elapsed time back to 0 between runs (5 mins)
     - Create function to save elapsed time to file (5min)
     - Create function to save current time to file (~1 hours)
     - Create function to retrieve past times from file (5 hours)
+    - Create function to display long value as a readable String (30 mins)
 
 LAP IMPLEMENTATION (SHOULDN'T NEED TO BE DONE)
 - Implement Lap backend code (1 day)
@@ -38,12 +40,12 @@ LAP IMPLEMENTATION (SHOULDN'T NEED TO BE DONE)
     - Add functionality to stop method (from BASIC TIMER) to also stop the last split segment
 
 INTERFACE (ERIC)
-- Create Main Menu Interface on startup (1 day(8 hours))
+- Create Main Menu Interface on startup (8 hours)
 - Add menu to allow user to switch between interfaces (clock, past times, scramble, etc) (8 hours)
     - Viewable on every interface
 
 MAIN MENU INTERFACE (ERIC)
-- Add buttons that allow the user to access other user interfaces (1 hrs (actually took 6 hours))
+- Add buttons that allow the user to access other user interfaces (6 hours)
 
 TIMER INTERFACE (ERIC & RANDY & MARK)
 - Add Main Timer functionality (3 hours)
@@ -61,12 +63,28 @@ RANDOM SCRAMBLE GENERATOR (ERIC)
 
 STORAGE (JETRO)
 - Create a Time class as main unit of measurement (1 hour)
-	*Used to hold both split and full run times
+    - Store time measurement as a long value in Timer class (5 mins)
+	*Used to hold both split and full run times (not needed)
 	*(needs another name, Time is already a [depreciated] Java class)
 - Create form of storage for Time storage (2 hours)
 	for prototype, create arraylist which is updated on timer stop
 	for finished version, transfer from arraylist to persistent storage
 		Savefile? Database?
+
+FILE ORGANIZATION (MARK)
+- Set up classes/methods according to 3-layer model
+    - Move processing away from interface class to respective business classes
+
+TEST SUITES (ERIC & MARK)
+- Set up test files for each class
+    - Moves (30 mins)
+    - ScrambleGenerator (20 mins)
+    - Timer (30 mins)
+    - CalculateAverages
+    - DataAccess
+- Run tests to confirm validity (2 hours)
+- Create Test Suite to run all tests
+
 
 NOTES:
 (Eric)

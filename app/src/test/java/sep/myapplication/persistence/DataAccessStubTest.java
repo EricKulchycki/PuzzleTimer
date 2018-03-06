@@ -1,11 +1,7 @@
 package sep.myapplication.persistence;
 
 import org.junit.Test;
-
 import junit.framework.TestCase;
-
-import sep.myapplication.persistence.DataAccessStub;
-
 
 public class DataAccessStubTest extends TestCase {
 
