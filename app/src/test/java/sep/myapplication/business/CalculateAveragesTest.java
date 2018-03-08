@@ -5,6 +5,8 @@ import sep.myapplication.persistence.DataAccessStub;
 
 import junit.framework.TestCase;
 
+import java.sql.SQLException;
+
 
 public class CalculateAveragesTest extends TestCase{
 
@@ -16,7 +18,7 @@ public class CalculateAveragesTest extends TestCase{
     DataAccessStub testList = new DataAccessStub("testList");
 
     //@Test
-    public void testCalculatingAverages() {
+    public void testCalculatingAverages(){
 
         testList.open();
 
@@ -30,7 +32,7 @@ public class CalculateAveragesTest extends TestCase{
     }
 
     //@Test
-    public void testEmptyDB() {
+    public void testEmptyDB(){
         testList.open();
         testList.reset();
 

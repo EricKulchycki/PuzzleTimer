@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface DatabaseInterface {
 
-    public void open() throws ClassNotFoundException, SQLException;
+    public void open();
 
     public int getSize();
 
