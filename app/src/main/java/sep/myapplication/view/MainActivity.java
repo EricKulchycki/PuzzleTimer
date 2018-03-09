@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        copyDatabaseToDevice();
+        Main.startUp();
+
         if(savedInstanceState != null) {
 
             long[] temp = savedInstanceState.getLongArray("tempA");
@@ -120,6 +123,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Main.shutDown();
     }
 
     //Displays the scramble on the screen
