@@ -84,32 +84,30 @@ public class DataAccessObject implements DatabaseInterface
         return count;
     }
 
-    public ArrayList getList(){
-        ArrayList<Long> retval = new ArrayList<>();
-        int dbVal;
-        long intToLong;
+    public String getDbName(){return dbName;}
 
-        result = null;
+    public ArrayList<Long> getList(){
+        ArrayList<Long> retval = new ArrayList<>();
+        int time;
+        long retvalValue;
+
         try
         {
             cmdString = "Select * from Times";
-            rs2 = st1.executeQuery(cmdString);
-
-            while (rs2.next() != null) {
-                dbVal = rs2.getInt(1);
-                intToLong = dbVal;
-                retval.add(intToLong);
+            rs2 = st2.executeQuery(cmdString);
+            while (rs2.next()){
+                time = rs2.getInt("Time");
+                retvalValue = time;
+                retval.add(retvalValue);
             }
         }
-        catch (SQLException i)
+        catch (Exception e)
         {
-            processSQLError(i);
+            processSQLError(e);
         }
 
         return retval;
     }
-
-    public String getDbName(){return dbName;}
 
     public void add(long time){
         String values;
@@ -196,29 +194,6 @@ public class DataAccessObject implements DatabaseInterface
         }
 
         return time;
-    }
-
-    public ArrayList<Long> getList(){
-        ArrayList<Long> retval = new ArrayList<>();
-        int time;
-        long retvalValue;
-
-        try
-        {
-            cmdString = "Select * from Times";
-            rs2 = st2.executeQuery(cmdString);
-            while (rs2.next()){
-                time = rs2.getInt("Time");
-                retvalValue = time;
-                retval.add(retvalValue);
-            }
-        }
-        catch (Exception e)
-        {
-            processSQLError(e);
-        }
-
-        return retval;
     }
 
     public String checkWarning(Statement st, int updateCount)

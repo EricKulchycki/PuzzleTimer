@@ -26,7 +26,7 @@ public class TimeListActivity extends AppCompatActivity {
 
         DataAccessStub timeDB = new DataAccessStub("timeList");
 
-        timeDB.open();
+        timeDB.open("timeList");
 
         ArrayList<String> timeStrings = new ArrayList<String>();
         ArrayList<Long> timeDBList = timeDB.getList();

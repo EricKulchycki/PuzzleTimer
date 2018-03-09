@@ -14,7 +14,7 @@ public class DataAccessStub implements DatabaseInterface {
         this.dbName = dbName;
     }
 
-    public void open() {
+    public void open(String dbName) {
 
         list = new ArrayList<Long>();
 
@@ -36,10 +36,7 @@ public class DataAccessStub implements DatabaseInterface {
         list.add((long)13563);
     }
 
-    public String close()
-    {
-        return("Closed " + dbType +" database " + dbName);
-    }
+    public String close() {return "Database Closed.";}
 
     public int getSize() {
         return list.size();

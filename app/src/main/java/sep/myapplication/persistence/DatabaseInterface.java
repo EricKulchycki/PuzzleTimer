@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface DatabaseInterface {
 
-    public void open();
+    public void open(String s);
 
     public int getSize();
 
@@ -18,6 +18,7 @@ public interface DatabaseInterface {
     public void reset();
     public int getIndex(long time);
     public long getTime(int index);
+    public String close();
 
 
 

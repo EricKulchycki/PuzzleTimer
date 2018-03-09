@@ -1,5 +1,8 @@
 package sep.myapplication.view;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.os.SystemClock;
 
+import sep.myapplication.Application.Main;
+import sep.myapplication.Application.Services;
 import sep.myapplication.R;
 import sep.myapplication.business.CalculateAverages;
 import sep.myapplication.business.ScrambleGenerator;
@@ -18,10 +23,12 @@ import sep.myapplication.persistence.DataAccessStub;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         if(savedInstanceState != null) {
 
             long[] temp = savedInstanceState.getLongArray("tempA");
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else {
-            timeList.open();
+            timeList.open(Main.dbName);
         }
 
         scrambleToDisplay();
@@ -132,10 +136,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void averageToDisplay() {
-
-
-
-
         String averageTime;
        int size = timeList.getSize();
         CalculateAverages calc = new CalculateAverages(size, timeList);
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         stop = (Button)findViewById(R.id.stopTimer);
         textview = (TextView) findViewById(R.id.TimerDisplay);
 
-
+        //DO COUNTDOWN IN THE TIMER CLASS
         handler = new Handler();
 //        public boolean fifSecCountdown = false;
 //        if(!fifSecCountdown) {
@@ -225,4 +225,55 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
+    private void copyDatabaseToDevice() {
+        final String DB_PATH = "db";
+
+        String[] assetNames;
+        Context context = getApplicationContext();
+        File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
+        AssetManager assetManager = getAssets();
+
+        try {
+
+            assetNames = assetManager.list(DB_PATH);
+            for (int i = 0; i < assetNames.length; i++) {
+                assetNames[i] = DB_PATH + "/" + assetNames[i];
+            }
+
+            copyAssetsToDirectory(assetNames, dataDirectory);
+
+            Main.setDBPathName(dataDirectory.toString() + "/" + Main.dbName);
+
+        } catch (IOException ioe) {
+            System.out.println("Error");
+        }
+    }
+
+    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+        AssetManager assetManager = getAssets();
+
+        for (String asset : assets) {
+            String[] components = asset.split("/");
+            String copyPath = directory.toString() + "/" + components[components.length - 1];
+            char[] buffer = new char[1024];
+            int count;
+
+            File outFile = new File(copyPath);
+
+            if (!outFile.exists()) {
+                InputStreamReader in = new InputStreamReader(assetManager.open(asset));
+                FileWriter out = new FileWriter(outFile);
+
+                count = in.read(buffer);
+                while (count != -1) {
+                    out.write(buffer, 0, count);
+                    count = in.read(buffer);
+                }
+
+                out.close();
+                in.close();
+            }
+        }
+    }
 }
