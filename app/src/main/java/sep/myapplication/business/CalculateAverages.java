@@ -4,7 +4,9 @@ package sep.myapplication.business;
 import android.widget.TextView;
 
 import sep.myapplication.R;
+import sep.myapplication.persistence.DataAccessObject;
 import sep.myapplication.persistence.DataAccessStub;
+import sep.myapplication.persistence.DatabaseInterface;
 
 public class CalculateAverages {
 
@@ -12,12 +14,10 @@ public class CalculateAverages {
     int count = 0, size;
 
     private long avg, avg5, avg12, avg50;
-    private DataAccessStub list;
+    private DatabaseInterface list;
     private int Seconds,Minutes;
 
-
-
-    public CalculateAverages(int size, DataAccessStub list) {
+    public CalculateAverages(int size, DatabaseInterface list) {
         avg = 0;
         avg5= 0;
         avg12=0;

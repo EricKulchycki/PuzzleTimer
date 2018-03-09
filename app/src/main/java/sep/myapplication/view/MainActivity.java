@@ -19,6 +19,7 @@ import sep.myapplication.R;
 import sep.myapplication.business.CalculateAverages;
 import sep.myapplication.business.ScrambleGenerator;
 import sep.myapplication.business.Timer;
+import sep.myapplication.persistence.DataAccessObject;
 import sep.myapplication.persistence.DataAccessStub;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Database where times are stored
     //Note, we should be able to turn this from a DAS into a DAO and have the program still work
-    DataAccessStub timeList = new DataAccessStub("timeList");
+    DataAccessObject timeList = new DataAccessObject("timeList");
 
 
     @Override
@@ -145,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         scrambleElement.setTextSize(28);
     }
 
+    //MOVE TO BUSINESS CLASS? We could pass calc into methods in the business class and have them return strings
     public void averageToDisplay() {
         String averageTime;
        int size = timeList.getSize();
