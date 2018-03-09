@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Database where times are stored
     //Note, we should be able to turn this from a DAS into a DAO and have the program still work
-    DataAccessObject timeList = new DataAccessObject("timeList");
+    DataAccessStub timeList = new DataAccessStub("timeList");
 
 
     @Override

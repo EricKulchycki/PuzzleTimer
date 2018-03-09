@@ -51,8 +51,7 @@ public class CalculateAverages {
 
         if (size > 0) {
             Seconds = (int) avg / 1000;
-            Minutes = Seconds / 60;
-            Seconds = Seconds % 60;
+            doAvgCalcs();
             avg = avg % 1000;
 
             averageTime = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", avg);
@@ -68,8 +67,7 @@ public class CalculateAverages {
         if(size >=5){
 
             Seconds = (int) avg5 / 1000;
-            Minutes = Seconds / 60;
-            Seconds = Seconds % 60;
+            doAvgCalcs();
             avg5 = avg5 % 1000;
 
             averageTime = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", avg5);
@@ -85,8 +83,7 @@ public class CalculateAverages {
 
         if(size >=12){
             Seconds = (int) avg12 / 1000;
-            Minutes = Seconds / 60;
-            Seconds = Seconds % 60;
+            doAvgCalcs();
             avg12 = avg12 % 1000;
 
             averageTime = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", avg12);
@@ -102,8 +99,7 @@ public class CalculateAverages {
 
         if(size >=50){
             Seconds = (int) avg50 / 1000;
-            Minutes = Seconds / 60;
-            Seconds = Seconds % 60;
+            doAvgCalcs();
             avg50 = avg50 % 1000;
 
             averageTime = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", avg50);
@@ -115,5 +111,10 @@ public class CalculateAverages {
 
 
 
+    }
+
+    private void doAvgCalcs() {
+        Minutes = Seconds / 60;
+        Seconds = Seconds % 60;
     }
 }
