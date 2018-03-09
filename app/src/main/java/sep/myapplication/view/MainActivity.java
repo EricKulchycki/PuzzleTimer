@@ -1,5 +1,6 @@
 package sep.myapplication.view;
 
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textview,averageText;
     Button start, stop;
     Handler handler;
+    public int counter;
     Timer stopWatch = new Timer();
 
     //Database where times are stored
@@ -168,9 +170,26 @@ public class MainActivity extends AppCompatActivity {
 
 
         handler = new Handler();
-;
+//        public boolean fifSecCountdown = false;
+//        if(!fifSecCountdown) {
+//            new CountDownTimer(15000, 1000){
+//                public void onTick(long millisUntilFinished){
+//                    textview.setText(String.valueOf(counter));
+//                    counter--;
+//                }
+//                public  void onFinish(){
+//                    fifSecCountdown = true;
+//                    return;
+//                }
+//            }.start();
+//        }
+
+
 
         start.setOnClickListener(new View.OnClickListener() {
+
+
+
             @Override
             public void onClick(View view) {
 
@@ -205,8 +224,4 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
-
-
-
-
 }

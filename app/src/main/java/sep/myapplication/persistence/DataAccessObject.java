@@ -7,11 +7,19 @@ import java.sql.SQLException;
 
 public class DataAccessObject implements DatabaseInterface {
 
-    public void open() throws ClassNotFoundException, SQLException {
+    public void open(){
         // Load the JDBC Driver
-        Class.forName("org.hsqldb.jdbcDriver");
+        try {
+            Class.forName("org.hsqldb.jdbcDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         // Establish the connection
-        Connection connection = DriverManager.getConnection("jdbc:hsqldb:file:timeListDB", "sa", "");
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:hsqldb:file:timeListDB", "sa", "");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getSize() {

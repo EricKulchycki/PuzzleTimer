@@ -1,7 +1,6 @@
 package sep.myapplication.persistence;
 
 // imports
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DataAccessStub implements DatabaseInterface {
@@ -15,7 +14,7 @@ public class DataAccessStub implements DatabaseInterface {
         this.dbName = dbName;
     }
 
-    public void open() throws ClassNotFoundException, SQLException {
+    public void open() {
 
         list = new ArrayList<Long>();
 
