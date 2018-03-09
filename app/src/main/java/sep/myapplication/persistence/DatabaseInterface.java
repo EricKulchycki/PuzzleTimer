@@ -10,7 +10,7 @@ public interface DatabaseInterface {
 
     public int getSize();
 
-   // public ArrayList getList();
+    public ArrayList getList();
 
     public String getDbName();
     public void add(long time);

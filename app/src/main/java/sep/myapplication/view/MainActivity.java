@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Timer stopWatch = new Timer();
 
     //Database where times are stored
+    //Note, we should be able to turn this from a DAS into a DAO and have the program still work
     DataAccessStub timeList = new DataAccessStub("timeList");
 
 
