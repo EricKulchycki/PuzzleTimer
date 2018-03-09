@@ -1,9 +1,5 @@
 package sep.myapplication.Application;
 
-/**
- * Created by marky on 2018-03-07.
- */
-
 public class Main {
     public static final String dbName = "SC";
     private static String dbPathName = "database/SC";

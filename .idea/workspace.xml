@@ -22,8 +22,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/sep/myapplication/business/CalculateAverages.java" afterPath="$PROJECT_DIR$/app/src/main/java/sep/myapplication/business/CalculateAverages.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/sep/myapplication/Application/Main.java" afterPath="$PROJECT_DIR$/app/src/main/java/sep/myapplication/Application/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/sep/myapplication/view/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/sep/myapplication/view/MainActivity.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -64,42 +63,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Timer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/business/Timer.java">
+      <file leaf-file-name="Services.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/Application/Services.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="47" column="31" lean-forward="true" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CalculateAverages.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/business/CalculateAverages.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="100" column="41" lean-forward="false" selection-start-line="100" selection-start-column="41" selection-end-line="100" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScrambleGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/business/ScrambleGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-816">
-              <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatabaseInterface.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/persistence/DatabaseInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="85">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,22 +85,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/view/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1904">
-              <caret line="148" column="112" lean-forward="true" selection-start-line="148" selection-start-column="112" selection-end-line="148" selection-end-column="112" />
+            <state relative-caret-position="442">
+              <caret line="68" column="79" lean-forward="false" selection-start-line="68" selection-start-column="79" selection-end-line="68" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2845#2846#0" expanded="true" />
-                <element signature="e#2876#2877#0" expanded="true" />
-                <element signature="e#3890#3912#0" expanded="true" />
-                <element signature="e#5882#6219#0" expanded="true" />
-                <element signature="e#6218#6219#0" expanded="true" />
-                <element signature="e#6255#6676#0" expanded="true" />
-                <element signature="e#6675#6676#0" expanded="true" />
-                <element signature="e#6730#6927#0" expanded="true" />
-                <element signature="e#6926#6927#0" expanded="true" />
+                <element signature="e#2957#2958#0" expanded="true" />
+                <element signature="e#2988#2989#0" expanded="true" />
+                <element signature="e#4002#4024#0" expanded="true" />
+                <element signature="e#5994#6331#0" expanded="true" />
+                <element signature="e#6330#6331#0" expanded="true" />
+                <element signature="e#6367#6788#0" expanded="true" />
+                <element signature="e#6787#6788#0" expanded="true" />
+                <element signature="e#6842#7039#0" expanded="true" />
+                <element signature="e#7038#7039#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/Application/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+              <folding>
+                <element signature="e#333#334#0" expanded="true" />
+                <element signature="e#382#383#0" expanded="true" />
+                <element signature="e#423#424#0" expanded="true" />
+                <element signature="e#465#466#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -138,7 +124,7 @@
       <file leaf-file-name="DataAccessObject.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/persistence/DataAccessObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
+            <state relative-caret-position="340">
               <caret line="41" column="39" lean-forward="false" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -1922,8 +1908,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/sep/myapplication/persistence/DatabaseInterface.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/sep/myapplication/persistence/DataAccessStub.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/sep/myapplication/view/TimeListActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/sep/myapplication/view/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/sep/myapplication/business/CalculateAverages.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/sep/myapplication/Application/Main.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/sep/myapplication/view/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2120,6 +2107,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="business" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PuzzleTimer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PuzzleTimer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myapplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2492,7 +2513,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520636346911" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520637148748" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2539,7 +2560,7 @@
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
       </Profilers>
       <method>
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520636346912" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520637148748" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2571,6 +2592,27 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -2700,7 +2742,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520636346912" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520637148748" />
       </method>
     </configuration>
     <list size="6">
@@ -2851,7 +2893,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520632438070</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Cleaned up CalculateAverages a lil bit">
+      <created>1520636373164</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1520636373164</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -3013,7 +3062,8 @@
     <MESSAGE value="someone deleted my db code, and as on my laptop is bricked, trying to see if main comp can push" />
     <MESSAGE value="added db code (PLZ DO NOT OVERWRITE AGAIN)" />
     <MESSAGE value="added db code" />
-    <option name="LAST_COMMIT_MESSAGE" value="added db code" />
+    <MESSAGE value="Cleaned up CalculateAverages a lil bit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up CalculateAverages a lil bit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3226,21 +3276,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/persistence/timeListDB" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/Application/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/Application/Services.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/view/TimeListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -3250,16 +3285,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/database/SC.script" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/persistence/DataAccessObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="41" column="39" lean-forward="false" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/persistence/DatabaseInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -3276,18 +3301,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/business/ScrambleGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-816">
-          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/business/Timer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
-          <caret line="47" column="31" lean-forward="true" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+          <caret line="47" column="31" lean-forward="false" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -3300,21 +3317,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/view/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/persistence/DataAccessObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="148" column="112" lean-forward="true" selection-start-line="148" selection-start-column="112" selection-end-line="148" selection-end-column="112" />
+        <state relative-caret-position="340">
+          <caret line="41" column="39" lean-forward="false" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2845#2846#0" expanded="true" />
-            <element signature="e#2876#2877#0" expanded="true" />
-            <element signature="e#3890#3912#0" expanded="true" />
-            <element signature="e#5882#6219#0" expanded="true" />
-            <element signature="e#6218#6219#0" expanded="true" />
-            <element signature="e#6255#6676#0" expanded="true" />
-            <element signature="e#6675#6676#0" expanded="true" />
-            <element signature="e#6730#6927#0" expanded="true" />
-            <element signature="e#6926#6927#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/view/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="68" column="79" lean-forward="false" selection-start-line="68" selection-start-column="79" selection-end-line="68" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2957#2958#0" expanded="true" />
+            <element signature="e#2988#2989#0" expanded="true" />
+            <element signature="e#4002#4024#0" expanded="true" />
+            <element signature="e#5994#6331#0" expanded="true" />
+            <element signature="e#6330#6331#0" expanded="true" />
+            <element signature="e#6367#6788#0" expanded="true" />
+            <element signature="e#6787#6788#0" expanded="true" />
+            <element signature="e#6842#7039#0" expanded="true" />
+            <element signature="e#7038#7039#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/business/ScrambleGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-816">
+          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/Application/Services.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/sep/myapplication/Application/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+          <folding>
+            <element signature="e#333#334#0" expanded="true" />
+            <element signature="e#382#383#0" expanded="true" />
+            <element signature="e#423#424#0" expanded="true" />
+            <element signature="e#465#466#0" expanded="true" />
           </folding>
         </state>
       </provider>

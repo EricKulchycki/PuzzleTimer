@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Database where times are stored
     //Note, we should be able to turn this from a DAS into a DAO and have the program still work
-    DataAccessStub timeList = new DataAccessStub("timeList");
+    DataAccessObject timeList;// = new DataAccessObject("timeList");
 
 
     @Override
@@ -53,18 +53,20 @@ public class MainActivity extends AppCompatActivity {
         copyDatabaseToDevice();
         Main.startUp();
 
-        if(savedInstanceState != null) {
+//        if(savedInstanceState != null) {
+//
+//            long[] temp = savedInstanceState.getLongArray("tempA");
+//            System.out.println(temp.length);
+//
+//            for(int i = 0; i < temp.length; i++) {
+//                timeList.add(temp[i]);
+//            }
+//        }
+//        else {
+//            timeList.open(Main.dbName);
+//        }
 
-            long[] temp = savedInstanceState.getLongArray("tempA");
-            System.out.println(temp.length);
-
-            for(int i = 0; i < temp.length; i++) {
-                timeList.add(temp[i]);
-            }
-        }
-        else {
-            timeList.open(Main.dbName);
-        }
+        timeList = (DataAccessObject) Services.createDataAccess("database/SC");
 
         scrambleToDisplay();
         timer();
