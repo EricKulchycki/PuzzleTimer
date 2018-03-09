@@ -49,30 +49,16 @@ public class CalculateAverages {
             avg50 = avg50 / 50;
         }
 
-        if (size > 0) {
-            Seconds = (int) avg / 1000;
-            doAvgCalcs();
-            avg = avg % 1000;
-
-            averageTime = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", avg);
-            averageTime = "Average: " + averageTime;
-            return averageTime;
+        if(size >=1){
+            return "Average: " + Timer.toString(avg);
         }
         else
             return "";
     }
 
     public String calcAve5() {
-
         if(size >=5){
-
-            Seconds = (int) avg5 / 1000;
-            doAvgCalcs();
-            avg5 = avg5 % 1000;
-
-            averageTime = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", avg5);
-            averageTime = "Average of 5: " + averageTime;
-            return averageTime;
+            return "Average of 5: " + Timer.toString(avg5);
         }
         else
             return "";
@@ -80,15 +66,8 @@ public class CalculateAverages {
     }
 
     public String calcAve12() {
-
         if(size >=12){
-            Seconds = (int) avg12 / 1000;
-            doAvgCalcs();
-            avg12 = avg12 % 1000;
-
-            averageTime = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", avg12);
-            averageTime = "Average of 12: " + averageTime;
-            return averageTime;
+            return "Average of 12: " + Timer.toString(avg12);
         }
         else
             return "";
@@ -96,25 +75,17 @@ public class CalculateAverages {
     }
 
     public String calcAve50() {
-
         if(size >=50){
-            Seconds = (int) avg50 / 1000;
-            doAvgCalcs();
-            avg50 = avg50 % 1000;
-
-            averageTime = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", avg50);
-            averageTime = "Average of 50: " + averageTime;
-            return averageTime;
+            return "Average of 50: " + Timer.toString(avg50);
         }
         else
             return "";
-
-
-
     }
 
+    /*
     private void doAvgCalcs() {
         Minutes = Seconds / 60;
         Seconds = Seconds % 60;
     }
+    */
 }

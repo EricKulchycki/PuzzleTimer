@@ -39,7 +39,7 @@ public class Timer {
         elapsedTime = 0;
     }
 
-    public String toString(long time){
+    public static String toString(long time){
         int MilliSeconds, Seconds, Minutes = 0;
 
         MilliSeconds = (int)time;

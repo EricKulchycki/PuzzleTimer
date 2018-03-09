@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Database where times are stored
     //Note, we should be able to turn this from a DAS into a DAO and have the program still work
-    DataAccessObject timeList;// = new DataAccessObject("timeList");
+    DataAccessObject timeList;//  = new DataAccessObject("timeList");
 
 
     @Override
@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
 //            timeList.open(Main.dbName);
 //        }
 
-        timeList = (DataAccessObject) Services.createDataAccess("database/SC");
-
+        timeList = (DataAccessObject) Services.createDataAccess(Main.dbName);
+        timeList.open(Main.getDBPathName());
         scrambleToDisplay();
         timer();
         averageToDisplay();
