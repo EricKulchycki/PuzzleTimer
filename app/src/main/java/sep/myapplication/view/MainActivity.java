@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
             } else if(text.equals("4x4x4")) {
                 selectedSession = 4;
             }
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
