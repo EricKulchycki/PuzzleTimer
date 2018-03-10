@@ -8,4 +8,8 @@
     <string name="timeView">Times</string>
     <string name="timerView">Timer</string>
     <string name="title_activity_time_list">TimeListActivity</string>
+    <string name="sessions">Choose Session</string>
+    <string name="puzzle2">2x2x2</string>
+    <string name="puzzle3">3x3x3</string>
+    <string name="puzzle4">4x4x4</string>
 </resources>

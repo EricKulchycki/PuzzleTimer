@@ -3,11 +3,14 @@ package sep.myapplication.view;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Handler;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.os.SystemClock;
 
@@ -111,7 +114,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        //getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        MenuItem mitem = menu.findItem(R.id.puzzleType);
+        Spinner spin = (Spinner) mitem.getActionView();
+        setupSpinner(spin);
+
         return true;
+    }
+
+    public void setupSpinner(Spinner spin){
+        String[] items={"2x2x2","3x3x3","4x4x4"};
+        //wrap the items in the Adapter
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item, items);
+        //assign adapter to the Spinner
+        spin.setAdapter(adapter);
+
     }
 
     @Override
