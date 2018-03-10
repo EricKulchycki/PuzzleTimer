@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     Handler handler;
     public int counter;
     Timer stopWatch = new Timer();
+    private int selectedSession = 3;
 
     //Database where times are stored
     //Note, we should be able to turn this from a DAS into a DAO and have the program still work
@@ -53,18 +54,6 @@ public class MainActivity extends AppCompatActivity {
         copyDatabaseToDevice();
         Main.startUp();
 
-//        if(savedInstanceState != null) {
-//
-//            long[] temp = savedInstanceState.getLongArray("tempA");
-//            System.out.println(temp.length);
-//
-//            for(int i = 0; i < temp.length; i++) {
-//                timeList.add(temp[i]);
-//            }
-//        }
-//        else {
-//            timeList.open(Main.dbName);
-//        }
 
         timeList = (DataAccessObject) Services.createDataAccess(Main.dbName);
         timeList.open(Main.getDBPathName());
@@ -142,6 +131,20 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        if(id == R.id.puzzleType) {
+            Spinner mySpinner=(Spinner) findViewById(R.id.puzzleType);
+            String text = mySpinner.getSelectedItem().toString();
+
+            System.out.println(text);
+
+            if(text.equals("2x2x2")) {
+                selectedSession = 2;
+            } else if(text.equals("3x3x3")) {
+                selectedSession = 3;
+            } else if(text.equals("4x4x4")) {
+                selectedSession = 4;
+            }
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -155,7 +158,15 @@ public class MainActivity extends AppCompatActivity {
     //Displays the scramble on the screen
     public void scrambleToDisplay() {
         ScrambleGenerator scrambleGen = new ScrambleGenerator();
-        String scramble = scrambleGen.genScramble();
+
+        String scramble = "";
+
+        if(selectedSession == 3) {
+            scramble = scrambleGen.genScramble(25);
+        } else if(selectedSession == 2) {
+            scramble = scrambleGen.genScramble(9);
+        }
+
 
         TextView scrambleElement;
 
