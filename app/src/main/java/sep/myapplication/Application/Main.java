@@ -2,7 +2,7 @@ package sep.myapplication.Application;
 
 public class Main {
     public static final String dbName = "SC";
-    private static String dbPathName = "database/SC";
+    private static String dbPathName = "db/SC";
 
     public static void main(String[] args)
     {

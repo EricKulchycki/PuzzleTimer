@@ -3,7 +3,6 @@ package sep.myapplication.persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -40,12 +39,13 @@ public class DataAccessObject implements DatabaseInterface
             st1 = c1.createStatement();
             st2 = c1.createStatement();
             st3 = c1.createStatement();
+            System.out.println("Connection Successful");
         }
         catch (Exception e)
         {
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         }
-        System.out.println("Opened " +dbType +" database " +dbPath);
+        System.out.println("Opened " +dbType + "db " +dbPath);
     }
 
     public String close()
@@ -55,13 +55,14 @@ public class DataAccessObject implements DatabaseInterface
             cmdString = "shutdown compact";
             rs2 = st1.executeQuery(cmdString);
             c1.close();
+            System.out.println("Update Successful");
         }
         catch (Exception e)
         {
             processSQLError(e);
         }
 
-        return ("Closed " +dbType +" database " +dbName);
+        return ("Closed " +dbType + "db " +dbName);
     }
 
     public int getSize(){
@@ -70,11 +71,12 @@ public class DataAccessObject implements DatabaseInterface
 
         try
         {
-            cmdString = "Select Count(*) from Times";
+            cmdString = "SELECT * FROM Times";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData();
-            rs2.next();
-            count = rs2.getInt(1);
+            while (rs2.next()){
+                count++;
+            }
         }
         catch (Exception e)
         {
@@ -93,7 +95,7 @@ public class DataAccessObject implements DatabaseInterface
 
         try
         {
-            cmdString = "Select * from Times";
+            cmdString = "SELECT * FROM Times";
             rs2 = st2.executeQuery(cmdString);
             while (rs2.next()){
                 time = rs2.getInt("Time");
@@ -116,11 +118,12 @@ public class DataAccessObject implements DatabaseInterface
         try
         {
             values = Long.toString(time);
-            cmdString = "Insert into Times" + " Values(" + timeCount + "," + values + ")";
+            cmdString = "INSERT INTO Times" + " VALUES(" + timeCount + "," + values + ")";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
             timeCount++;
+            System.out.println("Add Successful");
         }
         catch (Exception e)
         {
@@ -135,7 +138,7 @@ public class DataAccessObject implements DatabaseInterface
         try
         {
             values = Long.toString(time);
-            cmdString = "Delete from Times where Time=" +values;
+            cmdString = "DELETE FROM Times WHERE Time=" +values;
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
@@ -149,7 +152,7 @@ public class DataAccessObject implements DatabaseInterface
     public void reset(){
         try
         {
-            cmdString = "Delete From Times";
+            cmdString = "DELETE FROM Times";
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
         }
@@ -164,7 +167,7 @@ public class DataAccessObject implements DatabaseInterface
 
         try
         {
-            cmdString = "Select * from Times where Time=" + Long.toString(time);
+            cmdString = "SELECT * FROM Times WHERE Time=" + Long.toString(time);
             rs2 = st2.executeQuery(cmdString);
             while (rs2.next()){
                 index = rs2.getInt("Run");
@@ -182,7 +185,7 @@ public class DataAccessObject implements DatabaseInterface
 
         try
         {
-            cmdString = "Select * from Times where Run=" + Long.toString(index);
+            cmdString = "SELECT * FROM Times WHERE Run=" + Long.toString(index);
             rs2 = st2.executeQuery(cmdString);
             while (rs2.next()){
                 time = rs2.getInt("Time");
