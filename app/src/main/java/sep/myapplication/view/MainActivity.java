@@ -16,7 +16,7 @@ import sep.myapplication.Application.Services;
 import sep.myapplication.R;
 import sep.myapplication.business.CalculateAverages;
 import sep.myapplication.business.ScrambleGenerator;
-import sep.myapplication.business.Timer;
+import sep.myapplication.objects.Timer;
 import sep.myapplication.persistence.DataAccessObject;
 
 import android.view.Menu;

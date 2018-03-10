@@ -1,5 +1,4 @@
-package sep.myapplication.business;
-
+package sep.myapplication.objects;
 
 //Assigns numeric values from 0-17 to each move that you can do on a Rubik's cube
 public enum Moves {
