@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         copyDatabaseToDevice();
         Main.startUp();
 
@@ -69,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         timeList = (DataAccessObject) Services.createDataAccess(Main.dbName);
         timeList.open(Main.getDBPathName());
+
         scrambleToDisplay();
         timer();
         averageToDisplay();
@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
                 start.setVisibility(View.INVISIBLE);
                 stop.setVisibility(View.VISIBLE);
-                stopWatch.start(SystemClock.uptimeMillis());
+                stopWatch.start(SystemClock.uptimeMillis(), 0);
                 handler.postDelayed(runnable, 0);
             }
         });
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                timeList.add(stopWatch.run(SystemClock.uptimeMillis()));
+                timeList.add(stopWatch.updateTime(SystemClock.uptimeMillis()));
                 start.setVisibility(View.VISIBLE);
                 stop.setVisibility(View.INVISIBLE);
                 handler.removeCallbacks(runnable);
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
     public Runnable runnable = new Runnable() {
 
         public void run() {
-            textview.setText(stopWatch.toString(stopWatch.run(SystemClock.uptimeMillis())));
+            textview.setText(stopWatch.toString(stopWatch.updateTime(SystemClock.uptimeMillis())));
             handler.postDelayed(this, 0);
         }
 

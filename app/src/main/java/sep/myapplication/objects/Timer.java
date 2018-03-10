@@ -8,33 +8,17 @@ public class Timer {
 
     public Timer(){
         startTime = 0;
-        currentTime = 0;
-        elapsedTime = 0;
     }
 
     public long getStartTime(){return startTime;}
-    public long getCurrentTime(){return currentTime;}
-    public long getElapsedTime(){return elapsedTime;}
 
-    public long start(long time) {
-        startTime = time;
+    public long start(long time, long delay) {
+        startTime = time + delay;
         return startTime;
     }
 
-    public long run(long time) {
-        currentTime = time;
-        return currentTime - startTime;
-    }
-
-    public long stop(){
-        elapsedTime += (currentTime - startTime);
-        return elapsedTime;
-    }
-
-    public void reset(){
-        startTime = 0;
-        currentTime = 0;
-        elapsedTime = 0;
+    public long updateTime(long time) {
+        return time - startTime;
     }
 
     public static String toString(long time){
