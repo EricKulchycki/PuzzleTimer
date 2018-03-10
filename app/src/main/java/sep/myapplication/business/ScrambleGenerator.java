@@ -1,6 +1,8 @@
 package sep.myapplication.business;
 
 
+import sep.myapplication.objects.Moves;
+
 public class ScrambleGenerator {
 
     //Generates a random number between 0 and 17 (18 possible numbers)

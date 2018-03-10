@@ -1,6 +1,4 @@
-package sep.myapplication.business;
-
-
+package sep.myapplication.objects;
 
 public class Timer {
 

@@ -1,9 +1,7 @@
 package sep.myapplication.view;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,9 +16,9 @@ import sep.myapplication.Application.Services;
 import sep.myapplication.R;
 import sep.myapplication.business.CalculateAverages;
 import sep.myapplication.business.ScrambleGenerator;
-import sep.myapplication.business.Timer;
+import sep.myapplication.objects.Timer;
 import sep.myapplication.persistence.DataAccessObject;
-import sep.myapplication.persistence.DataAccessStub;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;

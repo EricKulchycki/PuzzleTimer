@@ -2,6 +2,8 @@ package sep.myapplication.business;
 
 import junit.framework.TestCase;
 
+import sep.myapplication.objects.Timer;
+
 
 public class TimerTest extends TestCase {
 

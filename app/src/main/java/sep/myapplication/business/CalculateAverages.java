@@ -1,11 +1,7 @@
 package sep.myapplication.business;
 
 
-import android.widget.TextView;
-
-import sep.myapplication.R;
-import sep.myapplication.persistence.DataAccessObject;
-import sep.myapplication.persistence.DataAccessStub;
+import sep.myapplication.objects.Timer;
 import sep.myapplication.persistence.DatabaseInterface;
 
 public class CalculateAverages {
