@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
 
+import sep.myapplication.Application.Main;
+import sep.myapplication.Application.Services;
 import sep.myapplication.R;
 import sep.myapplication.objects.Timer;
 import sep.myapplication.persistence.DataAccessStub;
@@ -28,9 +30,7 @@ public class TimeListActivity extends AppCompatActivity {
 
         timeList = (ListView) findViewById(R.id.timeListView);
 
-        timeDB = new DataAccessStub("timeList");
-
-        timeDB.open("timeList");
+        timeDB = Services.getDataAccess(Main.dbName);
 
         setupTimeList();
 
