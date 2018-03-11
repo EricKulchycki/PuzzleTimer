@@ -22,7 +22,7 @@ public class DataAccessStubTest extends TestCase {
 
     @Test
     public void testDummyValues() throws Exception{
-        DASTest.open();
+        DASTest.open("testDB");
         assertEquals(16, DASTest.getSize());
         assertEquals(5, DASTest.getIndex(16284));
         assertEquals(16284, DASTest.getTime(5));
@@ -30,7 +30,7 @@ public class DataAccessStubTest extends TestCase {
 
     @Test
     public void testModifyDummyValues() throws Exception{
-        DASTest.open();
+        DASTest.open("testDB");
 
         DASTest.add(12345);
         assertEquals(17, DASTest.getSize());
@@ -47,7 +47,7 @@ public class DataAccessStubTest extends TestCase {
 
     @Test
     public void testClearList() throws Exception {
-        DASTest.open();
+        DASTest.open("testDB");
         DASTest.reset();
         assertEquals(0, DASTest.getSize());
 
@@ -60,6 +60,24 @@ public class DataAccessStubTest extends TestCase {
         assertEquals(42069, DASTest.getTime(0));
 
         assertEquals("Closed stub database testStub", DASTest.close());
+    }
+
+    @Test
+    public void testSizeAfterModify() throws Exception {
+        DASTest.reset();
+        DASTest.open("testDB");
+
+        assertEquals(16, DASTest.getSize());
+        DASTest.add(13645);
+        assertEquals(17, DASTest.getSize());
+        DASTest.add(17595);
+        assertEquals(18, DASTest.getSize());
+
+        //Test remove
+        DASTest.delete(13645);
+        assertEquals(17, DASTest.getSize());
+        DASTest.delete(17595);
+        assertEquals(16, DASTest.getSize());
     }
 
 }
