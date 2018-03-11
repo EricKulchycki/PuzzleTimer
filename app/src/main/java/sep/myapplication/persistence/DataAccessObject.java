@@ -118,7 +118,7 @@ public class DataAccessObject implements DatabaseInterface
         try
         {
             values = Long.toString(time);
-            cmdString = "INSERT INTO Times" + " VALUES(" + timeCount + "," + values + ")";
+            cmdString = "INSERT INTO Times (Time) VALUES(" + values + ")";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
