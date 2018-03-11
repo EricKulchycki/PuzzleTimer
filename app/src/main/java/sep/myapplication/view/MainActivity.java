@@ -1,5 +1,6 @@
 package sep.myapplication.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupSpinner(Spinner spin){
-        String[] items={"2x2x2","3x3x3","4x4x4"};
+        String[] items={"3x3x3","2x2x2","4x4x4"};
         //wrap the items in the Adapter
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item, items);
         //assign adapter to the Spinner
@@ -126,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+        System.out.println(id == R.id.puzzleType);
         if (id == R.id.timeList) {
             Intent intent = new Intent(this, TimeListActivity.class);
             startActivity(intent);
@@ -137,10 +140,9 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if(id == R.id.puzzleType) {
-            Spinner mySpinner=(Spinner) findViewById(R.id.puzzleType);
-            String text = mySpinner.getSelectedItem().toString();
 
-            System.out.println(text);
+            Spinner mySpinner = (Spinner) findViewById(R.id.puzzleType);
+            String text = mySpinner.getItemAtPosition(mySpinner.getSelectedItemPosition()).toString();
 
             if(text.equals("2x2x2")) {
                 selectedSession = 2;
@@ -151,8 +153,10 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     protected void onDestroy() {
