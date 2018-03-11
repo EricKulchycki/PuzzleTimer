@@ -16,6 +16,8 @@ public class DataAccessStub implements DatabaseInterface {
 
     public void open(String dbName) {
 
+        this.dbName = dbName;
+
         list = new ArrayList<Long>();
 
         list.add((long)11543);

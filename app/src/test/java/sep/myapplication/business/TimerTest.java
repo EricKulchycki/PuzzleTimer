@@ -34,7 +34,7 @@ public class TimerTest extends TestCase {
     //@Test
     public void testFixedValues() throws Exception {
         testInitialValues();
-        assertEquals(1500, timerTest.start(1500));
+        assertEquals(1500, timerTest.start(0, 1500));
         assertEquals(2500, timerTest.updateTime(4000));
     }
 

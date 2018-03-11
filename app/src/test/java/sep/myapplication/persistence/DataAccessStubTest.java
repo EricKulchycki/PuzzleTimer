@@ -16,8 +16,9 @@ public class DataAccessStubTest extends TestCase {
 
     @Test
     public void testInitialValues() throws Exception {
+        DASTest.open("testDB");
         assertNotNull(DASTest.getList());
-        assertEquals("testStub", DASTest.getDbName());
+        assertEquals("testDB", DASTest.getDbName());
     }
 
     @Test
@@ -59,12 +60,11 @@ public class DataAccessStubTest extends TestCase {
         assertEquals(0, DASTest.getIndex(42069));
         assertEquals(42069, DASTest.getTime(0));
 
-        assertEquals("Closed stub database testStub", DASTest.close());
+        assertEquals("Database Closed.", DASTest.close());
     }
 
     @Test
     public void testSizeAfterModify() throws Exception {
-        DASTest.reset();
         DASTest.open("testDB");
 
         assertEquals(16, DASTest.getSize());

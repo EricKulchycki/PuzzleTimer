@@ -2,7 +2,7 @@ package sep.myapplication.business;
 
 
 import sep.myapplication.persistence.DataAccessStub;
-
+import org.junit.Test;
 import junit.framework.TestCase;
 
 import java.sql.SQLException;
@@ -17,10 +17,10 @@ public class CalculateAveragesTest extends TestCase{
 
     DataAccessStub testList = new DataAccessStub("testList");
 
-    //@Test
+    @Test
     public void testCalculatingAverages(){
 
-        testList.open();
+        testList.open("testDB");
 
         CalculateAverages testObj = new CalculateAverages(testList.getSize(), testList);
 
@@ -31,9 +31,9 @@ public class CalculateAveragesTest extends TestCase{
 
     }
 
-    //@Test
+    @Test
     public void testEmptyDB(){
-        testList.open();
+        testList.open("testDB");
         testList.reset();
 
         CalculateAverages testObj = new CalculateAverages(testList.getSize(), testList);

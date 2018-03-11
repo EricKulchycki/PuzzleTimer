@@ -77,11 +77,4 @@ public class CalculateAverages {
         else
             return "";
     }
-
-    /*
-    private void doAvgCalcs() {
-        Minutes = Seconds / 60;
-        Seconds = Seconds % 60;
-    }
-    */
 }

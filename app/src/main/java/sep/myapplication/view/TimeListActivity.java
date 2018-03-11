@@ -11,6 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import sep.myapplication.R;
+import sep.myapplication.objects.Timer;
 import sep.myapplication.persistence.DataAccessStub;
 
 public class TimeListActivity extends AppCompatActivity {
@@ -38,13 +39,7 @@ public class TimeListActivity extends AppCompatActivity {
 
 
             long time = timeDBList.get(i);
-            Seconds = (int) time / 1000;
-            Minutes = Seconds / 60;
-            Seconds = Seconds % 60;
-            time = time % 1000;
-
-            String timeString = "" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%02d", time);
-
+            String timeString = Timer.toString(time);
             timeStrings.add(timeString);
         }
 

@@ -1,9 +1,7 @@
 package sep.myapplication.business;
 
 
-//import org.junit.Test;
-import sep.myapplication.business.ScrambleGenerator;
-import static org.junit.Assert.*;
+import org.junit.Test;
 import junit.framework.TestCase;
 
 public class ScrambleGeneratorTest extends TestCase {
@@ -15,19 +13,19 @@ public class ScrambleGeneratorTest extends TestCase {
 
     ScrambleGenerator testScramble = new ScrambleGenerator();
 
-    //@Test
+    @Test
     public void testGenScramble()    {
-        assertTrue(testScramble.genScramble() != null);
+        assertTrue(testScramble.genScramble(25) != null);
     }
 
-    //@Test
+    @Test
     public void testGenRanNum() {
         int ranNum = testScramble.genRanNum();
         assertTrue(ranNum >= 0 && ranNum < 18);
     }
 
 
-    //@Test
+    @Test
     public void testScrambleTranslation() {
 
         assertEquals("R' U D2 B' ", testScramble.translateScramble("RpUD2Bp"));
@@ -48,4 +46,13 @@ public class ScrambleGeneratorTest extends TestCase {
         //Test scrambles with all primes
         assertEquals("R' F' B' R' D' U' F' ", testScramble.translateScramble("RpFpBpRpDpUpFp"));
     }
+
+    @Test
+    public void testSmallerScrambleSize() {
+        String scrambleSmall = testScramble.genScramble(9);
+        assertTrue(scrambleSmall.length() <= 27); //Accounts for spaces and prime or double moves
+
+    }
+
+
 }
