@@ -126,12 +126,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if (id == R.id.action) {
+        if (id == R.id.timeList) {
             Intent intent = new Intent(this, TimeListActivity.class);
             startActivity(intent);
             return true;
         }
-        if(id == R.id.puzzleType) {
+        else if (id == R.id.graphDisplay) {
+            Intent intent = new Intent(this, GraphActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if(id == R.id.puzzleType) {
             Spinner mySpinner=(Spinner) findViewById(R.id.puzzleType);
             String text = mySpinner.getSelectedItem().toString();
 

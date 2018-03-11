@@ -18,7 +18,11 @@
         </activity>
         <activity
             android:name=".view.TimeListActivity"
-            android:label="@string/app_name">
+            android:label="Time List">
+        </activity>
+        <activity
+            android:name=".view.GraphActivity"
+            android:label="Graph">
         </activity>
     </application>
 

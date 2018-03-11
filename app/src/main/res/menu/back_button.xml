@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/back_action"
-        android:title="@string/timerView"
+        android:title="Back"
         android:icon="@drawable/back"
         app:showAsAction="always" />
 
