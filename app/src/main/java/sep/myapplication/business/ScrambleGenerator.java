@@ -15,12 +15,12 @@ public class ScrambleGenerator {
 
 
     //Generates 25 random moves
-    public String genScramble() {
+    public String genScramble(int numMoves) {
 
-        Moves[] scrambleA = new Moves[25];
+        Moves[] scrambleA = new Moves[numMoves];
         String scramble = "";
 
-        for(int i = 0; i < 25; i++) {
+        for(int i = 0; i < numMoves; i++) {
 
             int num = genRanNum();
             Moves move = Moves.valueOf(num);

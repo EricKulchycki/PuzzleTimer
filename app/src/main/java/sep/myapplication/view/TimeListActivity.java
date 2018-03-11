@@ -31,7 +31,7 @@ public class TimeListActivity extends AppCompatActivity {
         ArrayList<String> timeStrings = new ArrayList<String>();
         ArrayList<Long> timeDBList = timeDB.getList();
 
-        long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
+        long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L;
         int Seconds, Minutes, MilliSeconds;
 
         for(int i = 0; i < timeDB.getSize(); i++) {
