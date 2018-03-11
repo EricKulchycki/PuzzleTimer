@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="/view/TimeListActivity">
 
+    <item
+        android:id="@+id/graphDisplay"
+        android:title="Graph"
+        android:icon="@drawable/graph"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/back_action"
