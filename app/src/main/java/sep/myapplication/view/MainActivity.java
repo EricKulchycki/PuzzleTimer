@@ -120,8 +120,6 @@ public class MainActivity extends AppCompatActivity {
                     selectedSession = 2;
                 } else if(text.equals("3x3x3")) {
                     selectedSession = 3;
-                } else if(text.equals("4x4x4")) {
-                    selectedSession = 4;
                 }
                 scrambleToDisplay();
             }
@@ -135,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupSpinner(Spinner spin) {
-        String[] items = {"3x3x3", "2x2x2", "4x4x4"};
+        String[] items = {"3x3x3", "2x2x2"};
         //wrap the items in the Adapter
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         //assign adapter to the Spinner

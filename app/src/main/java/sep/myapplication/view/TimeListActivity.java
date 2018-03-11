@@ -13,10 +13,13 @@ import java.util.ArrayList;
 import sep.myapplication.R;
 import sep.myapplication.objects.Timer;
 import sep.myapplication.persistence.DataAccessStub;
+import sep.myapplication.persistence.DatabaseInterface;
 
 public class TimeListActivity extends AppCompatActivity {
 
     ListView timeList;
+
+    DatabaseInterface timeDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +28,18 @@ public class TimeListActivity extends AppCompatActivity {
 
         timeList = (ListView) findViewById(R.id.timeListView);
 
-        DataAccessStub timeDB = new DataAccessStub("timeList");
+        timeDB = new DataAccessStub("timeList");
 
         timeDB.open("timeList");
 
+        setupTimeList();
+
+    }
+
+    public void setupTimeList() {
         ArrayList<String> timeStrings = new ArrayList<String>();
         ArrayList<Long> timeDBList = timeDB.getList();
 
-        long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L;
-        int Seconds, Minutes, MilliSeconds;
 
         for(int i = 0; i < timeDB.getSize(); i++) {
 
@@ -46,7 +52,6 @@ public class TimeListActivity extends AppCompatActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeStrings );
 
         timeList.setAdapter(arrayAdapter);
-
     }
 
     @Override
