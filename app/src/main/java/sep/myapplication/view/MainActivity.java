@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public int counter;
     Timer stopWatch = new Timer();
     private int selectedSession = 3;
+    ArrayAdapter<String> adapter;
 
     //Database where times are stored
     //Note, we should be able to turn this from a DAS into a DAO and have the program still work
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         scrambleToDisplay();
         timer();
         averageToDisplay();
-
         }
 
     @Override
@@ -109,16 +109,35 @@ public class MainActivity extends AppCompatActivity {
         //getMenuInflater().inflate(R.menu.main_menu, menu);
 
         MenuItem mitem = menu.findItem(R.id.puzzleType);
-        Spinner spin = (Spinner) mitem.getActionView();
-        setupSpinner(spin);
+        final Spinner spinner = (Spinner) mitem.getActionView();
+        setupSpinner(spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String text = spinner.getItemAtPosition(spinner.getSelectedItemPosition()).toString();
+
+                if(text.equals("2x2x2")) {
+                    selectedSession = 2;
+                } else if(text.equals("3x3x3")) {
+                    selectedSession = 3;
+                } else if(text.equals("4x4x4")) {
+                    selectedSession = 4;
+                }
+                scrambleToDisplay();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         return true;
     }
 
-    public void setupSpinner(Spinner spin){
-        String[] items={"3x3x3","2x2x2","4x4x4"};
+    public void setupSpinner(Spinner spin) {
+        String[] items = {"3x3x3", "2x2x2", "4x4x4"};
         //wrap the items in the Adapter
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item, items);
+        adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         //assign adapter to the Spinner
         spin.setAdapter(adapter);
 
@@ -137,20 +156,6 @@ public class MainActivity extends AppCompatActivity {
         else if (id == R.id.graphDisplay) {
             Intent intent = new Intent(this, GraphActivity.class);
             startActivity(intent);
-            return true;
-        }
-        else if(id == R.id.puzzleType) {
-
-            Spinner mySpinner = (Spinner) findViewById(R.id.puzzleType);
-            String text = mySpinner.getItemAtPosition(mySpinner.getSelectedItemPosition()).toString();
-
-            if(text.equals("2x2x2")) {
-                selectedSession = 2;
-            } else if(text.equals("3x3x3")) {
-                selectedSession = 3;
-            } else if(text.equals("4x4x4")) {
-                selectedSession = 4;
-            }
             return true;
         }
 
