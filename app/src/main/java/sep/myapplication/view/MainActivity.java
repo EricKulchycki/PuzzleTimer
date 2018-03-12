@@ -22,7 +22,7 @@ import sep.myapplication.R;
 import sep.myapplication.business.CalculateAverages;
 import sep.myapplication.business.ScrambleGenerator;
 import sep.myapplication.objects.Timer;
-import sep.myapplication.persistence.DataAccessObject;
+import sep.myapplication.persistence.DatabaseInterface;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Database where times are stored
     //Note, we should be able to turn this from a DAS into a DAO and have the program still work
-    DataAccessObject timeList;//  = new DataAccessObject("timeList");
+    DatabaseInterface timeList;//  = new DataAccessObject("timeList");
 
 
     @Override
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         Main.startUp();
 
 
-        timeList = (DataAccessObject) Services.createDataAccess(Main.dbName);
+        timeList = Services.createDataAccess(Main.dbName);
         timeList.open(Main.getDBPathName());
 
         scrambleToDisplay();
