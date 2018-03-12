@@ -5,32 +5,49 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.util.ArrayList;
-
+import sep.myapplication.Application.Main;
+import sep.myapplication.Application.Services;
 import sep.myapplication.R;
-import sep.myapplication.persistence.DataAccessStub;
+import sep.myapplication.persistence.DatabaseInterface;
 
 public class GraphActivity extends AppCompatActivity{
+    DatabaseInterface timeDB;
+    GraphView graph;
+    DataPoint[] dataPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
-        GraphView graph = (GraphView) findViewById(R.id.graphView);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3)
-        });
+        timeDB = Services.getDataAccess(Main.dbName);
+        dataPoint = new DataPoint[timeDB.getSize()];
+        graph = (GraphView) findViewById(R.id.graphView);
+        setupGraphLables();
+        setupGraphData();
+    }
+
+    public void setupGraphLables() {
+        graph.setTitle("Solve Time");
+        graph.setTitleTextSize(50);
+        GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
+        gridLabel.setHorizontalAxisTitle("Trial Number");
+        gridLabel.setHorizontalAxisTitleTextSize(32);
+        gridLabel.setVerticalAxisTitle("Time [ms]");
+        gridLabel.setVerticalAxisTitleTextSize(32);
+    }
+
+    public void setupGraphData() {
+        for(int i = 0; i < timeDB.getSize(); i++) {
+            dataPoint[i] = new DataPoint(i, timeDB.getTime(i));
+        }
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoint);
         graph.addSeries(series);
     }
 
