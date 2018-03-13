@@ -21,5 +21,4 @@ public class MovesTest extends TestCase {
         assertNull(Moves.valueOf(93));
         assertNull(Moves.valueOf(-1));
     }
-
 }

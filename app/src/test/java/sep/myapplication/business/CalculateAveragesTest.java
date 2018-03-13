@@ -14,16 +14,61 @@ public class CalculateAveragesTest extends TestCase{
     {
         super(arg0);
     }
-
+    CalculateAverages testObj;
     DataAccessStub testList = new DataAccessStub("testList");
 
     @Test
-    public void testCalculatingAverages(){
+    public void test1number(){
+
+        testList.open("testDB");
+        testList.add(1000);
+
+        testObj = new CalculateAverages(testList.getSize(), testList);
+
+        assertEquals("Average: 0:01.000", testObj.calcAverage());
+        assertEquals("", testObj.calcAve5());
+        assertEquals("", testObj.calcAve12());
+        assertEquals("", testObj.calcAve50());
+
+    }
+
+    @Test
+    public void test5numbers(){
+
+        testList.open("testDB");
+        testList.addTestValues();
+
+        testObj = new CalculateAverages(testList.getSize(), testList);
+
+        assertEquals("Average: 0:30.000", testObj.calcAverage());
+        assertEquals("Average of 5: 0:30.000", testObj.calcAve5());
+        assertEquals("", testObj.calcAve12());
+        assertEquals("", testObj.calcAve50());
+
+    }
+
+    @Test
+    public void test12numbers(){
+
+        testList.open("testDB");
+        testList.addTestValues(12);
+
+        testObj = new CalculateAverages(testList.getSize(), testList);
+
+        assertEquals("Average: 0:10.650", testObj.calcAverage());
+        assertEquals("Average of 5: 0:11.000", testObj.calcAve5());
+        assertEquals("Average of 12: 0:10.650", testObj.calcAve12());
+        assertEquals("", testObj.calcAve50());
+
+    }
+
+    @Test
+    public void test50numbers(){
 
         testList.open("testDB");
         testList.addTestValues(51);
 
-        CalculateAverages testObj = new CalculateAverages(testList.getSize(), testList);
+        testObj = new CalculateAverages(testList.getSize(), testList);
 
         assertEquals("Average: 0:12.600", testObj.calcAverage());
         assertEquals("Average of 5: 0:14.900", testObj.calcAve5());
@@ -37,14 +82,12 @@ public class CalculateAveragesTest extends TestCase{
         testList.open("testDB");
         testList.reset();
 
-        CalculateAverages testObj = new CalculateAverages(testList.getSize(), testList);
+        testObj = new CalculateAverages(testList.getSize(), testList);
 
         assertEquals("", testObj.calcAverage());
         assertEquals("", testObj.calcAve5());
         assertEquals("", testObj.calcAve12());
         assertEquals("", testObj.calcAve50());
-
-
     }
 
 

@@ -6,19 +6,15 @@ import sep.myapplication.persistence.DatabaseInterface;
 
 public class CalculateAverages {
 
-    String averageTime;
-    int count = 0, size;
-
+    int size;
     private long avg, avg5, avg12, avg50;
     private DatabaseInterface list;
-    private int Seconds,Minutes;
 
     public CalculateAverages(int size, DatabaseInterface list) {
         avg = 0;
         avg5= 0;
         avg12=0;
         avg50 = 0;
-        long temp = 0;
         this.size = size;
         this.list = list;
     }
