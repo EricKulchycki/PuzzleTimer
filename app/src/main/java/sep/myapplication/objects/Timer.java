@@ -21,13 +21,8 @@ public class Timer {
 
     public static String toString(long time){
         int MilliSeconds, Seconds, Minutes = 0;
-        String returnString = "";
 
         MilliSeconds = (int)Math.abs(time);
-
-        if (time <= 0){
-            returnString = "-";
-        }
 
         Seconds = MilliSeconds / 1000;
         Minutes = Seconds / 60;
