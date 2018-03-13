@@ -21,13 +21,14 @@ public class CalculateAveragesTest extends TestCase{
     public void testCalculatingAverages(){
 
         testList.open("testDB");
+        testList.addTestValues(51);
 
         CalculateAverages testObj = new CalculateAverages(testList.getSize(), testList);
 
-        assertEquals("Average: 0:14.655", testObj.calcAverage());
-        assertEquals("Average of 5: 0:14.644", testObj.calcAve5());
-        assertEquals("Average of 12: 0:14.720", testObj.calcAve12());
-        assertEquals("", testObj.calcAve50());
+        assertEquals("Average: 0:12.600", testObj.calcAverage());
+        assertEquals("Average of 5: 0:14.900", testObj.calcAve5());
+        assertEquals("Average of 12: 0:14.550", testObj.calcAve12());
+        assertEquals("Average of 50: 0:12.650", testObj.calcAve50());
 
     }
 

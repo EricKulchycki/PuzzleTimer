@@ -24,8 +24,8 @@ public class AllTests
 
     private static void testAll()
     {
-        suite.addTestSuite(CalculateAveragesTest.class);
         suite.addTestSuite(DataAccessStubTest.class);
+        suite.addTestSuite(CalculateAveragesTest.class);
         suite.addTestSuite(TimerTest.class);
         suite.addTestSuite(ScrambleGeneratorTest.class);
         suite.addTestSuite(MovesTest.class);

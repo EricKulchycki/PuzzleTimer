@@ -71,8 +71,8 @@ public class DataAccessStubTest extends TestCase {
         DASTest.addTestValues();
 
         assertEquals(5, DASTest.getSize());
-        assertEquals(5, DASTest.getIndex(16284));
-        assertEquals(16284, DASTest.getTime(5));
+        assertEquals(4, DASTest.getIndex(50000));
+        assertEquals(50000, DASTest.getTime(4));
     }
 
     @Test
@@ -80,9 +80,14 @@ public class DataAccessStubTest extends TestCase {
         DASTest.open("testDB");
 
         DASTest.add(12345);
-        assertEquals(17, DASTest.getSize());
-        assertEquals(16, DASTest.getIndex(12345));
-        assertEquals(12345, DASTest.getTime(16));
+        assertEquals(1, DASTest.getSize());
+        assertEquals(0, DASTest.getIndex(12345));
+        assertEquals(12345, DASTest.getTime(0));
+
+        DASTest.add(11036);
+        assertEquals(2, DASTest.getSize());
+        assertEquals(1, DASTest.getIndex(11036));
+        assertEquals(11036, DASTest.getTime(1));
 
         DASTest.delete(11036);
         testDummyValues();
@@ -112,6 +117,7 @@ public class DataAccessStubTest extends TestCase {
     @Test
     public void testSizeAfterModify() throws Exception {
         DASTest.open("testDB");
+        DASTest.addTestValues(16);
 
         assertEquals(16, DASTest.getSize());
         DASTest.add(13645);

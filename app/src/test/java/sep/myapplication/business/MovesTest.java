@@ -12,6 +12,7 @@ public class MovesTest extends TestCase {
     public void testExpectedValues() throws Exception{
         assertEquals(Moves.L, Moves.valueOf(0));
         assertEquals(Moves.B, Moves.valueOf(6));
+        assertEquals(Moves.B2, Moves.valueOf(17));
         assertNotSame(Moves.F, Moves.valueOf(12));
     }
 
