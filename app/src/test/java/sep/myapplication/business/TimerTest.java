@@ -19,7 +19,7 @@ public class TimerTest extends TestCase {
     }
 
     //@Test
-    public void testOneSecond() throws Exception{
+    public void testAccuracy() throws Exception{
         long time;
 
         //due to hardware speeds, it is impossible to perfectly check for a specific elapsed time between using sleep() and the next method calls;
@@ -40,11 +40,10 @@ public class TimerTest extends TestCase {
 
     //@Test
     public void testToString() throws Exception {
-        assertEquals("0:00.000", timerTest.toString(-1));
+        assertEquals("0:00.001", timerTest.toString(-1));
         assertEquals("0:00.000", timerTest.toString(0));
         assertEquals("0:00.001", timerTest.toString(1));
         assertEquals("0:01.000", timerTest.toString(1000));
-
     }
 
 }

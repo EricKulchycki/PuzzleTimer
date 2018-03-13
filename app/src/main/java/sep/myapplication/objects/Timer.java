@@ -3,8 +3,6 @@ package sep.myapplication.objects;
 public class Timer {
 
     private long startTime;
-    private long currentTime;
-    private long elapsedTime;
 
     public Timer(){
         startTime = 0;
@@ -23,19 +21,20 @@ public class Timer {
 
     public static String toString(long time){
         int MilliSeconds, Seconds, Minutes = 0;
+        String returnString = "";
 
-        MilliSeconds = (int)time;
+        MilliSeconds = (int)Math.abs(time);
 
-        if (MilliSeconds <= 0){
-            return("0:00.000");
-        } else {
-            Seconds = MilliSeconds / 1000;
-            Minutes = Seconds / 60;
-            Seconds = Seconds % 60;
-            MilliSeconds = MilliSeconds % 1000;
-
-            return ("" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", MilliSeconds));
+        if (time <= 0){
+            returnString = "-";
         }
+
+        Seconds = MilliSeconds / 1000;
+        Minutes = Seconds / 60;
+        Seconds = Seconds % 60;
+        MilliSeconds = MilliSeconds % 1000;
+
+        return ("" + Minutes + ":" + String.format("%02d", Seconds) + "." + String.format("%03d", MilliSeconds));
     }
 
 }

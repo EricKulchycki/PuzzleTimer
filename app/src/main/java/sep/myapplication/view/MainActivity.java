@@ -3,6 +3,7 @@ package sep.myapplication.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -38,16 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     TextView textview,averageText;
-    Button start, stop;
+    Button inspection, start, stop;
     Handler handler;
     public int counter;
     Timer stopWatch = new Timer();
     private int selectedSession = 3;
     ArrayAdapter<String> adapter;
+    DatabaseInterface timeList;
 
-    //Database where times are stored
-    //Note, we should be able to turn this from a DAS into a DAO and have the program still work
-    DatabaseInterface timeList;//  = new DataAccessObject("timeList");
+    final int INSPEC_DELAY = 15000;
 
 
     @Override
@@ -220,27 +220,27 @@ public class MainActivity extends AppCompatActivity {
 
     private void timer() {
 
+        inspection = (Button)findViewById(R.id.inspection);
         start = (Button)findViewById(R.id.startTimer);
         stop = (Button)findViewById(R.id.stopTimer);
         textview = (TextView) findViewById(R.id.TimerDisplay);
-
-        //DO COUNTDOWN IN THE TIMER CLASS
         handler = new Handler();
-//        public boolean fifSecCountdown = false;
-//        if(!fifSecCountdown) {
-//            new CountDownTimer(15000, 1000){
-//                public void onTick(long millisUntilFinished){
-//                    textview.setText(String.valueOf(counter));
-//                    counter--;
-//                }
-//                public  void onFinish(){
-//                    fifSecCountdown = true;
-//                    return;
-//                }
-//            }.start();
-//        }
+
+        inspection.setOnClickListener(new View.OnClickListener() {
 
 
+
+            @Override
+            public void onClick(View view) {
+
+                inspection.setVisibility(View.INVISIBLE);
+                start.setVisibility(View.VISIBLE);
+                stop.setVisibility(View.INVISIBLE);
+                stopWatch.start(SystemClock.uptimeMillis(), INSPEC_DELAY);
+                textview.setTextColor(Color.RED); //
+                handler.postDelayed(inspect, 0);
+            }
+        });
 
         start.setOnClickListener(new View.OnClickListener() {
 
@@ -249,6 +249,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                handler.removeCallbacks(inspect);
+                textview.setTextColor(Color.BLACK);
+                inspection.setVisibility(View.INVISIBLE);
                 start.setVisibility(View.INVISIBLE);
                 stop.setVisibility(View.VISIBLE);
                 stopWatch.start(SystemClock.uptimeMillis(), 0);
@@ -261,7 +264,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 timeList.add(stopWatch.updateTime(SystemClock.uptimeMillis()));
-                start.setVisibility(View.VISIBLE);
+                inspection.setVisibility(View.VISIBLE);
+                start.setVisibility(View.INVISIBLE);
                 stop.setVisibility(View.INVISIBLE);
                 handler.removeCallbacks(runnable);
                 scrambleToDisplay();
@@ -275,8 +279,25 @@ public class MainActivity extends AppCompatActivity {
     public Runnable runnable = new Runnable() {
 
         public void run() {
-            textview.setText(stopWatch.toString(stopWatch.updateTime(SystemClock.uptimeMillis())));
+            long currTime = stopWatch.updateTime(SystemClock.uptimeMillis());
+            textview.setText(stopWatch.toString(currTime));
             handler.postDelayed(this, 0);
+        }
+
+    };
+
+    //
+    public Runnable inspect = new Runnable() {
+
+        public void run() {
+            long currTime = stopWatch.updateTime(SystemClock.uptimeMillis());
+
+            if (currTime <= 0){
+                textview.setText(stopWatch.toString(currTime));
+                handler.postDelayed(this, 0);
+            } else {
+                start.performClick();
+            }
         }
 
     };
