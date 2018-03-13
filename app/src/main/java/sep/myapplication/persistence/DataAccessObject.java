@@ -199,6 +199,14 @@ public class DataAccessObject implements DatabaseInterface
         return time;
     }
 
+    public void addTestValues(){
+        long[] testValues = {10000, 20000, 30000, 40000, 50000};
+
+        for (int i = 0; i < testValues.length; i++){
+            add(i);
+        }
+    }
+
     public String checkWarning(Statement st, int updateCount)
     {
         String result;

@@ -1,5 +1,6 @@
 package sep.myapplication.persistence;
 
+import org.hsqldb.Index;
 import org.junit.Test;
 import junit.framework.TestCase;
 
@@ -11,20 +12,65 @@ public class DataAccessStubTest extends TestCase {
         super(arg0);
     }
 
-
     DataAccessStub DASTest = new DataAccessStub("testStub");
 
     @Test
     public void testInitialValues() throws Exception {
+        assertNull(DASTest.getList());
+        assertEquals("testStub", DASTest.getDbName());
+        try{
+            assertEquals(0, DASTest.getSize());
+            fail();
+        } catch (NullPointerException n){}
+
+        try{
+            DASTest.add(10000);
+            fail();
+        } catch (NullPointerException n){}
+
+        try{
+            DASTest.delete(10000);
+            fail();
+        } catch (NullPointerException n){}
+
+        try{
+            DASTest.reset();
+            fail();
+        } catch (NullPointerException n){}
+
+        try{
+            DASTest.getTime(1);
+            fail();
+        } catch (NullPointerException n){}
+
+        try{
+            DASTest.getIndex(1);
+            fail();
+        } catch (NullPointerException n){}
+
+        assertEquals("Database Closed.", DASTest.close());
+    }
+
+    @Test
+    public void testInitializationValues() throws Exception{
         DASTest.open("testDB");
         assertNotNull(DASTest.getList());
         assertEquals("testDB", DASTest.getDbName());
+        assertEquals(0, DASTest.getSize());
+        assertEquals(-1, DASTest.getIndex(1));
+
+        try{
+            assertEquals(-1, DASTest.getTime(1));
+            fail();
+        } catch (IndexOutOfBoundsException i){}
     }
 
     @Test
     public void testDummyValues() throws Exception{
         DASTest.open("testDB");
-        assertEquals(16, DASTest.getSize());
+        DASTest.addTestValues();
+
+        assertEquals(5, DASTest.getSize());
         assertEquals(5, DASTest.getIndex(16284));
         assertEquals(16284, DASTest.getTime(5));
     }

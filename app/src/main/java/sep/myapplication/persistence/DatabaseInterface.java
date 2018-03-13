@@ -19,8 +19,6 @@ public interface DatabaseInterface {
     public int getIndex(long time);
     public long getTime(int index);
     public String close();
-
-
-
+    public void addTestValues();
 
 }
