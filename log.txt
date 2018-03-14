@@ -95,3 +95,39 @@ NOTES:
 FOR MARKER:
 The titles reflect our user stories from iteration 1, and each bullet underneath are essentially dev tasks.
 
+ITERATION 2: ---------------------------------------------------------------------------------------
+
+CUSTOMIZABLE USER INTERFACE (9 Days) (DIDN'T GET AROUND TO THIS ITERATION)
+
+15 SECOND INSPECTION
+- Find way to count down before timer starts (3 hours)
+- Make sure that there is a way to differentiate it from a normal time (30 min)
+    - Change the colour? (Went with this) (10 min)
+    - Change the text-size?
+- Be able to start timer from any point during 15 sec countdown (1 hour)
+
+VIEW PREVIOUS TIMES
+- View all the previous times in the previous times screen (1 hour)
+- Be able to delete a time (2 hours)
+- Be able to modify a time (3 hours)
+    - Adding plus 2 seconds
+- Change a time to DNF (6 hours)
+
+VIEW TIMES AS A GRAPH
+- Figure out how to add a graph (4 hours)
+- Be able to represent data from DB (2 hours)
+- See progress over time?
+- Add the graph to a new activity (3 hours)
+
+SEPARATE SESSIONS
+- Have separate solving sessions
+- change the scramble for different puzzle types (5 hours)
+    - 2x2x2
+    - 3x3x3
+- Add new DB tables for different puzzles (NOT DONE) (NEXT ITERATION I GUESS)
+
+FOR MARKER:
+The titles reflect our user stories from iteration 2, and each bullet underneath are essentially dev tasks.
+
+
+
