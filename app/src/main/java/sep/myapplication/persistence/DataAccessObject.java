@@ -207,6 +207,29 @@ public class DataAccessObject implements DatabaseInterface
         }
     }
 
+    public long getBest(){
+        int time;
+        long bestTime = -1;
+
+        try
+        {
+            cmdString = "SELECT * FROM Times";
+            rs2 = st2.executeQuery(cmdString);
+            while (rs2.next()){
+                time = rs2.getInt("Time");
+                if ((time < bestTime) || (bestTime == -1)){
+                    bestTime = time;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            processSQLError(e);
+        }
+
+        return bestTime;
+    }
+
 
     public String checkWarning(Statement st, int updateCount)
     {

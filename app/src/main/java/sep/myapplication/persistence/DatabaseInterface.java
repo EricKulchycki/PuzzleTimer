@@ -18,6 +18,7 @@ public interface DatabaseInterface {
     public void reset();
     public int getIndex(long time);
     public long getTime(int index);
+    public long getBest();
     public String close();
     public void addTestValues();
 

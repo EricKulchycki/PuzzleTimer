@@ -46,6 +46,21 @@ public class DataAccessStub implements DatabaseInterface {
         return (long)list.get(index);
     }
 
+    public long getBest(){
+        long bestTime = -1;
+        long listTime;
+
+        for (int i = 0; i < list.size(); i++){
+            listTime = list.get(i);
+
+            if ((listTime < bestTime) || (bestTime == -1)){
+                bestTime = listTime;
+            }
+        }
+
+        return bestTime;
+    }
+
     public void addTestValues(){
         list.add((long)10000);
         list.add((long)20000);
