@@ -1,15 +1,14 @@
 package sep.myapplication.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.Handler;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -46,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private int selectedSession = 3;
     ArrayAdapter<String> adapter;
     DatabaseInterface timeList;
+
 
     final int INSPEC_DELAY = 15000;
 
@@ -108,13 +108,13 @@ public class MainActivity extends AppCompatActivity {
 
         //getMenuInflater().inflate(R.menu.main_menu, menu);
 
-        MenuItem mitem = menu.findItem(R.id.puzzleType);
-        final Spinner spinner = (Spinner) mitem.getActionView();
-        setupSpinner(spinner);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        MenuItem puzzleTypeMenuItem = menu.findItem(R.id.puzzleType);
+        final Spinner puzzleTypeSpinner = (Spinner) puzzleTypeMenuItem.getActionView();
+        setupPuzzleSpinner(puzzleTypeSpinner);
+        puzzleTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String text = spinner.getItemAtPosition(spinner.getSelectedItemPosition()).toString();
+                String text = puzzleTypeSpinner.getItemAtPosition(puzzleTypeSpinner.getSelectedItemPosition()).toString();
 
                 if(text.equals("2x2x2")) {
                     selectedSession = 2;
@@ -128,12 +128,46 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        MenuItem ColourMenuItem = menu.findItem(R.id.changeColour);
+        final Spinner colourSpinner = (Spinner) ColourMenuItem.getActionView();
+        setupColourSpinner(colourSpinner);
+        final View root = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+        colourSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String text = colourSpinner.getItemAtPosition(colourSpinner.getSelectedItemPosition()).toString();
+
+                if(text.equals("Red")) {
+                    root.setBackgroundResource(R.color.red);
+                } else if(text.equals("Yellow")) {
+                    root.setBackgroundResource(R.color.yellow);
+                } else if(text.equals("Blue")) {
+                    root.setBackgroundResource(R.color.blue);
+                } else {
+                    root.setBackgroundResource(R.color.white);
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         return true;
     }
 
-    public void setupSpinner(Spinner spin) {
+    public void setupPuzzleSpinner(Spinner spin) {
         String[] items = {"3x3x3", "2x2x2"};
+        //wrap the items in the Adapter
+        adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
+        //assign adapter to the Spinner
+        spin.setAdapter(adapter);
+
+    }
+
+    public void setupColourSpinner(Spinner spin) {
+        String[] items = {"White", "Red", "Yellow", "Blue"};
         //wrap the items in the Adapter
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         //assign adapter to the Spinner

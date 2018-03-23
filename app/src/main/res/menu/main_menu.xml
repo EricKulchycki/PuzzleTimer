@@ -23,4 +23,11 @@
         app:actionViewClass="android.widget.Spinner"
         android:gravity="center"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/changeColour"
+        android:title="Choose Colour"
+        android:icon="@drawable/rubikscube"
+        app:actionViewClass="android.widget.Spinner"
+        android:gravity="center"
+        app:showAsAction="always"/>
 </menu>
