@@ -137,13 +137,15 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String text = colourSpinner.getItemAtPosition(colourSpinner.getSelectedItemPosition()).toString();
 
-                if(text.equals("Red")) {
-                    root.setBackgroundResource(R.color.red);
-                } else if(text.equals("Yellow")) {
+                if(text.equals("Yellow")) {
                     root.setBackgroundResource(R.color.yellow);
                 } else if(text.equals("Blue")) {
                     root.setBackgroundResource(R.color.blue);
-                } else {
+                } else if(text.equals("Purple")) {
+                    root.setBackgroundResource(R.color.purple);
+                } else if(text.equals("Green")) {
+                    root.setBackgroundResource(R.color.green);
+                }else {
                     root.setBackgroundResource(R.color.white);
                 }
 
@@ -167,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupColourSpinner(Spinner spin) {
-        String[] items = {"White", "Red", "Yellow", "Blue"};
+        String[] items = {"White", "Yellow", "Blue" ,"Purple","Green"};
         //wrap the items in the Adapter
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         //assign adapter to the Spinner
