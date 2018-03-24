@@ -3,6 +3,7 @@ package sep.myapplication.view;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,12 +28,12 @@ import sep.myapplication.persistence.DatabaseInterface;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private int selectedSession = 3;
     ArrayAdapter<String> adapter;
     DatabaseInterface timeList;
+    MediaPlayer mp;
 
 
     final int INSPEC_DELAY = 15000;
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         timeList = Services.createDataAccess(Main.dbName);
         timeList.open(Main.getDBPathName());
+
 
         scrambleToDisplay();
         timer();
@@ -269,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 inspection.setVisibility(View.INVISIBLE);
                 start.setVisibility(View.VISIBLE);
                 stop.setVisibility(View.INVISIBLE);
@@ -299,7 +303,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                timeList.add(stopWatch.updateTime(SystemClock.uptimeMillis()));
+                Long finishedTime = stopWatch.updateTime(SystemClock.uptimeMillis());
+
+                if(finishedTime < timeList.getBest()) {
+                    mp = MediaPlayer.create(MainActivity.this, R.raw.cheersound);
+                    mp.start();
+                }
+
+                timeList.add(finishedTime);
+
+
                 inspection.setVisibility(View.VISIBLE);
                 start.setVisibility(View.INVISIBLE);
                 stop.setVisibility(View.INVISIBLE);
@@ -332,6 +345,8 @@ public class MainActivity extends AppCompatActivity {
                 textview.setText(stopWatch.toString(currTime));
                 handler.postDelayed(this, 0);
             } else {
+                mp = MediaPlayer.create(MainActivity.this, R.raw.sound);
+                mp.start();
                 start.performClick();
             }
         }
