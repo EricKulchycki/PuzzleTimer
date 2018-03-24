@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     Button inspection, start, stop;
     Handler handler;
     public int counter;
-    Timer stopWatch = new Timer();
+    Timer stopWatch;
     private int selectedSession = 3;
     ArrayAdapter<String> adapter;
     MediaPlayer mp;
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         copyDatabaseToDevice();
         Main.startUp();
+        stopWatch = new Timer();
 
         scrambleToDisplay();
         timer();
@@ -225,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
     public void averageToDisplay() {
         String averageTime;
        int size = stopWatch.getSize();
-        CalculateAverages calc = new CalculateAverages(size, stopWatch.getDatabase());
+        CalculateAverages calc = new CalculateAverages(size, Services.getDataAccess(Main.dbName));
 
 
         if (size > 0) {
@@ -244,7 +245,8 @@ public class MainActivity extends AppCompatActivity {
             averageText.setText(averageTime);
         }
         if(size >=50){
-            averageTime = calc.calcAve50();
+            averageTime = Integer.toString(size);
+            //averageTime = calc.calcAve50();
             averageText = (TextView) findViewById(R.id.AverageTimeOf50);
             averageText.setText(averageTime);
         }

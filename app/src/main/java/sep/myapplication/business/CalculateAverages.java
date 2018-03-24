@@ -1,6 +1,8 @@
 package sep.myapplication.business;
 
 
+import sep.myapplication.Application.Main;
+import sep.myapplication.Application.Services;
 import sep.myapplication.objects.Timer;
 import sep.myapplication.persistence.DatabaseInterface;
 
@@ -10,13 +12,13 @@ public class CalculateAverages {
     private long avg, avg5, avg12, avg50;
     private DatabaseInterface list;
 
-    public CalculateAverages(int size, DatabaseInterface list) {
+    public CalculateAverages(int size, DatabaseInterface db) {
         avg = 0;
         avg5= 0;
         avg12=0;
         avg50 = 0;
         this.size = size;
-        this.list = list;
+        this.list = db;
     }
 
     public String calcAverage() {
@@ -25,6 +27,8 @@ public class CalculateAverages {
 
             for (int i = 0; i < size; i++) {
                 avg += list.getTime(i);
+                System.out.println(avg);
+
                 if (i >= (size - 5)) {
                     avg5 += list.getTime(i);
                 }

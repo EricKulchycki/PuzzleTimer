@@ -13,7 +13,7 @@ public class Timer {
 
     public Timer(){
         startTime = 0;
-        timeList = Services.createDataAccess(Main.dbName);
+        timeList = Services.getDataAccess(Main.dbName);
     }
 
     //list functions
@@ -34,8 +34,7 @@ public class Timer {
         return time - startTime;
     }
 
-    public void stop(long currTime){
-        long time = updateTime(currTime);
+    public void stop(long time){
         timeList.add(time);
     }
 
