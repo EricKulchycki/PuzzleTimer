@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     Timer stopWatch = new Timer();
     private int selectedSession = 3;
     ArrayAdapter<String> adapter;
-    DatabaseInterface timeList;
     MediaPlayer mp;
 
 
@@ -59,11 +58,6 @@ public class MainActivity extends AppCompatActivity {
         copyDatabaseToDevice();
         Main.startUp();
 
-
-        timeList = Services.createDataAccess(Main.dbName);
-        timeList.open(Main.getDBPathName());
-
-
         scrambleToDisplay();
         timer();
         averageToDisplay();
@@ -73,12 +67,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-
         //Put times into a Long array
-        long[] temp = new long[timeList.getSize()];
-        ArrayList<Long> tempAL = timeList.getList();
+        long[] temp = new long[stopWatch.getSize()];
+        ArrayList<Long> tempAL = stopWatch.getList();
 
-        for(int i = 0; i < timeList.getSize(); i++) {
+        for(int i = 0; i < stopWatch.getSize(); i++) {
             temp[i] = tempAL.get(i);
         }
 
@@ -95,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(temp.length);
 
         for(int i = 0; i < temp.length; i++) {
-            timeList.add(temp[i]);
+            stopWatch.add(temp[i]);
         }
     }
 
@@ -231,8 +224,8 @@ public class MainActivity extends AppCompatActivity {
     //MOVE TO BUSINESS CLASS? We could pass calc into methods in the business class and have them return strings
     public void averageToDisplay() {
         String averageTime;
-       int size = timeList.getSize();
-        CalculateAverages calc = new CalculateAverages(size, timeList);
+       int size = stopWatch.getSize();
+        CalculateAverages calc = new CalculateAverages(size, stopWatch.getDatabase());
 
 
         if (size > 0) {
@@ -304,14 +297,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Long finishedTime = stopWatch.updateTime(SystemClock.uptimeMillis());
+                stopWatch.stop(finishedTime);
 
-                if(finishedTime < timeList.getBest()) {
+                if(finishedTime < stopWatch.getBest()) {
                     mp = MediaPlayer.create(MainActivity.this, R.raw.cheersound);
                     mp.start();
                 }
-
-                timeList.add(finishedTime);
-
 
                 inspection.setVisibility(View.VISIBLE);
                 start.setVisibility(View.INVISIBLE);
