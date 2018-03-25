@@ -1,6 +1,7 @@
 package sep.myapplication.view;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
     private int selectedSession = 3;
     ArrayAdapter<String> adapter;
     MediaPlayer mp;
+    SharedPreferences settings;
+    SharedPreferences.Editor editor;
+    int[] colours = {R.color.yellow, R.color.blue, R.color.purple, R.color.green, R.color.white};
+
+
 
 
     final int INSPEC_DELAY = 15000;
@@ -133,18 +139,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String text = colourSpinner.getItemAtPosition(colourSpinner.getSelectedItemPosition()).toString();
+                settings = getPreferences(MODE_PRIVATE);
+                editor = settings.edit();
 
                 if(text.equals("Yellow")) {
-                    root.setBackgroundResource(R.color.yellow);
+                    editor.putInt("colour", colours[0]);
+                    editor.commit();
                 } else if(text.equals("Blue")) {
-                    root.setBackgroundResource(R.color.blue);
+                    editor.putInt("colour", colours[1]);
+                    editor.commit();
                 } else if(text.equals("Purple")) {
-                    root.setBackgroundResource(R.color.purple);
+                    editor.putInt("colour", colours[2]);
+                    editor.commit();
                 } else if(text.equals("Green")) {
-                    root.setBackgroundResource(R.color.green);
-                }else {
-                    root.setBackgroundResource(R.color.white);
+                    editor.putInt("colour", colours[3]);
+                    editor.commit();
+                } else if(text.equals("White")) {
+                    editor.putInt("colour", colours[4]);
+                    editor.commit();
                 }
+                root.setBackgroundResource(settings.getInt("colour", colours[0]));
 
             }
             @Override
@@ -166,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupColourSpinner(Spinner spin) {
-        String[] items = {"White", "Yellow", "Blue" ,"Purple","Green"};
+        String[] items = {"Choose Background Colour", "White", "Yellow", "Blue" ,"Purple","Green"};
         //wrap the items in the Adapter
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         //assign adapter to the Spinner
