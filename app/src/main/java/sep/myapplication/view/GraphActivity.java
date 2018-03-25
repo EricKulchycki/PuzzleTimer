@@ -1,10 +1,13 @@
 package sep.myapplication.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
@@ -16,10 +19,12 @@ import sep.myapplication.Application.Services;
 import sep.myapplication.R;
 import sep.myapplication.persistence.DatabaseInterface;
 
-public class GraphActivity extends AppCompatActivity{
+public class GraphActivity extends AppCompatActivity {
     DatabaseInterface timeDB;
     GraphView graph;
     DataPoint[] dataPoint;
+    SharedPreferences.Editor editor;
+    int[] colours = {R.color.white, R.color.yellow, R.color.blue, R.color.purple, R.color.green};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,7 @@ public class GraphActivity extends AppCompatActivity{
         timeDB = Services.getDataAccess(Main.dbName);
         dataPoint = new DataPoint[timeDB.getSize()];
         graph = (GraphView) findViewById(R.id.graphView);
+        setupBackground();
         setupGraphLables();
         setupGraphData();
     }
@@ -70,5 +76,9 @@ public class GraphActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-
+    public void setupBackground() {
+        View root = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+        SharedPreferences settings = getSharedPreferences("bgcolourId", 0);
+        root.setBackgroundResource(settings.getInt("bgcolour", colours[0]));
+    }
 }

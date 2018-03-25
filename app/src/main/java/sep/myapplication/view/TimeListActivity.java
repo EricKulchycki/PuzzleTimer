@@ -1,11 +1,13 @@
 package sep.myapplication.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class TimeListActivity extends AppCompatActivity {
     ListView timeList;
 
     DatabaseInterface timeDB;
+    int[] colours = {R.color.white, R.color.yellow, R.color.blue, R.color.purple, R.color.green};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class TimeListActivity extends AppCompatActivity {
         timeList = (ListView) findViewById(R.id.timeListView);
 
         timeDB = Services.getDataAccess(Main.dbName);
-
+        setupBackground();
         setupTimeList();
 
     }
@@ -71,5 +74,11 @@ public class TimeListActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setupBackground() {
+        View root = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+        SharedPreferences settings = getSharedPreferences("bgcolourId", 0);
+        root.setBackgroundResource(settings.getInt("bgcolour", colours[0]));
     }
 }

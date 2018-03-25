@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mp;
     SharedPreferences settings;
     SharedPreferences.Editor editor;
-    int[] colours = {R.color.yellow, R.color.blue, R.color.purple, R.color.green, R.color.white};
+    int[] colours = {R.color.white, R.color.yellow, R.color.blue, R.color.purple, R.color.green};
 
 
 
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(text.equals("2x2x2")) {
                     selectedSession = 2;
-                } else if(text.equals("3x3x3")) {
+                } else if(text.equals("3x3x3") ) {
                     selectedSession = 3;
                 }
                 scrambleToDisplay();
@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         MenuItem ColourMenuItem = menu.findItem(R.id.changeColour);
         final Spinner colourSpinner = (Spinner) ColourMenuItem.getActionView();
         setupColourSpinner(colourSpinner);
@@ -139,26 +140,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String text = colourSpinner.getItemAtPosition(colourSpinner.getSelectedItemPosition()).toString();
-                settings = getPreferences(MODE_PRIVATE);
+                settings = getSharedPreferences("bgcolourId", 0);
                 editor = settings.edit();
 
-                if(text.equals("Yellow")) {
-                    editor.putInt("colour", colours[0]);
+                if(text.equals("White")) {
+                    editor.putInt("bgcolour", colours[0]);
+                    editor.commit();
+                } else if(text.equals("Yellow")) {
+                    editor.putInt("bgcolour", colours[1]);
                     editor.commit();
                 } else if(text.equals("Blue")) {
-                    editor.putInt("colour", colours[1]);
+                    editor.putInt("bgcolour", colours[2]);
                     editor.commit();
                 } else if(text.equals("Purple")) {
-                    editor.putInt("colour", colours[2]);
+                    editor.putInt("bgcolour", colours[3]);
                     editor.commit();
                 } else if(text.equals("Green")) {
-                    editor.putInt("colour", colours[3]);
-                    editor.commit();
-                } else if(text.equals("White")) {
-                    editor.putInt("colour", colours[4]);
+                    editor.putInt("bgcolour", colours[4]);
                     editor.commit();
                 }
-                root.setBackgroundResource(settings.getInt("colour", colours[0]));
+                root.setBackgroundResource(settings.getInt("bgcolour", colours[0]));
 
             }
             @Override
@@ -171,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupPuzzleSpinner(Spinner spin) {
-        String[] items = {"3x3x3", "2x2x2"};
+        String[] items = {"Choose Puzzle Type", "3x3x3", "2x2x2"};
         //wrap the items in the Adapter
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         //assign adapter to the Spinner
