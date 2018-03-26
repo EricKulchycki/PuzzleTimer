@@ -36,6 +36,9 @@ public class DataAccessStub implements DatabaseInterface {
     public void delete(long time) {
         list.remove(time);
     }
+    public void modify(long oldT, long newT){
+        return;
+    }
     public void reset() {
         list.clear();
     }

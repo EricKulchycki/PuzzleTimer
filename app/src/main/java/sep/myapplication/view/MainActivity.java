@@ -1,7 +1,6 @@
 package sep.myapplication.view;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -47,11 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private int selectedSession = 3;
     ArrayAdapter<String> adapter;
     MediaPlayer mp;
-    SharedPreferences settings;
-    SharedPreferences.Editor editor;
-    int[] colours = {R.color.white, R.color.yellow, R.color.blue, R.color.purple, R.color.green};
-
-
 
 
     final int INSPEC_DELAY = 15000;
@@ -63,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         copyDatabaseToDevice();
         Main.startUp();
+
         stopWatch = new Timer();
 
         scrambleToDisplay();
@@ -74,11 +69,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        //Put times into a Long array
-        long[] temp = new long[stopWatch.getSize()];
-        ArrayList<Long> tempAL = stopWatch.getList();
 
-        for(int i = 0; i < stopWatch.getSize(); i++) {
+        //Put times into a Long array
+
+        ArrayList<Long> tempAL = stopWatch.getList();
+        long[] temp = new long[tempAL.size()];
+
+        for(int i = 0; i < tempAL.size(); i++) {
             temp[i] = tempAL.get(i);
         }
 
@@ -121,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(text.equals("2x2x2")) {
                     selectedSession = 2;
-                } else if(text.equals("3x3x3") ) {
+                } else if(text.equals("3x3x3")) {
                     selectedSession = 3;
                 }
                 scrambleToDisplay();
@@ -131,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         MenuItem ColourMenuItem = menu.findItem(R.id.changeColour);
         final Spinner colourSpinner = (Spinner) ColourMenuItem.getActionView();
         setupColourSpinner(colourSpinner);
@@ -140,26 +136,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String text = colourSpinner.getItemAtPosition(colourSpinner.getSelectedItemPosition()).toString();
-                settings = getSharedPreferences("bgcolourId", 0);
-                editor = settings.edit();
 
-                if(text.equals("White")) {
-                    editor.putInt("bgcolour", colours[0]);
-                    editor.commit();
-                } else if(text.equals("Yellow")) {
-                    editor.putInt("bgcolour", colours[1]);
-                    editor.commit();
+                if(text.equals("Yellow")) {
+                    root.setBackgroundResource(R.color.yellow);
                 } else if(text.equals("Blue")) {
-                    editor.putInt("bgcolour", colours[2]);
-                    editor.commit();
+                    root.setBackgroundResource(R.color.blue);
                 } else if(text.equals("Purple")) {
-                    editor.putInt("bgcolour", colours[3]);
-                    editor.commit();
+                    root.setBackgroundResource(R.color.purple);
                 } else if(text.equals("Green")) {
-                    editor.putInt("bgcolour", colours[4]);
-                    editor.commit();
+                    root.setBackgroundResource(R.color.green);
+                }else {
+                    root.setBackgroundResource(R.color.white);
                 }
-                root.setBackgroundResource(settings.getInt("bgcolour", colours[0]));
 
             }
             @Override
@@ -172,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupPuzzleSpinner(Spinner spin) {
-        String[] items = {"Choose Puzzle Type", "3x3x3", "2x2x2"};
+        String[] items = {"3x3x3", "2x2x2"};
         //wrap the items in the Adapter
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         //assign adapter to the Spinner
@@ -181,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupColourSpinner(Spinner spin) {
-        String[] items = {"Choose Background Colour", "White", "Yellow", "Blue" ,"Purple","Green"};
+        String[] items = {"White", "Yellow", "Blue" ,"Purple","Green"};
         //wrap the items in the Adapter
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         //assign adapter to the Spinner
@@ -240,8 +228,9 @@ public class MainActivity extends AppCompatActivity {
     //MOVE TO BUSINESS CLASS? We could pass calc into methods in the business class and have them return strings
     public void averageToDisplay() {
         String averageTime;
-       int size = stopWatch.getSize();
-        CalculateAverages calc = new CalculateAverages(size, Services.getDataAccess(Main.dbName));
+        ArrayList<Long> list = stopWatch.getList();
+       int size = list.size();
+        CalculateAverages calc = new CalculateAverages(size, stopWatch.getDatabase());
 
 
         if (size > 0) {
@@ -260,8 +249,7 @@ public class MainActivity extends AppCompatActivity {
             averageText.setText(averageTime);
         }
         if(size >=50){
-            averageTime = Integer.toString(size);
-            //averageTime = calc.calcAve50();
+            averageTime = calc.calcAve50();
             averageText = (TextView) findViewById(R.id.AverageTimeOf50);
             averageText.setText(averageTime);
         }
@@ -313,18 +301,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                handler.removeCallbacks(runnable);
                 Long finishedTime = stopWatch.updateTime(SystemClock.uptimeMillis());
-                stopWatch.stop(finishedTime);
 
                 if(finishedTime < stopWatch.getBest()) {
                     mp = MediaPlayer.create(MainActivity.this, R.raw.cheersound);
                     mp.start();
                 }
 
+                stopWatch.stop(finishedTime);
+
+
                 inspection.setVisibility(View.VISIBLE);
                 start.setVisibility(View.INVISIBLE);
                 stop.setVisibility(View.INVISIBLE);
-                handler.removeCallbacks(runnable);
+
                 scrambleToDisplay();
                 averageToDisplay();
 

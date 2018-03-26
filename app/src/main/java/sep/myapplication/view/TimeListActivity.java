@@ -1,15 +1,19 @@
 package sep.myapplication.view;
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+import android.content.Context;
+
 import java.util.ArrayList;
 
 import sep.myapplication.Application.Main;
@@ -24,7 +28,10 @@ public class TimeListActivity extends AppCompatActivity {
     ListView timeList;
 
     DatabaseInterface timeDB;
-    int[] colours = {R.color.white, R.color.yellow, R.color.blue, R.color.purple, R.color.green};
+    ArrayList<Long> timeDBList;
+    Button deleteItem, clearList, modify, dnf;
+    long time;
+    long incrementTwo = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +41,78 @@ public class TimeListActivity extends AppCompatActivity {
         timeList = (ListView) findViewById(R.id.timeListView);
 
         timeDB = Services.getDataAccess(Main.dbName);
-        setupBackground();
+
         setupTimeList();
+
+        timeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                time = timeDBList.get(position);
+                Toast toast = Toast.makeText(getApplicationContext(),Timer.toString(time),3 );
+                toast.show();
+
+            }
+        });
+
+        deleteItem = (Button)findViewById(R.id.Delete);
+        deleteItem.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                timeDB.delete(time);
+                setupTimeList();
+            }
+        });
+
+        clearList = (Button)findViewById(R.id.ClearList);
+        clearList.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                timeDB.reset();
+                setupTimeList();
+            }
+        });
+
+        modify = (Button)findViewById(R.id.Modify);
+        modify.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                timeDB.modify(time, time+incrementTwo);
+                setupTimeList();
+            }
+        });
+
+        dnf = (Button)findViewById(R.id.DNF);
+        dnf.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                timeDB.modify(time, 0);
+                setupTimeList();
+            }
+        });
+
 
     }
 
     public void setupTimeList() {
         ArrayList<String> timeStrings = new ArrayList<String>();
-        ArrayList<Long> timeDBList = timeDB.getList();
+        timeDBList = timeDB.getList();
+        String timeString = "";
 
-
-        for(int i = 0; i < timeDB.getSize(); i++) {
+        for(int i = 0; i < timeDBList.size(); i++) {
 
 
             long time = timeDBList.get(i);
-            String timeString = Timer.toString(time);
-            timeStrings.add(timeString);
+            if (time >= 0) {
+                if(time == 0){
+                    timeString = "DNF";
+                }
+                else {
+                    timeString = Timer.toString(time);
+                }
+                    timeStrings.add(timeString);
+
+            }
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeStrings );
@@ -76,9 +139,6 @@ public class TimeListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setupBackground() {
-        View root = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
-        SharedPreferences settings = getSharedPreferences("bgcolourId", 0);
-        root.setBackgroundResource(settings.getInt("bgcolour", colours[0]));
-    }
+
+
 }

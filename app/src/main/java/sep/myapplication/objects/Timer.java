@@ -21,7 +21,6 @@ public class Timer {
     public DatabaseInterface getDatabase(){return timeList;}
     public ArrayList getList(){return timeList.getList();}
     public int getSize(){return timeList.getSize();}
-
     public void add(long l){timeList.add(l);}
 
     //timer functions

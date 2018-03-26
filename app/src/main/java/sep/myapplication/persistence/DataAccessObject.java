@@ -71,11 +71,11 @@ public class DataAccessObject implements DatabaseInterface
 
         try
         {
-            cmdString = "SELECT * FROM Times";
+            cmdString = "SELECT MAX(Run) FROM Times";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData();
             while (rs2.next()){
-                count++;
+                count = rs2.getInt(1);
             }
         }
         catch (Exception e)
@@ -95,7 +95,7 @@ public class DataAccessObject implements DatabaseInterface
 
         try
         {
-            cmdString = "SELECT * FROM Times";
+            cmdString = "SELECT * FROM Times WHERE Time>=0";
             rs2 = st2.executeQuery(cmdString);
             while (rs2.next()){
                 time = rs2.getInt("Time");
@@ -149,6 +149,30 @@ public class DataAccessObject implements DatabaseInterface
         }
 
     }
+
+    public void modify(long oldT, long newT){
+        String oldTime, newTime;
+
+        result = null;
+        try
+        {
+             oldTime = Long.toString(oldT);
+             newTime = Long.toString(newT);
+
+            cmdString = "UPDATE Times SET Time =" +newTime + "WHERE (Time=" +oldTime+")";
+            //System.out.println(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+
+    }
+
+
+
     public void reset(){
         try
         {
@@ -159,6 +183,7 @@ public class DataAccessObject implements DatabaseInterface
         catch (Exception e)
         {
             processSQLError(e);
+
         }
     }
 

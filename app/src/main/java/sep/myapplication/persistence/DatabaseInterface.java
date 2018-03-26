@@ -15,6 +15,7 @@ public interface DatabaseInterface {
     public String getDbName();
     public void add(long time);
     public void delete(long time);
+    public void modify(long oldT, long newT);
     public void reset();
     public int getIndex(long time);
     public long getTime(int index);
