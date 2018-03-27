@@ -232,6 +232,15 @@ public class DataAccessObject implements DatabaseInterface
         }
     }
 
+    public void addTestValues(int addNumbers){
+        long testValues = 10000;
+
+        for (int i = 0; i < addNumbers; i++){
+            testValues += 100;
+            add(testValues);
+        }
+    }
+
     public long getBest(){
         int time;
         long bestTime = -1;
