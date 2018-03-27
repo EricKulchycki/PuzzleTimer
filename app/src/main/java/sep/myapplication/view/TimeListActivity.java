@@ -1,6 +1,6 @@
 package sep.myapplication.view;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.content.Context;
 
 import java.util.ArrayList;
 
@@ -20,7 +19,6 @@ import sep.myapplication.Application.Main;
 import sep.myapplication.Application.Services;
 import sep.myapplication.R;
 import sep.myapplication.objects.Timer;
-import sep.myapplication.persistence.DataAccessStub;
 import sep.myapplication.persistence.DatabaseInterface;
 
 public class TimeListActivity extends AppCompatActivity {
@@ -49,7 +47,7 @@ public class TimeListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 time = timeDBList.get(position);
-                Toast toast = Toast.makeText(getApplicationContext(),Timer.toString(time),3 );
+                Toast toast = Toast.makeText(getApplicationContext(),Timer.toString(time),Toast.LENGTH_LONG );
                 toast.show();
 
             }

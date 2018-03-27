@@ -18,12 +18,10 @@ import android.widget.TextView;
 import android.os.SystemClock;
 
 import sep.myapplication.Application.Main;
-import sep.myapplication.Application.Services;
 import sep.myapplication.R;
 import sep.myapplication.business.CalculateAverages;
 import sep.myapplication.business.ScrambleGenerator;
 import sep.myapplication.objects.Timer;
-import sep.myapplication.persistence.DatabaseInterface;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     TextView textview,averageText;
     Button inspection, start, stop;
     Handler handler;
-    public int counter;
     Timer stopWatch;
     private int selectedSession = 3;
     ArrayAdapter<String> adapter;
@@ -103,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
 
