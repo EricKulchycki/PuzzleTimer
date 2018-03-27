@@ -130,4 +130,37 @@ FOR MARKER:
 The titles reflect our user stories from iteration 2, and each bullet underneath are essentially dev tasks.
 
 
+ITERATION 3: ---------------------------------------------------------------------------------------
+
+Dev Tasks:
+
+Delete and modify times (2 hours) MARK
+    - In timelist add modifiers/delete
+    - Add button to clear all times
+
+Menu to change colour of the background (5 hours) JETRO
+    - Do same as the scramble selection
+
+Add the puzzle type to the database (5 hours) MARK
+    - Make sure the puzzle type displays on the timelist
+    - When you switch the puzzle type it should add that time with the selected puzzle type tag in the database
+    - Be able to select the times from the selected puzzle on the timelist view
+
+Add sounds (4 hours) ERIC
+    - After the countdown expires
+    - If the time you just finished is better than all other times
+
+
+NOTES and LOG:
+
+Worked on changing of the colours and finished (JETRO)
+    - Maybe get rid of the blue? Doesn't contrast well with the black text.
+Finished getting the sounds going for what was specified (ERIC)
+    - Speakers on tablet are broken
+        - Show up early to presentation to test
+Got deletions going (RANDY & MARK) (PAIR PROGRAMMING)
+Refactored the code so that we are no longer violating any good code practices (Mark)
+
+
+
 
