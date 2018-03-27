@@ -22,5 +22,6 @@ public interface DatabaseInterface {
     public long getBest();
     public String close();
     public void addTestValues();
+    public void addTestValues(int addNumbers);
 
 }

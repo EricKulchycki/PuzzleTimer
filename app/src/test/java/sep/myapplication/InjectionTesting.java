@@ -1,4 +1,4 @@
-package sep.myapplication.persistence;
+package sep.myapplication;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,16 +6,17 @@ import junit.framework.TestCase;
 
 import sep.myapplication.Application.Main;
 import sep.myapplication.Application.Services;
+import sep.myapplication.persistence.*;
 
-public class DataAccessStubTest extends TestCase {
+public class InjectionTesting extends TestCase {
 
 
-    public DataAccessStubTest(String arg0)
+    public InjectionTesting(String arg0)
     {
         super(arg0);
     }
 
-    DatabaseInterface DASTest = new DataAccessStub("testStub");
+    DatabaseInterface DASTest = new DataAccessObject("testStub");
 
     @Before
     public void injection(){
@@ -65,7 +66,6 @@ public class DataAccessStubTest extends TestCase {
 
     @Test
     public void testInitializationValues() throws Exception{
-        DASTest.open("testDB");
         assertNotNull(DASTest.getList());
         assertEquals("testDB", DASTest.getDbName());
         assertEquals(0, DASTest.getSize());
@@ -75,11 +75,12 @@ public class DataAccessStubTest extends TestCase {
             assertEquals(-1, DASTest.getTime(1));
             fail();
         } catch (IndexOutOfBoundsException i){}
+
+        DASTest.reset();
     }
 
     @Test
     public void testDummyValues() throws Exception{
-        DASTest.open("testDB");
         DASTest.addTestValues();
 
         assertEquals(5, DASTest.getSize());
@@ -90,7 +91,6 @@ public class DataAccessStubTest extends TestCase {
 
     @Test
     public void testModifyValues() throws Exception{
-        DASTest.open("testDB");
 
         DASTest.add(12345);
         assertEquals(1, DASTest.getSize());
@@ -112,11 +112,11 @@ public class DataAccessStubTest extends TestCase {
         assertEquals(1, DASTest.getSize());
         assertEquals(0, DASTest.getIndex(11036));
         assertEquals(11036, DASTest.getTime(0));
+        DASTest.reset();
     }
 
     @Test
     public void testResetList() throws Exception {
-        DASTest.open("testDB");
         DASTest.reset();
         assertEquals(0, DASTest.getSize());
 
@@ -134,7 +134,7 @@ public class DataAccessStubTest extends TestCase {
 
     @Test
     public void testSizeAfterModify() throws Exception {
-        DASTest.open("testDB");
+        DASTest.open(Main.dbName);
         DASTest.addTestValues(16);
 
         assertEquals(16, DASTest.getSize());
@@ -148,11 +148,11 @@ public class DataAccessStubTest extends TestCase {
         assertEquals(17, DASTest.getSize());
         DASTest.delete(17595);
         assertEquals(16, DASTest.getSize());
+        DASTest.reset();
     }
 
     @Test
     public void testModifyValuesInList() throws Exception{
-        DASTest.open("testDB");
 
         DASTest.addTestValues();
         assertEquals(5, DASTest.getSize());
