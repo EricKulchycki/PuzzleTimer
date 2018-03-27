@@ -62,7 +62,7 @@ public class DataAccessObject implements DatabaseInterface
             processSQLError(e);
         }
 
-        return ("Closed " +dbType + "db " +dbName);
+        return ("Database Closed.");
     }
 
     public int getSize(){
@@ -71,11 +71,11 @@ public class DataAccessObject implements DatabaseInterface
 
         try
         {
-            cmdString = "SELECT MAX(Run) FROM Times";
+            cmdString = "SELECT * FROM Times";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData();
             while (rs2.next()){
-                count = rs2.getInt(1);
+                count++;
             }
         }
         catch (Exception e)
@@ -108,6 +108,9 @@ public class DataAccessObject implements DatabaseInterface
             processSQLError(e);
         }
 
+        if (retval.size() == 0){
+            retval = null;
+        }
         return retval;
     }
 
@@ -179,6 +182,10 @@ public class DataAccessObject implements DatabaseInterface
             cmdString = "DELETE FROM Times";
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
+
+            cmdString = "ALTER TABLE Times ALTER COLUMN Run RESTART WITH 0";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
         }
         catch (Exception e)
         {
@@ -188,40 +195,12 @@ public class DataAccessObject implements DatabaseInterface
     }
 
     public int getIndex(long time){
-        int index = -1;
-
-        try
-        {
-            cmdString = "SELECT * FROM Times WHERE Time=" + Long.toString(time);
-            rs2 = st2.executeQuery(cmdString);
-            while (rs2.next()){
-                index = rs2.getInt("Run");
-            }
-        }
-        catch (Exception e)
-        {
-            processSQLError(e);
-        }
-
-        return index;
+        ArrayList<Long> list = getList();
+        return list.indexOf(time);
     }
     public long getTime(int index){
-        int time = -1;
-
-        try
-        {
-            cmdString = "SELECT * FROM Times WHERE Run=" + Long.toString(index);
-            rs2 = st2.executeQuery(cmdString);
-            while (rs2.next()){
-                time = rs2.getInt("Time");
-            }
-        }
-        catch (Exception e)
-        {
-            processSQLError(e);
-        }
-
-        return time;
+        ArrayList<Long> list = getList();
+        return list.get(index);
     }
 
     public void addTestValues(){

@@ -4,83 +4,41 @@ import org.junit.Before;
 import org.junit.Test;
 import junit.framework.TestCase;
 
+import java.sql.SQLException;
+
 import sep.myapplication.Application.Main;
 import sep.myapplication.Application.Services;
 import sep.myapplication.persistence.*;
 
-public class InjectionTesting extends TestCase {
+public class DBInjectionTest extends TestCase {
 
 
-    public InjectionTesting(String arg0)
+    public DBInjectionTest(String arg0)
     {
         super(arg0);
     }
 
-    DatabaseInterface DASTest = new DataAccessObject("testStub");
-
-    @Before
-    public void injection(){
-        if (DASTest instanceof DataAccessObject){
-            DASTest = Services.createDataAccess(Main.dbName);
-        } else {
-            DASTest.open(Main.dbName);
-        }
-    }
-
-    @Test
-    public void testInitialValues() throws Exception {
-        assertNull(DASTest.getList());
-        assertEquals("testStub", DASTest.getDbName());
-        try{
-            assertEquals(0, DASTest.getSize());
-            fail();
-        } catch (NullPointerException n){}
-
-        try{
-            DASTest.add(10000);
-            fail();
-        } catch (NullPointerException n){}
-
-        try{
-            DASTest.delete(10000);
-            fail();
-        } catch (NullPointerException n){}
-
-        try{
-            DASTest.reset();
-            fail();
-        } catch (NullPointerException n){}
-
-        try{
-            DASTest.getTime(1);
-            fail();
-        } catch (NullPointerException n){}
-
-        try{
-            DASTest.getIndex(1);
-            fail();
-        } catch (NullPointerException n){}
-
-        assertEquals("Database Closed.", DASTest.close());
-    }
+    DatabaseInterface DASTest = Services.createDataAccess(Main.dbName);
 
     @Test
     public void testInitializationValues() throws Exception{
-        assertNotNull(DASTest.getList());
-        assertEquals("testDB", DASTest.getDbName());
+        DASTest.open(Main.dbName);
+        DASTest.reset();
+        assertNull(DASTest.getList());
+        assertEquals("SC", DASTest.getDbName());
         assertEquals(0, DASTest.getSize());
-        assertEquals(-1, DASTest.getIndex(1));
-
-        try{
+        try {
+            assertEquals(-1, DASTest.getIndex(1));
             assertEquals(-1, DASTest.getTime(1));
             fail();
-        } catch (IndexOutOfBoundsException i){}
+        } catch (Exception e){}
 
         DASTest.reset();
     }
 
     @Test
     public void testDummyValues() throws Exception{
+        DASTest.open(Main.dbName);
         DASTest.addTestValues();
 
         assertEquals(5, DASTest.getSize());
@@ -91,7 +49,8 @@ public class InjectionTesting extends TestCase {
 
     @Test
     public void testModifyValues() throws Exception{
-
+        DASTest.open(Main.dbName);
+        DASTest.reset();
         DASTest.add(12345);
         assertEquals(1, DASTest.getSize());
         assertEquals(0, DASTest.getIndex(12345));
@@ -117,6 +76,7 @@ public class InjectionTesting extends TestCase {
 
     @Test
     public void testResetList() throws Exception {
+        DASTest.open(Main.dbName);
         DASTest.reset();
         assertEquals(0, DASTest.getSize());
 
@@ -153,7 +113,7 @@ public class InjectionTesting extends TestCase {
 
     @Test
     public void testModifyValuesInList() throws Exception{
-
+        DASTest.open(Main.dbName);
         DASTest.addTestValues();
         assertEquals(5, DASTest.getSize());
         assertEquals(10000, DASTest.getTime(0));
@@ -173,6 +133,7 @@ public class InjectionTesting extends TestCase {
         DASTest.modify(10000, 5000);
         assertNotSame(10000, DASTest.getTime(0));
         assertEquals(5000, DASTest.getTime(0));
+        DASTest.reset();
     }
 }
 

@@ -1,11 +1,7 @@
 package sep.myapplication.persistence;
 
-import org.junit.Before;
 import org.junit.Test;
 import junit.framework.TestCase;
-
-import sep.myapplication.Application.Main;
-import sep.myapplication.Application.Services;
 
 public class DataAccessStubTest extends TestCase {
 
@@ -15,21 +11,13 @@ public class DataAccessStubTest extends TestCase {
         super(arg0);
     }
 
-    DatabaseInterface DASTest = new DataAccessStub("testStub");
-
-    @Before
-    public void injection(){
-        if (DASTest instanceof DataAccessObject){
-            DASTest = Services.createDataAccess(Main.dbName);
-        } else {
-            DASTest.open(Main.dbName);
-        }
-    }
+    static DatabaseInterface DASTest = new DataAccessStub("testDB");
 
     @Test
     public void testInitialValues() throws Exception {
+        DASTest.close();
         assertNull(DASTest.getList());
-        assertEquals("testStub", DASTest.getDbName());
+        assertEquals("testDB", DASTest.getDbName());
         try{
             assertEquals(0, DASTest.getSize());
             fail();
@@ -75,6 +63,7 @@ public class DataAccessStubTest extends TestCase {
             assertEquals(-1, DASTest.getTime(1));
             fail();
         } catch (IndexOutOfBoundsException i){}
+        DASTest.reset();
     }
 
     @Test
@@ -112,6 +101,7 @@ public class DataAccessStubTest extends TestCase {
         assertEquals(1, DASTest.getSize());
         assertEquals(0, DASTest.getIndex(11036));
         assertEquals(11036, DASTest.getTime(0));
+        DASTest.reset();
     }
 
     @Test
