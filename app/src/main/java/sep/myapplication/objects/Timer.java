@@ -11,9 +11,9 @@ public class Timer {
     private long startTime;
     private DatabaseInterface timeList;
 
-    public Timer(){
+    public Timer(DatabaseInterface DI){
         startTime = 0;
-        timeList = Services.getDataAccess(Main.dbName);
+        timeList = DI;
     }
 
     //list functions
@@ -22,6 +22,11 @@ public class Timer {
     public ArrayList getList(){return timeList.getList();}
     public int getSize(){return timeList.getSize();}
     public void add(long l){timeList.add(l);}
+    public void delete(long l){timeList.delete(l);}
+    public long getBest(){
+        return timeList.getBest();
+    }
+    public void reset(){ timeList.reset();}
 
     //timer functions
     public long start(long time, long delay) {
@@ -33,15 +38,7 @@ public class Timer {
         return time - startTime;
     }
 
-    public void stop(long time){
-        timeList.add(time);
-    }
-
-    public long getBest(){
-        return timeList.getBest();
-    }
-
-
+    public void stop(long time){add(time);}
     public static String toString(long time){
         int MilliSeconds, Seconds, Minutes = 0;
 

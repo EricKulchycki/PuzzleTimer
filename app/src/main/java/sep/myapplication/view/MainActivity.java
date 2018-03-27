@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.os.SystemClock;
 
 import sep.myapplication.Application.Main;
+import sep.myapplication.Application.Services;
 import sep.myapplication.R;
 import sep.myapplication.business.CalculateAverages;
 import sep.myapplication.business.ScrambleGenerator;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         copyDatabaseToDevice();
         Main.startUp();
 
-        stopWatch = new Timer();
+        stopWatch = new Timer(Services.createDataAccess(Main.dbName));
 
         scrambleToDisplay();
         timer();

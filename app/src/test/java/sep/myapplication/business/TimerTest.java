@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
+import sep.myapplication.Application.Main;
+import sep.myapplication.Application.Services;
 import sep.myapplication.objects.Timer;
 
 
@@ -14,7 +16,7 @@ public class TimerTest extends TestCase {
     {
         super(arg0);
     }
-    Timer timerTest = new Timer();
+    Timer timerTest = new Timer(Services.createDataAccess(Main.dbName));
 
     @Test
     public void testInitialValues() throws Exception{

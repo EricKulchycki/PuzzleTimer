@@ -18,7 +18,7 @@ public class DBInjectionTest extends TestCase {
         super(arg0);
     }
 
-    DatabaseInterface DASTest = Services.createDataAccess(Main.dbName);
+    DatabaseInterface DASTest = new DataAccessObject(Main.dbName);
 
     @Test
     public void testInitializationValues() throws Exception{

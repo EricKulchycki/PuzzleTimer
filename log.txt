@@ -141,7 +141,7 @@ Delete and modify times (2 hours) MARK
 Menu to change colour of the background (5 hours) JETRO
     - Do same as the scramble selection
 
-Add the puzzle type to the database (5 hours) MARK
+Add the puzzle type to the database (5 hours) MARK [DID NOT FINISH THIS ITERATION]
     - Make sure the puzzle type displays on the timelist
     - When you switch the puzzle type it should add that time with the selected puzzle type tag in the database
     - Be able to select the times from the selected puzzle on the timelist view
