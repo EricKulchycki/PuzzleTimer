@@ -28,7 +28,7 @@ import static org.junit.Assert.assertFalse;
 
 
 @RunWith(AndroidJUnit4.class)
-public class ModifyDeleteTimesTest extends TestCase {
+public class ChangeScrambleSizeTest extends TestCase {
 
     @Rule
     public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -49,34 +49,11 @@ public class ModifyDeleteTimesTest extends TestCase {
     }
 
     @Test
-    public void modifyDeleteTimes() throws Exception {
-        Main.startUp();
-        DatabaseInterface testDB = Services.getDataAccess(Main.dbName);
+    public void modifyScrambleSize() throws Exception {
 
         solo.unlockScreen();
-        //add times
         solo.assertCurrentActivity("Main Activity", MainActivity.class);
-
-        for (int i = 0; i < 3; i++) {
-            solo.clickOnView(solo.getView(R.id.inspection));
-            solo.clickOnView(solo.getView(R.id.startTimer));
-            solo.sleep(5000*i);
-            solo.clickOnView(solo.getView(R.id.stopTimer));
-        }
-
-        solo.clickOnView(solo.getView(R.id.timeList));
-        solo.assertCurrentActivity("Expected timeList", TimeListActivity.class);
-        assertEquals(0, testDB.getIndex(5000));
-
-        ListView list = (ListView)solo.getView(R.id.listview);
-        View listItem = list.getChildAt(0);
-
-        solo.clickOnView(listItem);
-        solo.clickOnView(R.id.Modify);
-        assertEquals(0, testDB.getIndex(7000));
-        solo.clickOnView(R.id.Delete);
-        assertEquals(0, testDB.getIndex(10000));
-        solo.clickOnView(R.id.ClearList);
-        assertEquals(-1, testDB.getIndex(5000));
+        solo.clickOnView(solo.getView(R.id.puzzleType));
+        solo.clickOnMenuItem("2x2x2", true);
     }
 }

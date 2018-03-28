@@ -16,10 +16,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import sep.myapplication.Application.Main;
-import sep.myapplication.Application.Services;
 import sep.myapplication.R;
-import sep.myapplication.persistence.DatabaseInterface;
 import sep.myapplication.view.MainActivity;
 import sep.myapplication.view.TimeListActivity;
 
@@ -28,7 +25,7 @@ import static org.junit.Assert.assertFalse;
 
 
 @RunWith(AndroidJUnit4.class)
-public class ModifyDeleteTimesTest extends TestCase {
+public class ViewGraphTest extends TestCase {
 
     @Rule
     public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -49,10 +46,7 @@ public class ModifyDeleteTimesTest extends TestCase {
     }
 
     @Test
-    public void modifyDeleteTimes() throws Exception {
-        Main.startUp();
-        DatabaseInterface testDB = Services.getDataAccess(Main.dbName);
-
+    public void viewGraph() throws Exception {
         solo.unlockScreen();
         //add times
         solo.assertCurrentActivity("Main Activity", MainActivity.class);
@@ -64,19 +58,7 @@ public class ModifyDeleteTimesTest extends TestCase {
             solo.clickOnView(solo.getView(R.id.stopTimer));
         }
 
-        solo.clickOnView(solo.getView(R.id.timeList));
+        solo.clickOnView(solo.getView(R.id.graphDisplay));
         solo.assertCurrentActivity("Expected timeList", TimeListActivity.class);
-        assertEquals(0, testDB.getIndex(5000));
-
-        ListView list = (ListView)solo.getView(R.id.listview);
-        View listItem = list.getChildAt(0);
-
-        solo.clickOnView(listItem);
-        solo.clickOnView(R.id.Modify);
-        assertEquals(0, testDB.getIndex(7000));
-        solo.clickOnView(R.id.Delete);
-        assertEquals(0, testDB.getIndex(10000));
-        solo.clickOnView(R.id.ClearList);
-        assertEquals(-1, testDB.getIndex(5000));
     }
 }

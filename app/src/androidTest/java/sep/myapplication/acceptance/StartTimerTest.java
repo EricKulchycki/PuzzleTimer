@@ -14,6 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import sep.myapplication.R;
 import sep.myapplication.view.MainActivity;
 
 import static org.junit.Assert.assertTrue;
@@ -43,7 +44,16 @@ public class StartTimerTest extends TestCase {
 
     @Test
     public void testStartTimer() throws Exception {
+        solo.unlockScreen();
+        //add times
+        solo.assertCurrentActivity("Main Activity", MainActivity.class);
 
+        for (int i = 0; i < 3; i++) {
+            solo.clickOnView(solo.getView(R.id.inspection));
+            solo.clickOnView(solo.getView(R.id.startTimer));
+            solo.sleep(5000*i);
+            solo.clickOnView(solo.getView(R.id.stopTimer));
+        }
     }
 
 
