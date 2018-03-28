@@ -160,7 +160,9 @@ Finished getting the sounds going for what was specified (ERIC)
         - Show up early to presentation to test
 Got deletions going (RANDY & MARK) (PAIR PROGRAMMING)
 Refactored the code so that we are no longer violating any good code practices (Mark)
-
+The testing doesn't work :(
+I don't know what's wrong, and have to time to fix it.
+I'm so sorry marker, and John :(
 
 
 
