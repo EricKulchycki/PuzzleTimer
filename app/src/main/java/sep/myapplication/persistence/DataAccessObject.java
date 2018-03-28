@@ -71,12 +71,15 @@ public class DataAccessObject implements DatabaseInterface
 
         try
         {
-            cmdString = "SELECT * FROM Times";
+//            cmdString = "SELECT * FROM Times";
+//            rs2 = st1.executeQuery(cmdString);
+//            //ResultSetMetaData md2 = rs2.getMetaData();
+//            while (rs2.next()){
+//                count++;
+//            }
+            cmdString = "SELECT COUNT(*) FROM Times";
             rs2 = st1.executeQuery(cmdString);
-            //ResultSetMetaData md2 = rs2.getMetaData();
-            while (rs2.next()){
-                count++;
-            }
+            count =  ((Number) rs2.getObject(1)).intValue();
         }
         catch (Exception e)
         {

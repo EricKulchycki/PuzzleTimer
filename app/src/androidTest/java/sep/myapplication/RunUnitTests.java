@@ -11,13 +11,13 @@ import sep.myapplication.persistence.DataAccessStubTest;
 
 
 
-public class AllTests
+public class RunUnitTests
 {
     public static TestSuite suite;
 
     public static Test suite()
     {
-        suite = new TestSuite("All tests");
+        suite = new TestSuite("Unit tests");
         testAll();
         return suite;
     }

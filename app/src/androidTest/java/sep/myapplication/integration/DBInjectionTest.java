@@ -1,4 +1,4 @@
-package sep.myapplication;
+package sep.myapplication.integration;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,19 +13,26 @@ import sep.myapplication.persistence.*;
 public class DBInjectionTest extends TestCase {
 
 
+
+
     public DBInjectionTest(String arg0)
     {
         super(arg0);
     }
 
-    DatabaseInterface DASTest = new DataAccessObject(Main.dbName);
+    DatabaseInterface  DASTest = new DataAccessObject("testDB");
+
+
 
     @Test
     public void testInitializationValues() throws Exception{
-        DASTest.open(Main.dbName);
+        //Main.startUp();
+        //Services.createDataAccess("testDB");
+
+        DASTest.open("testDB");
         DASTest.reset();
         assertNull(DASTest.getList());
-        assertEquals("SC", DASTest.getDbName());
+        assertEquals("testDB", DASTest.getDbName());
         assertEquals(0, DASTest.getSize());
         try {
             assertEquals(-1, DASTest.getIndex(1));
@@ -38,7 +45,8 @@ public class DBInjectionTest extends TestCase {
 
     @Test
     public void testDummyValues() throws Exception{
-        DASTest.open(Main.dbName);
+        //Main.startUp();
+        DASTest.open("testDB");
         DASTest.addTestValues();
 
         assertEquals(5, DASTest.getSize());
@@ -49,7 +57,8 @@ public class DBInjectionTest extends TestCase {
 
     @Test
     public void testModifyValues() throws Exception{
-        DASTest.open(Main.dbName);
+        //Main.startUp();
+        DASTest.open("testDB");
         DASTest.reset();
         DASTest.add(12345);
         assertEquals(1, DASTest.getSize());
@@ -76,7 +85,8 @@ public class DBInjectionTest extends TestCase {
 
     @Test
     public void testResetList() throws Exception {
-        DASTest.open(Main.dbName);
+        //Main.startUp();
+        DASTest.open("testDB");
         DASTest.reset();
         assertEquals(0, DASTest.getSize());
 
@@ -94,7 +104,8 @@ public class DBInjectionTest extends TestCase {
 
     @Test
     public void testSizeAfterModify() throws Exception {
-        DASTest.open(Main.dbName);
+        //Main.startUp();
+        DASTest.open("testDB");
         DASTest.addTestValues(16);
 
         assertEquals(16, DASTest.getSize());
@@ -113,7 +124,8 @@ public class DBInjectionTest extends TestCase {
 
     @Test
     public void testModifyValuesInList() throws Exception{
-        DASTest.open(Main.dbName);
+        //Main.startUp();
+        DASTest.open("testDB");
         DASTest.addTestValues();
         assertEquals(5, DASTest.getSize());
         assertEquals(10000, DASTest.getTime(0));

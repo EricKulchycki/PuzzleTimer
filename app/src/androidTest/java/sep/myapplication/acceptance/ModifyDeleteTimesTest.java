@@ -34,22 +34,23 @@ public class ModifyDeleteTimesTest extends TestCase {
     public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
     private Solo solo;
 
-    @Before
-    public void setUp() throws Exception {
+    public void testSetUp() throws Exception {
         //setUp() is run before a test case is started.
         //This is where the solo object is created.
         solo = new Solo(InstrumentationRegistry.getInstrumentation(), activityTestRule.getActivity());
     }
 
-    @After
-    public void tearDown() throws Exception {
+
+    public void testTearDown() throws Exception {
         //tearDown() is run after a test case has finished.
         //finishOpenedActivities() will finish all the activities that have been opened during the test execution.
         solo.finishOpenedActivities();
     }
 
-    @Test
-    public void modifyDeleteTimes() throws Exception {
+
+    public void testModifyDeleteTimes() throws Exception {
+        ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
+        Solo solo = new Solo(InstrumentationRegistry.getInstrumentation(), activityTestRule.getActivity());
         Main.startUp();
         DatabaseInterface testDB = Services.getDataAccess(Main.dbName);
 
@@ -57,6 +58,7 @@ public class ModifyDeleteTimesTest extends TestCase {
         //add times
         solo.assertCurrentActivity("Main Activity", MainActivity.class);
 
+        //Run the timer a couple times
         for (int i = 0; i < 3; i++) {
             solo.clickOnView(solo.getView(R.id.inspection));
             solo.clickOnView(solo.getView(R.id.startTimer));
@@ -68,15 +70,15 @@ public class ModifyDeleteTimesTest extends TestCase {
         solo.assertCurrentActivity("Expected timeList", TimeListActivity.class);
         assertEquals(0, testDB.getIndex(5000));
 
-        ListView list = (ListView)solo.getView(R.id.listview);
+        ListView list = (ListView)solo.getView(R.id.timeListView);
         View listItem = list.getChildAt(0);
 
         solo.clickOnView(listItem);
-        solo.clickOnView(R.id.Modify);
+        solo.clickOnButton(R.id.Modify);
         assertEquals(0, testDB.getIndex(7000));
-        solo.clickOnView(R.id.Delete);
+        solo.clickOnButton(R.id.Delete);
         assertEquals(0, testDB.getIndex(10000));
-        solo.clickOnView(R.id.ClearList);
+        solo.clickOnButton(R.id.ClearList);
         assertEquals(-1, testDB.getIndex(5000));
     }
 }

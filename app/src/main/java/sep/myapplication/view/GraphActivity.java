@@ -9,10 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.graphview.GraphView;
-import com.graphview.GridLabelRenderer;
-import com.graphview.series.DataPoint;
-import com.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import sep.myapplication.Application.Main;
 import sep.myapplication.Application.Services;

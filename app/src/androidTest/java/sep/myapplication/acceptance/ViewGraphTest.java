@@ -51,6 +51,7 @@ public class ViewGraphTest extends TestCase {
         //add times
         solo.assertCurrentActivity("Main Activity", MainActivity.class);
 
+        //Add some times to the DB
         for (int i = 0; i < 3; i++) {
             solo.clickOnView(solo.getView(R.id.inspection));
             solo.clickOnView(solo.getView(R.id.startTimer));

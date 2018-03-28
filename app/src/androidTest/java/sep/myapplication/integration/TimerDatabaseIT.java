@@ -1,4 +1,4 @@
-package sep.myapplication;
+package sep.myapplication.integration;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

@@ -26,9 +26,9 @@ public class CalculateAveragesTest extends TestCase{
         testObj = new CalculateAverages(testList.getSize(), testList);
 
         assertEquals("Average: 0:01.000", testObj.calcAverage());
-        assertEquals("", testObj.calcAve5());
-        assertEquals("", testObj.calcAve12());
-        assertEquals("", testObj.calcAve50());
+        assertEquals("Average of 5: --.---", testObj.calcAve5());
+        assertEquals("Average of 12: --.---", testObj.calcAve12());
+        assertEquals("Average of 50: --.---", testObj.calcAve50());
 
     }
 
@@ -42,8 +42,8 @@ public class CalculateAveragesTest extends TestCase{
 
         assertEquals("Average: 0:30.000", testObj.calcAverage());
         assertEquals("Average of 5: 0:30.000", testObj.calcAve5());
-        assertEquals("", testObj.calcAve12());
-        assertEquals("", testObj.calcAve50());
+        assertEquals("Average of 12: --.---", testObj.calcAve12());
+        assertEquals("Average of 50: --.---", testObj.calcAve50());
 
     }
 
@@ -56,9 +56,9 @@ public class CalculateAveragesTest extends TestCase{
         testObj = new CalculateAverages(testList.getSize(), testList);
 
         assertEquals("Average: 0:10.650", testObj.calcAverage());
-        assertEquals("Average of 5: 0:11.000", testObj.calcAve5());
+        assertEquals("Average of 5: 0:19.440", testObj.calcAve5());
         assertEquals("Average of 12: 0:10.650", testObj.calcAve12());
-        assertEquals("", testObj.calcAve50());
+        assertEquals("Average of 50: --.---", testObj.calcAve50());
 
     }
 
@@ -71,9 +71,9 @@ public class CalculateAveragesTest extends TestCase{
         testObj = new CalculateAverages(testList.getSize(), testList);
 
         assertEquals("Average: 0:12.600", testObj.calcAverage());
-        assertEquals("Average of 5: 0:14.900", testObj.calcAve5());
-        assertEquals("Average of 12: 0:14.550", testObj.calcAve12());
-        assertEquals("Average of 50: 0:12.650", testObj.calcAve50());
+        assertEquals("Average of 5: 1:17.000", testObj.calcAve5());
+        assertEquals("Average of 12: 0:36.133", testObj.calcAve12());
+        assertEquals("Average of 50: 0:12.852", testObj.calcAve50());
 
     }
 
@@ -84,10 +84,10 @@ public class CalculateAveragesTest extends TestCase{
 
         testObj = new CalculateAverages(testList.getSize(), testList);
 
-        assertEquals("", testObj.calcAverage());
-        assertEquals("", testObj.calcAve5());
-        assertEquals("", testObj.calcAve12());
-        assertEquals("", testObj.calcAve50());
+        assertEquals("Average: 0:00.000", testObj.calcAverage());
+        assertEquals("Average of 5: --.---", testObj.calcAve5());
+        assertEquals("Average of 12: --.---", testObj.calcAve12());
+        assertEquals("Average of 50: --.---", testObj.calcAve50());
     }
 
 
