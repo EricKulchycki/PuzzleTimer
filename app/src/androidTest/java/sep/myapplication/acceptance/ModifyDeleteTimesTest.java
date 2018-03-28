@@ -2,6 +2,7 @@ package sep.myapplication.acceptance;
 
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
+import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import com.robotium.solo.Solo;
 import org.junit.Test;
@@ -27,30 +28,33 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 
-@RunWith(AndroidJUnit4.class)
-public class ModifyDeleteTimesTest extends TestCase {
+public class ModifyDeleteTimesTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
-    @Rule
-    public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
     private Solo solo;
 
-    public void testSetUp() throws Exception {
-        //setUp() is run before a test case is started.
-        //This is where the solo object is created.
-        solo = new Solo(InstrumentationRegistry.getInstrumentation(), activityTestRule.getActivity());
+    public ModifyDeleteTimesTest()
+    {
+        super(MainActivity.class);
     }
 
+    public void setUp() throws Exception
+    {
+        solo = new Solo(getInstrumentation(), getActivity());
 
-    public void testTearDown() throws Exception {
-        //tearDown() is run after a test case has finished.
-        //finishOpenedActivities() will finish all the activities that have been opened during the test execution.
+        // Disable this for full acceptance test
+        // System.out.println("Injecting stub database.");
+        // Services.createDataAccess(new DataAccessStub(Main.dbName));
+    }
+
+    @Override
+    public void tearDown() throws Exception
+    {
         solo.finishOpenedActivities();
     }
 
 
-    public void testModifyDeleteTimes() throws Exception {
-        ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
-        Solo solo = new Solo(InstrumentationRegistry.getInstrumentation(), activityTestRule.getActivity());
+    public void testModifyDeleteTimes() {
+
         Main.startUp();
         DatabaseInterface testDB = Services.getDataAccess(Main.dbName);
 
@@ -58,7 +62,7 @@ public class ModifyDeleteTimesTest extends TestCase {
         //add times
         solo.assertCurrentActivity("Main Activity", MainActivity.class);
 
-        //Run the timer a couple times
+        //Run the timer a couple times and add to the DB
         for (int i = 0; i < 3; i++) {
             solo.clickOnView(solo.getView(R.id.inspection));
             solo.clickOnView(solo.getView(R.id.startTimer));
@@ -68,17 +72,19 @@ public class ModifyDeleteTimesTest extends TestCase {
 
         solo.clickOnView(solo.getView(R.id.timeList));
         solo.assertCurrentActivity("Expected timeList", TimeListActivity.class);
-        assertEquals(0, testDB.getIndex(5000));
+        assertTrue(testDB.getIndex(5000) == -1);
 
         ListView list = (ListView)solo.getView(R.id.timeListView);
         View listItem = list.getChildAt(0);
 
+
+
         solo.clickOnView(listItem);
-        solo.clickOnButton(R.id.Modify);
-        assertEquals(0, testDB.getIndex(7000));
-        solo.clickOnButton(R.id.Delete);
-        assertEquals(0, testDB.getIndex(10000));
-        solo.clickOnButton(R.id.ClearList);
-        assertEquals(-1, testDB.getIndex(5000));
+        solo.clickOnButton("+2 sec");
+        assertTrue(testDB.getTime(0) > 0);
+        solo.clickOnButton("Delete");
+        assertTrue(testDB.getTime(0) > 0);
     }
+
+
 }

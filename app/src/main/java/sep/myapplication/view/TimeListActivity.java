@@ -95,27 +95,28 @@ public class TimeListActivity extends AppCompatActivity {
     public void setupTimeList() {
         ArrayList<String> timeStrings = new ArrayList<String>();
         timeDBList = timeDB.getList();
+
         String timeString = "";
 
-        for(int i = 0; i < timeDBList.size(); i++) {
+        for (int i = 0; i < timeDBList.size(); i++) {
 
 
             long time = timeDBList.get(i);
             if (time >= 0) {
-                if(time == 0){
+                if (time == 0) {
                     timeString = "DNF";
-                }
-                else {
+                } else {
                     timeString = Timer.toString(time);
                 }
-                    timeStrings.add(timeString);
+                timeStrings.add(timeString);
 
             }
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeStrings );
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeStrings);
 
         timeList.setAdapter(arrayAdapter);
+
     }
 
     @Override

@@ -6,6 +6,7 @@ import junit.framework.TestSuite;
 import sep.myapplication.acceptance.ChangeScrambleSizeTest;
 import sep.myapplication.acceptance.ModifyDeleteTimesTest;
 import sep.myapplication.acceptance.StartTimerTest;
+import sep.myapplication.acceptance.TestColourChange;
 import sep.myapplication.acceptance.ViewGraphTest;
 
 
@@ -27,5 +28,6 @@ public class RunAcceptanceTests
         suite.addTestSuite(ModifyDeleteTimesTest.class);
         suite.addTestSuite(StartTimerTest.class);
         suite.addTestSuite(ViewGraphTest.class);
+        suite.addTestSuite(TestColourChange.class);
     }
 }
