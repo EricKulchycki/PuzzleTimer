@@ -111,9 +111,6 @@ public class DataAccessObject implements DatabaseInterface
             processSQLError(e);
         }
 
-        if (retval.size() == 0){
-            retval = null;
-        }
         return retval;
     }
 
@@ -183,10 +180,6 @@ public class DataAccessObject implements DatabaseInterface
         try
         {
             cmdString = "DELETE FROM Times";
-            updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
-
-            cmdString = "ALTER TABLE Times ALTER COLUMN Run RESTART WITH 0";
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
         }
